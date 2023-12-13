@@ -1,0 +1,33 @@
+﻿.header1
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 9pt;
+    COLOR: #ffffff;
+    FONT-FAMILY: Verdana, Tahoma, Arial;
+    BACKGROUND-COLOR: #0066cc;
+}
+.header2
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 9pt;
+    COLOR: #666666;
+    FONT-FAMILY: Verdana, Tahoma, Arial;
+    BACKGROUND-COLOR: #cccc99;
+}
+TABLE.borderline1
+{
+    BACKGROUND-COLOR: #a9a9a9;
+    width: 100%;
+}
+TD.content1
+{
+	FONT-WEIGHT:  Bold;	
+	FONT-FAMILY: Times New Roman;
+    BACKGROUND-COLOR: #e6e6fa; 
+    COLOR: #000066;
+}
+TD.content2
+{
+    BACKGROUND-COLOR: #e6e6fa;
+}
+

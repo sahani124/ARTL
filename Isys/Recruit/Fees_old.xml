@@ -1,0 +1,8 @@
+<OutPut>
+	<ChequeDate>2010-07-21 00:00:00.000</ChequeDate>
+	<ChequeNo>46544415</ChequeNo>
+	<ChequeAmount>5465.00</ChequeAmount>
+	<BankName>Bhagyodaya Urban Co Op Bank Ltd</BankName>
+	<PaymentMode>Cheque</PaymentMode>
+	<TransID_fk>072110-100044</TransID_fk>
+</OutPut>

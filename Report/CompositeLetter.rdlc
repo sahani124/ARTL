@@ -1,0 +1,3972 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
+  <DataSources>
+    <DataSource Name="IndividualLtr">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>efc7cecc-8ae8-458d-8fe3-efba0b6c4652</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="IndividualLtr">
+      <Fields>
+        <Field Name="LcnNo">
+          <DataField>LcnNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LcnExpDate">
+          <DataField>LcnExpDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LcnIssDate">
+          <DataField>LcnIssDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AgencyCode">
+          <DataField>AgencyCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TodaysDate">
+          <DataField>TodaysDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GivenName">
+          <DataField>GivenName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Surname">
+          <DataField>Surname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Title">
+          <DataField>Title</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Adr1">
+          <DataField>Adr1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Adr2">
+          <DataField>Adr2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Adr3">
+          <DataField>Adr3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Adr4">
+          <DataField>Adr4</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PostCode">
+          <DataField>PostCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>IndividualLtr</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <rd:DataSetInfo>
+        <rd:DataSetName>IndividualLtr</rd:DataSetName>
+        <rd:SchemaPath>D:\Pranjali\30072014\I-SysSuite\App_Code\IndividualLtr.xsd</rd:SchemaPath>
+        <rd:TableName>DataTable1</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <Body>
+    <ReportItems>
+      <Textbox Name="Textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Corporate Office: , Next to Royal Industrial Estate, Wadala (West),</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Mumbai- 400 031. Phone: 022- 30479600</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Terms &amp; Conditions </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>(</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Enclosure to Agent’s appointment letter</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>1) </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>FUNCTIONS:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Your functions as agent would be:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>1. to propagate awareness about general insurance products</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>2.to solicit and procure general insurance business</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>3.to complete as much business as possible</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>4.to abide by codes of conduct and other terms set by the company and regulations</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>2) Code of Conduct:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>You have to adhere to the following Code of Conduct:-</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>DO’s --</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>1. You shall at all times conduct business in good faith and with integrity.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>2. Disclose your Licence to the prospect on demand and identify yourself and your Company</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>3.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">  </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Take into considerations the needs of the client and suggest appropriate covers offered by RGICL i.e. - selling the right policy</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>4.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> Explain benefits &amp; exclusions properly to the client i.e. - selling the policy right</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>5.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">  </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Give advice only on those matters in which you are competent to deal with or otherwise seek advice from the Company when necessary;</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>6.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">  </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Disclose the scales of commission in respect of the insurance product offered for sale if asked by the prospect</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>7.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">  </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Indicate the premium to be charged by the Company for the insurance product offered for sale.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>8.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">  </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Explain to the prospect the informations required in the proposal form by the Company and also the importance of disclosure of material information in the purchase of an insurance</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>contract</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>9.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">  </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Bring to the notice of the insurer any material fact that may adversely affect the underwriting decision of the Company as regards acceptance of the proposal, by making all reasonable</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>enquires about the prospect</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>10.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Inform promptly the prospect about the acceptance or rejection of the proposal.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>11.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Obtain requisite documents / informations for completion of the proposal and treat all information supplied by the client as confidential and disclose such information only to the</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Company;</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>12.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Render necessary assistance to the policyholders or claimants or beneficiaries in complying with the requirement for settlement of claims by the insurer.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>13.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Advise policyholders to effect nomination or change of address or exercise of options etc and</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>offer necessary assistance in this behalf, wherever necessary.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>14. Track renewals by giving notice orally and in writing.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>15. Maintain contacts with the client and provide after sales service</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>16. Assist the client in completing formalities if a claim arises</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Don’ts --</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>1. Will not solicit or procure insurance business without holding a valid licence</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>1.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Induce the prospect to omit any material information in the proposal form</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>2.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Induce the prospect to submit wrong information in the proposal form or documents submitted to the insurer for acceptance of the proposal</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>3.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Behave in a discourteous manner with the prospect</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>4.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Interfere with any proposal introduced by any other insurance agent</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>5.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Offer different rates or terms &amp; conditions other than those offered by the Company</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>6.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Demand / receive a share of proceeds from beneficiary under an insurance contract</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>7.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Apply for fresh license, if his license was cancelled by designated person, and a period of five years has not elapsed from the date of such cancellation</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>8.Not make inaccurate or misleading statements even about other Companies or their policies, or any other intermediaries</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>18pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>3) ADVERTISEMENT OR PUBLICITY BY AGENT:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>You shall, during the conduct of your agency business adhere to the provisions of the Insurance Regulatory and Development Authority (Insurance Advertisement and Disclosure) Regulations 2000. You shall not publish or cause to be published any advertisement or publicity concerning the Company in any media or public place whatsoever without prior written authorization of the Company  </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>However in the following cases such prior approval is not required:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>a)   Advertisements developed by the Company and provided to you;</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>b)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">     </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Generic advertisements limited to information like your name, address, and phone number;</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>c)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">      </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Advertisements that consists of simple and correct statements describing the availability of lines of insurance, references to your experience, service and qualifications; but making no reference to specific policies, benefits etc.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>36pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>4) STATIONERY:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>You shall, in the course of business, use letters or other stationery bearing your name only clearly indicating that you are an Agent of the Company.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>18pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>5) COMPLIANCE: </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>You shall in performance of your duties comply with all the Laws, rules and regulations relating to Insurance in force and as amended from time to time. You shall also comply with all directions issued by the Company from time to time.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>18pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>6) OTHER INSURANCE AGENCIES:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>In accordance with the Insurance Regulatory and Development Authority (Licensing of Insurance Agents) Regulations, 2000 you cannot take up General insurance agency of any other Company. You may however take life insurance agency of one life insurer subject to meeting applicable requirements.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>18pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>7) AUTHORITY TO COLLECT MONEY:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>You are not authorized to collect money in cash from clients or issue receipt on behalf of the company.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>18pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>8) AUTHORITY TO ACCEPT RISKS:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>You are not authorized to accept any insurance risk on behalf of the Company.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>9) COMMISSION:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>You shall be entitled to receive commission on the actual premium amounts brought in by you at appropriate rates fixed by the Company from time to time. </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>10) VALIDITY &amp; RENEWAL OF LICENCE:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>The Insurance Licence is valid for three years from the date of issue. No correction on the same is valid without the initials of designated person. Application for Renewal of the Licence</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>will have to reach the Company three months prior to the expiry date of the licence with the requisite documents of practical training etc and fees. Your appointment as our agent is</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>subject to your continuing to hold a valid insurance licence and if your insurance licence is cancelled or not renewed your appointment, as</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>consultant shall ipso facto stand terminated.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>11) DIRECTORSHIP:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>As required under the IRDA (Licensing of Insurance Agents) Regulations, 2000 you are not entitled to become or remain a director of any Insurance Company.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>18pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>12) BUSINESS TARGETS</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>The minimum business to be procured by you will be Rs 1 Lac per annum and  you are required    to achieve the said business norms in line with irda circular no IRDA/CAGTS/CIR/142/07/2013 dtd 25/07/2013.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>18pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>13) PROHIBITION OF REBATE:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>You shall observe and adhere to the provision of Section 41 of the Insurance Act, 1938 and also bring the same to the notice of the prospect that:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>No person shall allow or offer to either directly or indirectly as an inducement to any person to take out or renew or continue an insurance in respect of any kind of risk relating to lives or property in India, any rebate of the whole of part commission payable or any rebate of the premium shown on the policy nor shall any person taking out or renewing or continuing a policy accept any rebate except such rebate as may be allowed in accordance with the published prospectuses or tables of the Insurer.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>18pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>14)OBLIGATIONS UNDER THE IRDA  (</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Protection of Policyholders’ Interests</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>) REGULATIONS, 2002:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>The following points to be noted by you as agent,</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>18pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>1)    Regulations 3(2) – An insurer or its agent or other intermediary shall provide all material information in respect of a proposed cover to the prospect to enable the prospect to decide on the best cover that would be in his or her interest.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>2)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">       </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Regulation 3(3)- Where the prospect depends upon the advice of the insurer or his agent such a person must advise the prospect dispassionately.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>3)    Regulation 3(5) – In the process of sale, the insurer or its agent or an intermediary shall act according to the code of conduct prescribed by the Authority, the Councils established under section 64C of the Act and the recognized professional body of which the agent is a member.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>4)    Regulation 4(6) – To assist the Company to process proposals with speed and efficiency and communicate all decision thereof in writing within a reasonable period not exceeding 15 days from receipt of proposals.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>5)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">       </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Regulation 11 (4)- Any breach of the obligations cast on an insurer or insurance intermediary in terms of these regulations may enable the Authority to initiate action against each or all of them, jointly or severally, under the Act and/or the IRDA Act, 1999.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>72pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>15) LEGAL PROCEEDINGS:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>If any lawsuits should be brought against the Company in consequence of any of your unauthorized action or statement, all costs and damages arising therefrom shall be borne by you personally. If any legal dispute arises between you and the company the same shall be under the jurisdiction of Mumbai High Court.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>16) DISQUALIFICATIONS OF AGENT:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>An insurance agent’s licence is liable to be cancelled if the agent suffers, at any time during the currency of the licence from any of the disqualifications in Sub-section (4) of Section 42 of the Act.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>The disqualifications are:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>(a)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">          </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>That the person is a minor</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>(b)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">          </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>That he is found to be of unsound mind by a Court of competent jurisdiction;</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>(c)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">           </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>That he is found guilty of criminal misappropriation or criminal breach of trust or cheating or forgery or an abatement of or attempt to commit any such offence by a court of</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>competent jurisdiction;</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>(d)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">          </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>That in the course of any judicial proceeding relating to any policy of insurance or the winding up of an insurance company or in the course of an investigation of the affairs of an insurer, it has been found that he has been guilty of or has knowingly participated in or connived at any fraud, dishonesty or misrepresentation against an insurer or an insured;</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>(e)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">           </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>That he does not possess the requisite qualification and practical training as may be specified by the Regulations made by the Authority in this behalf;</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>(f)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">            </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>That he has not passed such examination as may be specified by the Regulations made by the authority in this behalf;</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>(g)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">           </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>That he violates the code of conduct</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>18pt</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>17) TERMINATION OF AGENCY:  </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>The company shall be entitled to terminate your agency, if in its sole opinion,</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>a)    your performance has not been satisfactory; or</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>b)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">       </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>you have breached the code of conduct or any of the terms and conditions; or</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>c)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">       </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>you have suffered from any disqualifications; or</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>d)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">      </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>you have acted in a fraudulent manner; or</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>e)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">       </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>your continuation as agent shall be prejudicial to the interest of the Company.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>9.61819in</Top>
+        <Left>0.15625in</Left>
+        <Height>24.29167in</Height>
+        <Width>6.3125in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Image Name="Image2">
+        <Source>Embedded</Source>
+        <Value>RelianceLogo1</Value>
+        <Sizing>Fit</Sizing>
+        <Top>8.49478in</Top>
+        <Left>4.375in</Left>
+        <Height>0.72917in</Height>
+        <Width>2.09375in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+      <Textbox Name="Textbox2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value xml:space="preserve">                    </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>14pt</FontSize>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Terms &amp; Conditions</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Book Antiqua</FontFamily>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>8.97395in</Top>
+        <Left>0.32292in</Left>
+        <Height>0.25in</Height>
+        <Width>4.1875in</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Line Name="Line2">
+        <Top>9.50172in</Top>
+        <Left>0.15625in</Left>
+        <Height>0in</Height>
+        <Width>6.3125in</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Textbox Name="Textbox8">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>Red</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Fields!TodaysDate.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value xml:space="preserve">                                                                                                                       </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Fields!Title.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!GivenName.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!Surname.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Fields!Adr1.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Fields!Adr2.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Fields!Adr3.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Fields!PostCode.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Re: Your Appointment as Agent</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Dear </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!GivenName.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>,</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>With reference to your application form </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!TodaysDate.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> dated for obtaining an Agency we are pleased to appoint you as Insurance Agent for transacting General Insurance business for and on behalf of </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Reliance General Insurance Company Limited</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>We present you a Laminated Licence and Company ID Card.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Your Composite  Licence particulars are as under:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Agency Code  No                  :         </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!AgencyCode.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">  </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0.5in</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Licence No.                           :         </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!LcnNo.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">  </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0.5in</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Date of Issue                         :         </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!LcnIssDate.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0.5in</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Expiry Date                            :         </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!LcnExpDate.Value</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">   </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0.5in</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0.5in</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>You are requested to have the same renewed from time to time, failing which the licence will result in automatic termination of this appointment as agent of our company.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Your Agency code is to be used in all proposals and correspondence etc submitted by you.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>This appointment is governed by the enclosed terms &amp; conditions set out by our company and also various Insurance regulations in vogue and subject to amendmends from time to time.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>The Company may cancel agency and / or licence</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>a)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">    </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>if agent suffers at any time from any of the disqualification mentioned in the IRDA (Licencing of Insurance Agents) Regulations 2000</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>1in</LeftIndent>
+            <HangingIndent>-0.25in</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>b)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">    </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>if the terms and conditions have not been met.                                                        </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>1in</LeftIndent>
+            <HangingIndent>-0.25in</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>c)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">    </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>if Code of Conduct is violated.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>1in</LeftIndent>
+            <HangingIndent>-0.25in</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>In terms of our AML Policy no cash premium more then Rs.50000/- is to be collected due diligence is required for non financed assets policies above Rs.25 lakh and no insurance contract to be entered with banned entities. You are also required to be guided by KYC norms for settlement of claims/refunds beyond 1 lac.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Please sign the duplicate copy of this letter as acceptance of the appointment.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Thanking you.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Yours truly,</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox8</rd:DefaultName>
+        <Top>0.95834in</Top>
+        <Left>0.15625in</Left>
+        <Height>6.72917in</Height>
+        <Width>6.3125in</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Image Name="RelianceLogo">
+        <Source>Embedded</Source>
+        <Value>RelianceLogo</Value>
+        <Sizing>Fit</Sizing>
+        <Top>0.19097in</Top>
+        <Left>4.375in</Left>
+        <Height>0.71181in</Height>
+        <Width>2.09375in</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+      <Image Name="Sign">
+        <Source>Embedded</Source>
+        <Value>Signature1</Value>
+        <Sizing>Fit</Sizing>
+        <Top>7.71529in</Top>
+        <Left>0.32292in</Left>
+        <Height>0.5in</Height>
+        <Width>0.55208in</Width>
+        <ZIndex>6</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+      <Textbox Name="Textbox10">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Vijay Kumar</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Designated Person</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox10</rd:DefaultName>
+        <Top>8.27084in</Top>
+        <Left>0.15625in</Left>
+        <Height>0.42708in</Height>
+        <Width>1.5in</Width>
+        <ZIndex>7</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>34.31249in</Height>
+    <Style />
+  </Body>
+  <Width>6.54167in</Width>
+  <Page>
+    <PageHeight>11.69in</PageHeight>
+    <PageWidth>8.27in</PageWidth>
+    <LeftMargin>1in</LeftMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <EmbeddedImages>
+    <EmbeddedImage Name="RelianceLogo1">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="RelianceLogo">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="Signature1">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportID>bc3c6672-5e90-42dd-bc97-92455a21f5d5</rd:ReportID>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+</Report>

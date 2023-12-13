@@ -1,0 +1,488 @@
+<%@ Page Language="C#" MasterPageFile="~/iFrame.master" AutoEventWireup="true" CodeFile="CltNew.aspx.cs" Inherits="Application_Common_CltNew" %>
+
+<%@ Register Src="popupAML.ascx" TagName="popupAML" TagPrefix="uc6" %>
+<%@ Register Assembly="System.Web.Extensions" Namespace="System.Web.UI" TagPrefix="asp" %>
+<%@ Register Src="CltDetailAddr.ascx" TagName="AddAddr" TagPrefix="uc1" %>
+<%@ Register Src="~/App_UserControl/Common/txtDate.ascx" TagName="txtDate" TagPrefix="uc2" %>
+<%@ Register Src="~/App_UserControl/Common/popupLookup.ascx" TagName="popupLookup" TagPrefix="uc3" %>
+<%@ Register Src="~/App_UserControl/Common/ddlLookup.ascx" TagName="ddlLookup" TagPrefix="uc4" %>
+<%@ Register Src="~/App_UserControl/Common/popupOccupation.ascx" TagName="popupOccupation" TagPrefix="uc5" %>
+<%@ Register Src="popupCltAddr.ascx" TagName="popupCltAddr" TagPrefix="uc8" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">   
+    
+     <script type="text/javascript" language="javascript">
+        function ChangeTabPage(TabId)
+	    {
+		    document.getElementById("ctl00$ContentPlaceHolder1$hdnTabNextActive").value = TabId;
+		    document.getElementById("ctl00$ContentPlaceHolder1$btnPostBack").click();
+	    }
+			
+	    function DeleteTabPage(TabId)
+	    {
+		    document.getElementById("ctl00$ContentPlaceHolder1$hdnTabDelete").value = TabId;
+		    document.getElementById("ctl00$ContentPlaceHolder1$btnPostBack").click();
+	    } 
+    </script>
+    <asp:Panel ID="PanelMain" runat="server">
+        <asp:ScriptManager runat="server" ID="SM"/> 
+        <table id="Table1" runat="server" border="0" cellpadding="3" cellspacing="1" style="left: 0px; position: absolute;" width="790" align="Left">
+            <tr>                
+                <td style="width: 850px;" > 
+                    <!-- Personal Client -->                    
+                    <table style="font-size: 8pt;" border="0" cellpadding="3" cellspacing="1" bgcolor="lavender" width="790" align="center">
+                        <tr>                        
+                            <td class="test" colspan="7">
+                                &nbsp;<asp:Label id="lblHeader" runat="server" style="font-size: 10pt;" Text="Personal Client"></asp:Label></td>
+                        </tr>                                                                              
+                        <tr>
+                            <td class="formcontent" width="150px">
+                                <span>Customer ID</span></td>
+                            <td class="formcontent" colspan="3">
+                                <asp:UpdatePanel ID="UpdPanelGCN" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>
+<asp:TextBox id="txtGCN" runat="server" Width="170px" Enabled="false" MaxLength="12"></asp:TextBox> <asp:TextBox style="TEXT-ALIGN: center" id="txtCltStat" runat="server" Width="50px" BorderColor="Transparent" BorderStyle="None">Active</asp:TextBox> 
+</contenttemplate>
+                                </asp:UpdatePanel></td>                                                
+                            <td class="formcontent" width="150px">
+                                <span>Client Code</span></td>
+                            <td class="formcontent" colspan="2">
+                                <asp:UpdatePanel ID="UpdPanelCltCode" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>
+<asp:TextBox id="txtCltCode" runat="server" Width="230px" MaxLength="12"></asp:TextBox> 
+</contenttemplate>
+                                </asp:UpdatePanel></td>
+                        </tr>                                            
+                        <tr>
+                            <td class="formcontent" width="150px">
+                                <span>Given Name</span></td> 
+                            <td class="formcontent" colspan="3">
+                                <asp:UpdatePanel ID="UpdPanelGivenNm" runat="server" RenderMode="Inline" UpdateMode="Conditional" >
+                                    <contenttemplate>
+<uc4:ddlLookup id="cboTitle" runat="server" RequiredField="false" Width="70" CssClass="standardmenu" LookupCode="NBTitle"></uc4:ddlLookup> <asp:TextBox id="txtGivenName" runat="server" Width="155px" MaxLength="60"></asp:TextBox> 
+</contenttemplate>
+                                </asp:UpdatePanel></td> 
+                            <td class="formcontent" width="150px">
+                                <span>Surname</span></td>
+                            <td class="formcontent" colspan="2">
+                                <asp:UpdatePanel ID="UpdPanelSurname" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>
+<asp:TextBox id="txtSurname" runat="server" Width="230px" MaxLength="60"></asp:TextBox> 
+</contenttemplate>
+                                </asp:UpdatePanel></td>                                                  
+                        </tr>
+                        <tr>
+                            <td class="formcontent" width="150px">
+                                <span>Date of Birth</span></td>
+                            <td class="formcontent" colspan="3">
+                                <uc2:txtDate ID="txtDOB" runat="server" CssClass="standardtextbox" Width="200" RequiredField="false" RequiredValidationMessage="Date of Birth is required" /></td>
+                            <td class="formcontent" width="150px">
+                                <span>Gender</span></td>
+                            <td class="formcontent" width="230px" colspan="2">
+                                <asp:UpdatePanel ID="UpdPanelGender" runat="server" RenderMode="Inline" UpdateMode="Conditional" >
+                                    <contenttemplate>
+                                        <uc4:ddlLookup id="cboGender" runat="server" Width="230" CssClass="standardmenu" LookupCode="NBGender" ></uc4:ddlLookup> 
+                                    </contenttemplate>
+                                </asp:UpdatePanel></td>
+                        </tr>
+                        <tr>                                                
+                            <td class="formcontent" width="150px">
+                                <span>PAN </span></td>
+                            <td class="formcontent" colspan="3">
+                                <asp:UpdatePanel ID="UpdPanelCurrentID" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>
+<asp:TextBox id="txtCurrentID" runat="server" Width="230px" MaxLength="20"></asp:TextBox> 
+</contenttemplate>
+                                </asp:UpdatePanel></td>
+                            <td class="formcontent">                                
+                                <uc4:ddlLookup ID="cboOtherIDType" runat="server" CssClass="standardmenu" LookupCode="NBIDKey"
+                                    RequiredField="false" Width="150" /></td>
+                            <td class="formcontent">
+                                <asp:UpdatePanel ID="UpdPanelOtherID" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>
+<asp:TextBox id="txtOthersID" runat="server" Width="160px" MaxLength="20"></asp:TextBox> 
+</contenttemplate></asp:UpdatePanel></td>
+                            <td class="formcontent" Width="50px">                                                       
+                                <asp:Button ID="cmdLookup1" runat="server" Text="..." Width="60px" CausesValidation="False" /></td>
+                        </tr>
+                        <tr>
+                            <td class="formcontent" width="150px">
+                                <span>Marital Status</span></td>
+                            <td class="formcontent" colspan="3">
+                                <asp:UpdatePanel ID="UpdPanelMarital" runat="server" RenderMode="Inline" UpdateMode="Conditional" >
+                                    <contenttemplate>
+                                        <uc4:ddlLookup id="cboMaritalStatus" runat="server" RequiredField="false" Width="235" CssClass="standardmenu" LookupCode="MarrySts"></uc4:ddlLookup> 
+                                    </contenttemplate>
+                                </asp:UpdatePanel>     
+                            </td> 
+                            <td class="formcontent" width="150px">
+                                <span>Anniversary Date</span></td>
+                            <td class="formcontent" colspan="2">
+                                <uc2:txtDate ID="txtAnniversaryDate" runat="server" CssClass="standardtextbox" Width="200" RequiredField="false"  RequiredValidationMessage="Anniversary Date is required" /></td>
+                        </tr>
+                        <tr>                                                
+                            <td class="formcontent" width="150px" >
+                                <span >Nationality</span></td>
+                            <td class="formcontent" colspan="3" >
+                                <uc3:popupLookup ID="cboNationality" runat="server" LookupCode="National" CodeWidth="60" Descwidth="130" />                                       
+                                </td>
+                            <td class="formcontent" >
+                                <uc4:ddlLookup ID="cboResStat" runat="server" CssClass="standardmenu" LookupCode="ResStat" RequiredField="false" Width="150" /></td> 
+                            <td class="formcontent" width="200px" colspan="2" >
+                                <uc4:ddlLookup ID="cboResCntryCode" runat="server" CssClass="standardmenu" LookupCode="NBLocate" RequiredField="false" Width="235" /></td>
+                        </tr>
+                        <tr>
+                            <td class="formcontent" width="180px">
+                                <span >Highest Qualification </span></td>
+                            <td class="formcontent" colspan="3">
+                                <uc3:popupLookup ID="cboQualCode" runat="server" LookupCode=NBEduQua CodeWidth="60" Descwidth="130" CssClass="standardmenu" /> </td>
+                            <td class="formcontent" width="150px">
+                                <span >Correspondence Address</span></td>
+                            <td class="formcontent" width="230px" colspan="2" >
+                                <uc4:ddlLookup ID="cboCnctType" runat="server" CssClass="standardmenu" LookupCode="CnctType"  RequiredField="false" Width="235"  /></td>
+                         </tr>     
+                    </table>
+                    <!-- Residential Address -->
+                    <table style="font-size: 8pt;" border="0" cellpadding="3" cellspacing="1" width="790" align="center">  
+                        <tr>
+                            <td style="width: 790px;">
+                                <%--<asp:UpdatePanel ID="UpdPanelCltAddrR1" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>--%>
+                                        <uc1:AddAddr ID="CltAddrR1" runat="server" />
+                                   <%-- </contenttemplate>
+                                </asp:UpdatePanel>--%>
+                            </td>
+                        </tr>                        
+                    </table>
+                    <table style="font-size: 8pt;" border="0" cellpadding="3" cellspacing="1" width="790" align="center">
+                        <tr>                            
+                            <td >
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrR2" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>                                                                   
+                                        <uc8:popupCltAddr ID="PopupCltAddrR2" runat="server" OnUnload="PopupCltAddrR2_UnLoad" txtAddrNoText="P2" cmdSearchText="Residential 2" lblABHeadearText="Residential Address ( 2 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrR3" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>      
+                                        <uc8:popupCltAddr ID="PopupCltAddrR3" runat="server" OnUnload="PopupCltAddrR3_UnLoad" txtAddrNoText="P3" cmdSearchText="Residential 3" lblABHeadearText="Residential Address ( 3 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrR4" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>                                     
+                                        <uc8:popupCltAddr ID="PopupCltAddrR4" runat="server" OnUnload="PopupCltAddrR4_UnLoad" txtAddrNoText="P4" cmdSearchText="Residential 4" lblABHeadearText="Residential Address ( 4 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrR5" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>    
+                                        <uc8:popupCltAddr ID="PopupCltAddrR5" runat="server" OnUnload="PopupCltAddrR5_UnLoad" txtAddrNoText="P5" cmdSearchText="Residential 5" lblABHeadearText="Residential Address ( 5 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>                           
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrR6" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>      
+                                        <uc8:popupCltAddr ID="PopupCltAddrR6" runat="server" OnUnload="PopupCltAddrR6_UnLoad" txtAddrNoText="P6" cmdSearchText="Residential 6" lblABHeadearText="Residential Address (6)" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                        </tr>                                                            
+                        <tr>                            
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrR7" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>                                                                  
+                                        <uc8:popupCltAddr ID="PopupCltAddrR7" runat="server" OnUnload="PopupCltAddrR7_UnLoad" txtAddrNoText="P7" cmdSearchText="Residential 7" lblABHeadearText="Residential Address ( 7 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td >      
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrR8" runat="server" RenderMode="Inline" >
+                                    <contenttemplate> 
+                                        <uc8:popupCltAddr ID="PopupCltAddrR8" runat="server" OnUnload="PopupCltAddrR8_UnLoad" txtAddrNoText="P8" cmdSearchText="Residential 8" lblABHeadearText="Residential Address ( 8 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrR9" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>                                      
+                                        <uc8:popupCltAddr ID="PopupCltAddrR9" runat="server" OnUnload="PopupCltAddrR9_UnLoad" txtAddrNoText="P9" cmdSearchText="Residential 9" lblABHeadearText="Residential Address ( 9 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td >
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrR10" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>     
+                                        <uc8:popupCltAddr ID="PopupCltAddrR10" runat="server" OnUnload="PopupCltAddrR10_UnLoad" txtAddrNoText="P0" cmdSearchText="Residential 10" lblABHeadearText="Residential Address ( 10 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td >
+                                <uc8:popupCltAddr ID="PopupCltAddrR11" runat="server" Visible="false" /></td>
+                        </tr>                        
+                    </table>
+                    <!-- Business Address -->
+                    <table style="font-size: 8pt;" border="0" cellpadding="3" cellspacing="1" width="790" align="center">  
+                        <tr>
+                            <td style="width: 790px;">
+                                <%--<asp:UpdatePanel ID="UpdPanelCltAddrB1" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>--%>
+                                        <uc1:AddAddr ID="CltAddrB1" runat="server" />
+                                 <%--   </contenttemplate>
+                                </asp:UpdatePanel>--%>
+                            </td>
+                        </tr>                        
+                    </table> 
+                    <table style="font-size: 8pt;" border="0" cellpadding="3" cellspacing="1" width="790" align="center">
+                        <tr>                            
+                            <td >
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrB2" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>                                                                   
+                                        <uc8:popupCltAddr ID="PopupCltAddrB2" runat="server" OnUnload="PopupCltAddrB2_UnLoad" txtAddrNoText="B2" cmdSearchText="Business 2" lblABHeadearText="Business Address ( 2 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrB3" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>      
+                                        <uc8:popupCltAddr ID="PopupCltAddrB3" runat="server" OnUnload="PopupCltAddrB3_UnLoad" txtAddrNoText="B3" cmdSearchText="Business 3" lblABHeadearText="Business Address ( 3 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrB4" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>                                     
+                                        <uc8:popupCltAddr ID="PopupCltAddrB4" runat="server" OnUnload="PopupCltAddrB4_UnLoad" txtAddrNoText="B4" cmdSearchText="Business 4" lblABHeadearText="Business Address ( 4 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrB5" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>    
+                                        <uc8:popupCltAddr ID="PopupCltAddrB5" runat="server" OnUnload="PopupCltAddrB5_UnLoad" txtAddrNoText="B5" cmdSearchText="Business 5" lblABHeadearText="Business Address ( 5 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>                           
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrB6" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>      
+                                        <uc8:popupCltAddr ID="PopupCltAddrB6" runat="server" OnUnload="PopupCltAddrB6_UnLoad" txtAddrNoText="B6" cmdSearchText="Business 6" lblABHeadearText="Business Address ( 6 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                        </tr>                                                            
+                        <tr>                            
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrB7" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>                                                                  
+                                        <uc8:popupCltAddr ID="PopupCltAddrB7" runat="server" OnUnload="PopupCltAddrB7_UnLoad" txtAddrNoText="B7" cmdSearchText="Business 7" lblABHeadearText="Business Address ( 7 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td >      
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrB8" runat="server" RenderMode="Inline" >
+                                    <contenttemplate> 
+                                        <uc8:popupCltAddr ID="PopupCltAddrB8" runat="server" OnUnload="PopupCltAddrB8_UnLoad" txtAddrNoText="B8" cmdSearchText="Business 8" lblABHeadearText="Business Address ( 8 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td > 
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrB9" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>                                      
+                                        <uc8:popupCltAddr ID="PopupCltAddrB9" runat="server" OnUnload="PopupCltAddrB9_UnLoad" txtAddrNoText="B9" cmdSearchText="Business 9" lblABHeadearText="Business Address ( 9 )" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td >
+                                <asp:UpdatePanel ID="UpdPanelPopupCltAddrB10" runat="server" RenderMode="Inline" >
+                                    <contenttemplate>     
+                                        <uc8:popupCltAddr ID="PopupCltAddrB10" runat="server" OnUnload="PopupCltAddrB10_UnLoad" txtAddrNoText="B0" cmdSearchText="Business 10" lblABHeadearText="Business Address (10)" />
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td >
+                                <uc8:popupCltAddr ID="PopupCltAddrB11" runat="server" Visible="false" /></td>
+                        </tr>                        
+                    </table>    
+                    <!-- Client Contact -->              
+                    <table style="font-size: 8pt;" border="0" cellpadding="3" cellspacing="1" width="790" align="center">  
+                        <tr>                                                
+                            <td class="test" width="400px" style="font-size: 10pt;" colspan="2">
+                                &nbsp;<span >Contact Preferred </span>&nbsp;
+                                <uc4:ddlLookup ID="ddlDstbnMethod" runat="server" CssClass="standardmenu" LookupCode="DstbnMtd" RequiredField="false" Width="245" /></td> 
+                            <td class="test" width="400px" style="font-size: 10pt;" colspan="2">
+                                &nbsp;<span>Privacy </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <uc4:ddlLookup ID="ddlPrivacy" runat="server" CssClass="standardmenu" LookupCode="PrvcStat" RequiredField="false" Width="245" /> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="formcontent" width="130px">
+                                <span >Home Tel</span></td>
+                            <td class="formcontent" width="250px">
+                                <asp:TextBox ID="txtHomeTel" runat="server" Width="240px" MaxLength="20"></asp:TextBox></td>
+                            <td class="formcontent" width="130px">
+                                <span >Office Tel</span></td>
+                            <td class="formcontent" width="250px">
+                                <asp:TextBox ID="txtWorkTel" runat="server" Width="240px" MaxLength="20"></asp:TextBox></td>
+                        </tr>
+                        <tr >
+                           <td class="formcontent" width="130px">
+                                <span >Mobile</span></td>
+                            <td class="formcontent" width="250px">
+                                <asp:TextBox ID="txtMobileTel" runat="server" Width="240px" MaxLength="20"></asp:TextBox></td>
+                            <td class="formcontent" width="130px">
+                                <span >Email</span></td>
+                            <td class="formcontent" width="250px">
+                                <asp:TextBox ID="txtEmail" runat="server" Width="240px" MaxLength="50"></asp:TextBox></td>
+                        </tr>   
+                        <tr>
+                            <td class="test" colspan="4">
+                                &nbsp;<span style="font-size: 10pt;">Personal Details</span></td>
+                        </tr>
+                        <tr>
+                            <td class="formcontent" width="130px">
+                                <span >Occupation</span></td>
+                            <td class="formcontent" Width="250px">
+                                <uc5:popupOccupation ID="cboOccupation" runat="server" CodeWidth="60" Descwidth="150" CodeCssCls="standardtextbox" DescCssCls="standardtextbox" lblCssCls="subtitle" SearchCssCls="standardtextbox" /></td>                                             
+                            <td class="formcontent" width="150px">
+                                <span >Annual Income</span></td>
+                            <td class="formcontent" width="250px">
+                                <asp:TextBox ID="txtALIncome" runat="server" Width="240px" MaxLength="20"></asp:TextBox></td>                                         
+                        </tr> 
+                        <tr>
+                            <td class="formcontent" width="130px">
+                                <span >Remark</span></td>
+                            <td Width="600px" colspan="3">
+                                <asp:TextBox ID="Menu1" runat="server" Width="600px" Font-Overline=true MaxLength="100" ></asp:TextBox></td>
+                        </tr>
+                    </table> 
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 727px; height: 20px">
+                    <asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" OnClick="btnSave_Click" />
+                    <asp:Button ID="btnCancel" runat="server" Width="80px" Text="Cancel" />&nbsp;
+                    <uc6:popupAML ID="PopupAML1" runat="server" OnUnload="PopupAML1_UnLoad"></uc6:popupAML></td>   
+            </tr>
+        </table>
+    </asp:Panel>
+    <div>
+        <!-- Client Searching -->
+        <asp:Panel ID="PanelLookup1" runat="server">
+            <asp:UpdatePanel ID="UpdatePanelLookup1" runat="server" RenderMode="Inline">
+            </asp:UpdatePanel>
+            <table align="center" style="width: 600px" bgcolor="DimGray">
+                <tr>
+                    <td align="center" style="width: 600px; font-weight: bold;" class="test" colspan="4">
+                        <asp:Label ID="lblTitleLookup1" runat="server" Text="Client Listing" /></td>
+                </tr>
+                <tr style="color: White; background-color: DimGray; font-weight: bold;">
+                    <td style="width: 90px;">
+                        &nbsp;<asp:Label ID="lblsGCN" runat="server" Text="Customer ID"></asp:Label></td>
+                    <td width="200px">
+                        <asp:TextBox ID="txtsGCN" runat="server" Width="180"></asp:TextBox></td>
+                    <td style="width: 90px;">
+                        &nbsp;<asp:Label ID="lblsGender" runat="server" Text="Gender"></asp:Label></td>
+                    <td width="200px">
+                        <uc4:ddlLookup ID="cbosGender" runat="server" CssClass="standardmenu" LookupCode="NBGender"
+                            RequiredField="false" Width="185" />
+                    </td>
+                </tr>
+                <tr style="color: White; background-color: DimGray; font-weight: bold;">
+                    <td style="width: 90px;">
+                        &nbsp;<asp:Label ID="lblsGivenName" runat="server" Text="Given Name"></asp:Label></td>
+                    <td width="200px">
+                        <asp:TextBox ID="txtsGivenName" runat="server" Width="180px"></asp:TextBox></td>
+                    <td style="width: 90px;">
+                        &nbsp;<asp:Label ID="lblsSurname" runat="server" Text="Surname"></asp:Label></td>
+                    <td width="200px">
+                        <asp:TextBox ID="txtsSurname" runat="server" Width="180px"></asp:TextBox></td>                    
+                </tr>
+                <tr style="color: White; background-color: DimGray; font-weight: bold;">
+                    <td style="width: 90px;">
+                        &nbsp;<asp:Label ID="lblsDOB" runat="server" Text="Date of Birth"></asp:Label></td>
+                    <td width="200px">
+                        <uc2:txtDate ID="txtsDOB" runat="server" CssClass="standardtextbox" Width="150" ValidationError="Date of Birth is required" />
+                    </td>
+                    <td style="width: 90px;">
+                        &nbsp;<asp:Label ID="lblsClntType" runat="server" Text="Client Type"></asp:Label></td>
+                    <td width="200px">
+                        <uc4:ddlLookup ID="cbosClntType" runat="server" CssClass="standardmenu" LookupCode="CltType"
+                            RequiredField="false" Width="185" />
+                    </td>
+                </tr>
+                <tr style="color: White; background-color: DimGray; font-weight: bold;">
+                    <td style="width: 90px;">
+                        &nbsp;<asp:Label ID="lblsIDType" runat="server" Text="ID Type"></asp:Label></td>
+                    <td width="200px">
+                        <uc4:ddlLookup ID="cbosIdType" runat="server" CssClass="standardmenu" LookupCode="NBIDKey"
+                            RequiredField="false" Width="185" />
+                    </td>
+                    <td style="width: 90px;">
+                        &nbsp;<asp:Label ID="lblsIDNo" runat="server" Text="ID No."></asp:Label></td>
+                    <td width="200px">
+                        <asp:TextBox ID="txtsIDNo" runat="server" Width="180px"></asp:TextBox></td>
+                </tr>
+                <tr style="color: White; background-color: DimGray; font-weight: bold;">
+                    <td align="center" colspan="4">
+                        <asp:Button ID="cmbSearch1" runat="server" Text="Search" OnClick="cmbSearch1_Click"
+                            CausesValidation="False" />
+                        <asp:Button ID="cmdLookupCancel1" runat="server" Text="Cancel" CausesValidation="False" />
+                    </td>
+                </tr>
+                <tr style="color: White; background-color: DimGray; font-weight: bold;">
+                    <td align="center" style="width: 550px" colspan="4">
+                        <asp:UpdatePanel ID="updPnlLookup1" runat="server" RenderMode="Inline">
+                            <ContentTemplate>
+                                <asp:GridView ID="gvLookup1" runat="server" Width="500px" Visible="false" DataKeyNames="FullName"
+                                    OnPageIndexChanging="gvLookup1_PageIndexChanging" OnSelectedIndexChanged="gvLookup1_SelectedIndexChanged"
+                                    HorizontalAlign="Center" AllowPaging="True" AutoGenerateColumns="False" PageSize="8">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Code">
+                                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                            <ItemTemplate>
+                                                <asp:Button ID="btnInsert" runat="server" OnClick="RetrieveCltSrc" CausesValidation="false"
+                                                    CommandName="Select" Text='<%# Bind("GCN") %>'></asp:Button>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="FullName" HeaderText="Name">
+                                            <ItemStyle Width="180px" HorizontalAlign="Left"></ItemStyle>
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="Gender" HeaderText="Gender">
+                                            <ItemStyle HorizontalAlign="Left"></ItemStyle>
+                                        </asp:BoundField>
+                                        <asp:BoundField DataFormatString="{0:dd/MM/yyyy}" DataField="DateKey" HeaderText="Date Of Birth" HtmlEncode="false">
+                                            <ItemStyle Width="120px" HorizontalAlign="Left"></ItemStyle>
+                                        </asp:BoundField> 
+                                        <asp:BoundField DataField="CltType" HeaderText="Client Type">
+                                            <ItemStyle HorizontalAlign="Left"></ItemStyle>
+                                        </asp:BoundField>
+                                        <%--<asp:BoundField DataField="CnctType" HeaderText="Contact Type">
+                                            <ItemStyle HorizontalAlign="Left"></ItemStyle>
+                                        </asp:BoundField>--%>
+                                    </Columns>
+                                    <EmptyDataTemplate>
+                                        <asp:Label ID="lblMsgLookup1" runat="server" Text="No Search Result"></asp:Label>
+                                    </EmptyDataTemplate>
+                                </asp:GridView>
+                                <asp:SqlDataSource ID="dsLookup1" runat="server" ConnectionString="<%$ ConnectionStrings:INSCCommonConnectionString %>">
+                                </asp:SqlDataSource>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="cmbSearch1" EventName="Click"></asp:AsyncPostBackTrigger>
+                            </Triggers>
+                        </asp:UpdatePanel>
+                    </td>
+                </tr>
+            </table>
+        </asp:Panel>
+        <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="cmdLookup1"
+            PopupControlID="PanelLookup1" CancelControlID="cmdLookupCancel1">
+        </ajaxToolkit:ModalPopupExtender>
+    </div>
+</asp:Content>

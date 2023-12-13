@@ -1,0 +1,931 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>MPL SU</title>
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../../../../../KMI%20Styles/assets/css/footable.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../KMI Styles/assets/css/KMI.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../KMI Styles/assets/css/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../KMI Styles/assets/jqueryCalendar/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../../../../assets/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />-->
+    <link href="../../../../../KMI%20Styles/Bootstrap/datepicker/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../assets/css/customization.css" rel="stylesheet" />
+</head>
+<body>
+    <center>
+        <div id="iLoading" class="Content" style="position:absolute;top:50%;left:50%;margin:-50px 0px 0px -50px;z-index:9999;">
+            <img src="../../../../../assets/img/loading-spinner-blue.gif" alt="LOADING" /> Loading...
+        </div>
+        <div class="container" id="divBody">
+            <div id="divcmphdrcollapse" class="panel">
+                <div id="Div6" class="panel-heading" onclick="ShowReqDtl1('divcmphdr','myImg');return false;">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <label id="lblhdr" class="panel-header">Add Scheme Details</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <span id="myImg" class="glyphicon glyphicon-menu-hamburger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="divcmphdr" class="panel-body">
+                    <div id="defaultdiv" class="row">
+                        <div class="col-sm-3">
+                            <label id="lblrtgschKey" class="control-label">Category Scheme Key</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" id="txtSchKey" disabled="disabled" class="form-control" maxlength="20" />
+                        </div>
+                        <div class="col-sm-3">
+                            <label id="lblconsider" class="control-label; required">Is Consider</label>
+                            <label id="lblrate" class="control-label; required">Rate</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="select2-container form-control" id="ddlMPL"></select>
+                            <input type="text" class="form-control" id="txtRank" />
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label id="lblEffFrom" class="control-label">Effective From</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" id="txtEffFrom" class="form-control datetime" readonly maxlength="20" />
+                        </div>
+                        <div class="col-sm-3">
+                            <label id="lblEffTo" class="control-label;">Effective To</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" id="txtEffTo" class="form-control datetime" readonly maxlength="20" />
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label id="lblStaus" class="control-label">Status</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="select2-container form-control" id="ddlStatus">
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="divOriginalFix" class="panel">
+                        <div id="divOriginalFixHead" class="panel-heading" onclick="ShowReqDtl1('divOriginalFixBody','imgOriginalFix');return false;">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <label id="Label2" class="panel-header">Original Fix factor </label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <span id="imgOriginalFix" class="glyphicon glyphicon-menu-hamburger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divOriginalFixBody" class="panel-body">
+
+                        </div>
+                        <input type="hidden" id="hdnType" />
+                        <div style="display:flex; justify-content:center">
+                            <div id="divWRange">
+                                <button type="button" class="btn btn-sample" id="btnFixConfirmSelection">
+                                    <i class="glyphicon glyphicon-ok"></i> Confirm Selection
+                                </button>
+                                <button type="button" class="btn btn-sample" id="btnFixUpdateSelection" style="display:none">
+                                    <i class="glyphicon glyphicon-refresh"></i> Update Selection
+                                </button>
+                                <button type="button" class="btn btn-sample" id="btnNewRange" onclick="ToggleMode('I', 'R')">
+                                    <i class="glyphicon glyphicon-save"></i> Pending Data
+                                </button>
+                                <button type="button" class="btn btn-sample" id="btnUpdateRange" onclick="ToggleMode('U', 'R')">
+                                    <i class="glyphicon glyphicon-upload"></i> Already available Data
+                                </button>
+
+                                <button type="button" class="btn btn-sample" id="btnCancel">
+                                    <i class="glyphicon glyphicon-remove"></i> Cancel
+                                </button>
+
+                                <input type="hidden" id="hdnFixFactorSelection" />
+                            </div>
+                            <div id="divWORange">
+                                <button type="button" class="btn btn-sample" id="btnWOSave">
+                                    <i class="glyphicon glyphicon-save"></i> Save
+                                </button>
+
+                                <button type="button" class="btn btn-sample" id="btnNewFIX" onclick="ToggleMode('I', 'F')">
+                                    <i class="glyphicon glyphicon-save"></i> Pending Data
+                                </button>
+                                <button type="button" class="btn btn-sample" id="btnUpdateFIX" onclick="ToggleMode('U', 'F')">
+                                    <i class="glyphicon glyphicon-upload"></i> Already available Data
+                                </button>
+
+                                <button type="button" class="btn btn-sample" id="btnWOCancel">
+                                    <i class="glyphicon glyphicon-remove"></i> Cancel
+                                </button>
+
+                                <input type="hidden" id="hdnFixFactorSelection" />
+                            </div>
+                        </div>
+                        <div id="divMPL" class="panel">
+                            <div id="imgMPLHead" class="panel-heading" onclick="ShowReqDtl1('imgMPLBody','imgMPL');return false;">
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <label id="Label1" class="panel-header">Converted Original Range factor</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span id="imgMPL" class="glyphicon glyphicon-menu-hamburger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="imgMPLBody" class="panel-body">
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-sample" id="btnSave">
+                                    Save
+                                </button>
+
+                            </div>
+                        </div>
+
+
+                        <div id="divDataPen" class="panel">
+                            <div id="imgMPLHead" class="panel-heading" onclick="ShowReqDtl1('imgMPLBody','imgMPL');return false;">
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <label id="Label1" class="panel-header">Data Pending for Update</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span id="imgdataPen" class="glyphicon glyphicon-menu-hamburger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="imgMPLBody" class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-sample" style="margin: 15px auto" id="btnPenDwnld">
+                                            <i class="glyphicon glyphicon-save"></i> Download Pending Data
+                                        </button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div id="imgMPLBody" class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="table-container" id="divPenDataTable" style="overflow-x: scroll;">
+                                        </div>
+                                        <button type="button" class="btn btn-sample" style="margin: 15px auto" id="btnPenDwnld">
+                                            <i class="glyphicon glyphicon-save"></i> Download Pending Data
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+
+                        <div id="divDataUPD" class="panel">
+                            <div id="imgMPLHead" class="panel-heading" onclick="ShowReqDtl1('imgMPLBody','imgMPL');return false;">
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <label id="Label1" class="panel-header">Already Updated Data</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span id="imgdataUPD" class="glyphicon glyphicon-menu-hamburger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="imgMPLBody" class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-sample" style="margin: 15px auto" id="btnUpdatedDwnld">
+                                            <i class="glyphicon glyphicon-save"></i> Download Updated Data
+                                        </button>
+                                        <button type="button" class="btn btn-sample" style="margin: 15px auto" id="btnUpdatedDwnldHistory">
+                                            <i class="glyphicon glyphicon-save"></i> Download Updated Data History
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div id="imgMPLBody" class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="table-container" id="divUPDDataTable" style="overflow-x: scroll;">
+                                        </div>
+                                        <button type="button" class="btn btn-sample" style="margin: 15px auto" id="btnUpdatedDwnld">
+                                            <i class="glyphicon glyphicon-save"></i> Download Updated Data
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+    <!-- Modal -->
+    <div class="modal fade" id="ConvSelectorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title" id="exampleModalLabel" style="text-transform: capitalize; font-size: 24px; "></span>
+                    <button type="button" id="exampleModalLabelClose" class="close" data-dismiss="modal" aria-label="Close" onclick="ClosePopup()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="" id="IFrmConvGrid" style=" width: 100%; height: 400px;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="hdnFields">
+        <input type="hidden" id="hdnSelectedFixFactor" />
+        <input type="hidden" id="hdnSelectedRange" />
+    </div>
+    <script src="../../../../../assets/scripts/jquery.min.js"></script>
+    <script src="../../../../../assets/scripts/bootstrap.min.js"></script>
+    <script src="../../../../../assets/scripts/bootstrap-multiselect.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
+    <!--<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>-->
+    <script type="text/javascript" src="../../../../../KMI Styles/assets/jqueryCalendar/jquery-ui.js"></script>
+    <script src="../../../../../assets/scripts/moment.js"></script>
+    <script src="../../../../../KMI%20Styles/assets/plugins/bootstrap/js/footable.js" type="text/javascript"></script>
+    <script src="../../../../../assets/scripts/commonValidate.js"></script>
+    <!--<script src="../../../../../assets/scripts/Customization/customization-common.js"></script>
+    <script src="../../../../../assets/scripts/Customization/customization-datalayer.js"></script>-->
+    <!--Commented and Added on 24082021-->
+    <!--<script src="../../../../../assets/scripts/Customization/customization-dynamic-common.js"></script>
+    <script src="../../../../../assets/scripts/Customization/customization-dynamic-datalayer.js"></script>-->
+    <script src="../Script/Customization/customization-dynamic-common.js"></script>
+    <script src="../Script/Customization/customization-dynamic-datalayer.js"></script>
+    <!--Commented and Added on 24082021-->
+
+    <script>
+        var fix_factors = "";
+        var range_factors = "";
+        var val_fix_factors = "";
+        var val_range_factors = "";
+        var selectFixFactors = "";
+        var ranges = [];
+        var fixes = [];
+        var val_ranges = [];
+        var val_fixes = [];
+        var ACT_SCH_KEY = "";
+        var ACT_TYP_ID = "";
+        var ACT_NO = "";
+        var KPI_CODE = "";
+        var TotalValFactors = [];
+        var PIP_SEP_FIX_FACTOR = {};
+        var RANGES_DROPDOWN_DATA = []
+        var FIX_FACTOR_DROPDOWN_DATA = {}
+
+        var FIX_FACTOR_UPDATE_DROPDOWN_DATA = []
+        var RANGE = "";
+        document.getElementById('divMPL').style.display = "none";
+        document.getElementById('divDataPen').style.display = "block";
+        document.getElementById('divDataUPD').style.display = "block";
+
+        document.getElementById('btnPenDwnld').style.display = "block";
+        document.getElementById('btnUpdatedDwnld').style.display = "block";
+        document.getElementById('btnUpdatedDwnldHistory').style.display = "block";
+        
+
+
+        document.getElementById('btnFixConfirmSelection').style.display = "block";
+        document.getElementById("divBody").style.display = 'none';
+        $(document).ready(function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            RANGE = GetQueryStringValue(window.location, 'RANGE');
+            ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            ACT_TYP_ID = GetQueryStringValue(window.location, 'ACT_TYPE');
+            ACT_NO = GetQueryStringValue(window.location, 'ActNO');
+            KPI_CODE = GetQueryStringValue(window.location, 'kpicode');
+
+            if (ACT_TYP_ID != 1002) {
+                document.getElementById("lblconsider").style.display = "none"
+                document.getElementById("ddlMPL").style.display = "none"
+
+                document.getElementById("lblrate").style.display = "block"
+                document.getElementById("txtRank").style.display = "block"
+            }
+            else {
+
+                document.getElementById("lblconsider").style.display = "block"
+                document.getElementById("ddlMPL").style.display = "block"
+
+                document.getElementById("lblrate").style.display = "none"
+                document.getElementById("txtRank").style.display = "none"
+
+                BindLookup('ddlMPL', "MPL", true);
+            }
+
+            GetHtmlTemplates(KPI_CODE, ACT_NO, ACT_TYP_ID, ACT_SCH_KEY, function (data) {
+                document.getElementById("divOriginalFixBody").innerHTML = data[0]["FIX_FCTR_DESIGN"];
+                document.getElementById("imgMPLBody").innerHTML = data[0]["CONV_FIX_FCTR_DESIGN"];
+            });
+
+            GetFactorsBySchemeKey(ACT_SCH_KEY, KPI_CODE, ACT_TYP_ID, function (data) {
+                fix_factors = data["Table"][0]["FIX_FCTR"];
+                range_factors = data["Table"][0]["RNG_FCTR"];
+                val_fix_factors = data["Table"][0]["VAL_FIX_FCTR"];
+                val_range_factors = data["Table"][0]["VAL_RNG_FCTR"];
+                VAL_DTLS = data["Table1"];
+            })
+
+            fixes = fix_factors.split('|').filter(x => x != "");
+            ranges = range_factors.split('|').filter(x => x != "");
+            val_fixes = val_fix_factors.split('|').filter(x => x != "");
+            val_ranges = val_range_factors.split('|').filter(x => x != "");
+
+            // Hide All Fix Factors
+            for (i = 0; i < val_fixes.length; i++) {
+                $("#div" + val_fixes[i]).hide()
+            }
+
+            // Visible only selected fix factors
+            for (i = 0; i < fixes.length; i++) {
+                $("#div" + fixes[i]).show()
+            }
+
+            for (i = 0; i < val_ranges.length; i++) {
+                $("#divConv" + val_ranges[i]).hide()
+            }
+
+            // Visible only selected fix factors
+            for (i = 0; i < ranges.length; i++) {
+                $("#divConv" + ranges[i]).show();
+                $("#spanConv" + ranges[i]).data('toggle',"tooltip");
+            }
+
+            //Sort Html
+            var divOriginalFixContainer = $("#divOriginalFixContainer").clone();
+            $("#divOriginalFixContainer").empty();
+            for (i = 0; i < fixes.length; i++) {
+                $("#divOriginalFixContainer").append($(divOriginalFixContainer).find('[id="div' + fixes[i] + '"]'));
+                $(divOriginalFixContainer).find('[id="div' + fixes[i] + '"]').remove();
+            }
+
+            for (i = 0; i < divOriginalFixContainer.children().length; i++) {
+                $("#divOriginalFixContainer").append(divOriginalFixContainer[i]);
+            }
+
+            // For COnvered range Factor
+            var divConvertedFixContainer = $("#divConvertedFixContainer").clone();
+            $("#divConvertedFixContainer").empty();
+            for (i = 0; i < ranges.length; i++) {
+                $("#divConvertedFixContainer").append($(divConvertedFixContainer).find('[id="divConv' + ranges[i] + '"]'));
+                $(divConvertedFixContainer).find('[id="divConv' + ranges[i] + '"]').remove();
+            }
+
+            for (i = 0; i < divConvertedFixContainer.children().length; i++) {
+                $("#divConvertedFixContainer").append(divConvertedFixContainer[i]);
+            }
+
+            //Bind Action scheme key
+            document.getElementById('txtSchKey').value = ACT_SCH_KEY;
+
+
+
+            //GetFixFactorsData(KPI_CODE, ACT_TYP_ID, 'E', ACT_SCH_KEY, 'I', function (data) {
+            //    if (data["status"] == 0) {
+            //        for (i = 0; i < val_fixes.length; i++) {
+            //            if (data["Data"][fixes[i]]) {
+            //                $('#ddlFIX' + fixes[i]).attr("multiple", "multiple");
+            //                BindDropdown(data["Data"][fixes[i]], 'ddlFIX' + fixes[i], "ParamValue", "ParamDesc", false);
+            //                $("#ddlFIX" + fixes[i]).multiselect('destroy').multiselect({
+            //                    includeSelectAllOption: true,
+            //                    onInitialized: function (obj, e) {
+            //                        $(obj).attr("MultiSelect", $(obj).attr("multiple") ? "Y" : "N")
+            //                        $(e.find('button')).attr("target", $(obj).attr("id"))
+            //                    }
+            //                })
+            //            }
+            //        }
+            //    }
+            //    else {
+            //    }
+            //})
+
+            //$("#hdnType").val('I');
+
+            //if (MODE == "R") {
+            //    if (TYPE == "I") {
+            //        document.getElementById("btnNewRange").style.display = 'block'
+            //        document.getElementById("btnUpdateRange").style.display = 'none'
+            //    }
+            //    else {
+            //        document.getElementById("btnNewRange").style.display = 'none'
+            //        document.getElementById("btnUpdateRange").style.display = 'block'
+            //    }
+            //}
+            //else {
+            //    if (TYPE == "I") {
+            //        document.getElementById("btnNewFIX").style.display = 'block'
+            //        document.getElementById("btnUpdateFIX").style.display = 'none'
+            //    }
+            //    else {
+            //        document.getElementById("btnNewFIX").style.display = 'none'
+            //        document.getElementById("btnUpdateFIX").style.display = 'block'
+            //    }
+            //}
+
+            if (RANGE == "Y") {
+
+                ToggleMode('I', 'F')
+
+                //document.getElementById("btnNewFIX").style.display = 'none'
+                //document.getElementById("btnUpdateFIX").style.display = 'block'
+
+                //GetPendingAndUpdatedDataWithoutRange(KPI_CODE, ACT_TYP_ID, ACT_SCH_KEY, function (data) {
+                //    debugger;
+                //    if (data["status"] == 0) {
+                //        debugger;
+                //        BindPendingTable(data["Data"]["Pending"], "divPenDataTable")
+                //        BindUpdatedTable(data["Data"]["Updated"], "divUPDDataTable")
+                //    }
+                //    else {
+                //        alert(data["Data"])
+                //    }
+                //    if (data["Data"]["Updated"].length > 0) {
+                //        $("#btnUpdateFIX").removeAttr("disabled");
+                //    }
+                //    else {
+                //        $("#btnUpdateFIX").attr("disabled", "disabled");
+                //    }
+                //})
+                document.getElementById('divWORange').style.display = "flex";
+                document.getElementById('divWRange').style.display = "none";
+            }
+            else {
+                ToggleMode('I', 'R')
+                //document.getElementById("btnNewRange").style.display = 'none'
+                //document.getElementById("btnUpdateRange").style.display = 'block'
+
+                //GetPendingAndUpdatedDataWithRange(KPI_CODE, ACT_TYP_ID, ACT_SCH_KEY, function (data) {
+                //    debugger;
+                //    if (data["status"] == 0) {
+                //        BindPendingTable(data["Data"]["Pending"], "divPenDataTable")
+                //        BindUpdatedTable(data["Data"]["Updated"], "divUPDDataTable");
+
+                //        if (data["Data"]["Updated"].length > 0) {
+                //            $("#btnUpdateRange").removeAttr("disabled");
+
+                //        }
+                //        else {
+                //            $("#btnUpdateRange").attr("disabled", "disabled");
+                //        }
+                //    }
+                //    else {
+                //        alert(data["Data"])
+                //    }
+                //})
+                document.getElementById('divWORange').style.display = "none";
+                document.getElementById('divWRange').style.display = "flex";
+            }
+            document.getElementById("iLoading").style.display = 'none';
+            document.getElementById("divBody").style.display = 'block';
+        })
+
+        ///////////////////////////////////////////////////////////////////////////////////
+        //When Range Factor Are Defined
+
+        document.getElementById('btnFixConfirmSelection').addEventListener("click", function () {
+            document.getElementById("iLoading").style.display = 'block';
+            ResetConvData();
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+
+            var factordata = Create_FF_Data(GetValuesFixFactors(fix_factors))
+            $('#hdnSelectedFixFactor').val(JSON.stringify(factordata));
+            if (ValidateFixFactors(fixes, VAL_DTLS, ACT_TYP_ID)) {
+                var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+                for (var i = 0; i < ranges.length; i++) {
+                    $('#divConv' + ranges[i]).show();
+                    $('#btnConv' + ranges[i]).off('click');
+                    $('#btnConv' + ranges[i]).on('click', function () {
+                        ValidateAndOpenPopup(this)
+                    });
+                }
+            }
+            else {
+                document.getElementById("iLoading").style.display = 'none';
+                return false;
+            }
+            EnableFixFactors(true);
+            
+            this.style.display = "none";
+            document.getElementById('btnFixUpdateSelection').style.display = "block";
+            document.getElementById('hdnFixFactorSelection').value = "Y";
+            document.getElementById("iLoading").style.display = 'none';
+            document.getElementById('divMPL').style.display = "block";
+        })
+
+        function ValidateAndOpenPopup(obj){
+            var VAL_CODE = $(obj).data('val-code');
+            var index = ranges.indexOf(VAL_CODE);
+            var aboveDdlSelected = false;
+            var selectedRange = { "data" : [] }
+            if(index != 0){
+                var previous_val_code = ranges[index -1];
+                var val_1 = $("#hdnConv" + previous_val_code).val();
+                if(val_1.trim() == ''){
+                    alert('Please select all previous dropdown')
+                    return;
+                }
+                var parsed = JSON.parse(val_1);
+                if(parsed.length != 0){
+                    var v_data = parsed.map(function(x) {
+                        return {
+                            "VAL_CODE" : previous_val_code,
+                            "RangeData": x["Range"]
+                        }
+                    });
+                    selectedRange = { "data" : v_data }
+                }
+                else{
+                    alert('Please select all previous dropdown')
+                    return;
+                }
+            }
+            $('#hdnSelectedRange').val(JSON.stringify(selectedRange));
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var ACTION_TYPE = GetQueryStringValue(window.location, 'ACT_TYPE');
+            var KPI_CODE = GetQueryStringValue(window.location, 'kpicode');
+            var data = {
+                "ACT_SCH_KEY": ACT_SCH_KEY,
+                "KPI_CODE": KPI_CODE,
+                "VAL_CODE": VAL_CODE,
+                "ACTION_TYPE": ACTION_TYPE,
+                "TYPE": $("#hdnType").val()
+            }
+            var keys = Object.keys(data);
+            var d = keys.map(function (x) {
+                return x + "=" + data[x];
+            }).join('&')
+
+            $("#IFrmConvGrid").attr('src', '../ConvRangeSelection.aspx?' + d);
+            $("#exampleModalLabel").html("Select Converted " + $(obj).data('val-desc'))
+            $('#ConvSelectorModal').modal({
+                keyboard: false,
+                backdrop:"static"
+            });
+        }
+
+        document.getElementById('btnFixUpdateSelection').addEventListener("click", function () {
+            this.style.display = "none";
+            document.getElementById('btnFixConfirmSelection').style.display = "block";
+            EnableFixFactors(false);
+            ResetConvData();
+            document.getElementById('hdnFixFactorSelection').value = "N";
+            document.getElementById('divMPL').style.display = "none";
+        })
+
+        document.getElementById('btnSave').addEventListener("click", function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            var optionSelIndex = ""
+            if (ACT_TYP_ID != 1002) {
+                optionSelIndex = document.getElementById('txtRank').value.trim();
+                if (optionSelIndex == "") {
+                    alert("Please enter rate.");
+                    document.getElementById("iLoading").style.display = 'none';
+                    return false;
+                }
+            }
+            else {
+                var e = document.getElementById('ddlMPL');
+                optionSelIndex = e.options[e.selectedIndex].value;
+                if (optionSelIndex == -1) {
+                    alert("Please select Is Consider.");
+                    document.getElementById("iLoading").style.display = 'none';
+                    return false;
+                }
+            }
+
+            if (ValidateFixFactors(fixes, VAL_DTLS, ACT_TYP_ID)) {
+                if (ValidateRangeFactors(ranges, VAL_DTLS, ACT_TYP_ID, RANGES_DROPDOWN_DATA)) {
+                    var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+                    var CREATED_BY = GetQueryStringValue(window.location, 'User');
+                    var LastConvRangeFactor = ranges[ranges.length - 1];
+                    var IsConsider = optionSelIndex
+                    var data = {};
+                    data["Data"] = RANGES_DROPDOWN_DATA[LastConvRangeFactor];
+                    SaveConvRangeFactors(data, ACT_SCH_KEY, KPI_CODE, ACT_TYP_ID, CREATED_BY, IsConsider, $("#hdnType").val(), function () {
+                        location.reload(true);
+                    })
+                }
+                else {
+                    document.getElementById("iLoading").style.display = 'none';
+                    return false;
+                }
+            }
+            else {
+                document.getElementById("iLoading").style.display = 'none';
+                return false;
+            }
+            document.getElementById("iLoading").style.display = 'none';
+        })
+
+        document.getElementById('btnCancel').addEventListener("click", function () {
+            var actno = GetQueryStringValue(window.location, 'ActNO');
+            var kpicode = GetQueryStringValue(window.location, 'kpicode');
+            var mapcode = GetQueryStringValue(window.location, 'mapcode');
+            var role = GetQueryStringValue(window.location, 'role');
+            var ACT_TYPE = GetQueryStringValue(window.location, 'ACT_TYPE');
+            window.location.href = "../MstActCatgSU.aspx?ActNO=" + actno + "&kpicode=" + kpicode + "&mapcode=" + mapcode + "&role=" + role + "&ACT_TYPE=" + ACT_TYPE;
+        })
+
+        document.getElementById('btnPenDwnld').addEventListener("click", function () {
+            var RANGE = GetQueryStringValue(window.location, 'RANGE');
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var ACT_TYP_ID = GetQueryStringValue(window.location, 'ACT_TYPE');
+            var KPI_CODE = GetQueryStringValue(window.location, 'kpicode');
+            window.open("../DownloadCSV.aspx?KPI=" + KPI_CODE + "&ACTION_TYPE= " + ACT_TYP_ID + " &ACTSCHKEY=" + ACT_SCH_KEY + "&RANGE=" + RANGE + "&FLAG=PEN&Mode=current");
+        })
+
+        document.getElementById('btnUpdatedDwnld').addEventListener("click", function () {
+            var RANGE = GetQueryStringValue(window.location, 'RANGE');
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var ACT_TYP_ID = GetQueryStringValue(window.location, 'ACT_TYPE');
+            var KPI_CODE = GetQueryStringValue(window.location, 'kpicode');
+            window.open("../DownloadCSV.aspx?KPI=" + KPI_CODE + "&ACTION_TYPE= " + ACT_TYP_ID + " &ACTSCHKEY=" + ACT_SCH_KEY + "&RANGE=" + RANGE + "&FLAG=UPD&Mode=current");
+        })
+
+        //Added By Pratik
+        document.getElementById('btnUpdatedDwnldHistory').addEventListener("click", function () {
+            var RANGE = GetQueryStringValue(window.location, 'RANGE');
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var ACT_TYP_ID = GetQueryStringValue(window.location, 'ACT_TYPE');
+            var KPI_CODE = GetQueryStringValue(window.location, 'kpicode');
+            window.open("../DownloadCSV.aspx?KPI=" + KPI_CODE + "&ACTION_TYPE= " + ACT_TYP_ID + " &ACTSCHKEY=" + ACT_SCH_KEY + "&RANGE=" + RANGE + "&FLAG=UPD&Mode=history");
+        })
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        //When Range Factor are not defined
+
+        document.getElementById('btnWOCancel').addEventListener("click", function () {
+            var actno = GetQueryStringValue(window.location, 'ActNO');
+            var kpicode = GetQueryStringValue(window.location, 'kpicode');
+            var mapcode = GetQueryStringValue(window.location, 'mapcode');
+            var role = GetQueryStringValue(window.location, 'role');
+            var ACT_TYPE = GetQueryStringValue(window.location, 'ACT_TYPE');
+            window.location.href = "../MstActCatgSU.aspx?ActNO=" + actno + "&kpicode=" + kpicode + "&mapcode=" + mapcode + "&role=" + role + "&ACT_TYPE=" + ACT_TYPE;
+        })
+
+        document.getElementById('btnWOSave').addEventListener("click", function () {
+            document.getElementById("iLoading").style.display = 'block';
+            var optionSelIndex = ""
+            if (ACT_TYP_ID != 1002) {
+                optionSelIndex = document.getElementById('txtRank').value.trim();
+                if (optionSelIndex == "") {
+                    alert("Please enter rate.");
+                    document.getElementById("iLoading").style.display = 'none';
+                    return false;
+                }
+            }
+            else {
+                var e = document.getElementById('ddlMPL');
+                optionSelIndex = e.options[e.selectedIndex].value;
+                if (optionSelIndex == -1) {
+                    alert("Please select Is Consider.");
+                    document.getElementById("iLoading").style.display = 'none';
+                    return false;
+                }
+            }
+            if (ValidateFixFactors(fixes, VAL_DTLS, ACT_TYP_ID)) {
+                var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+                var CREATED_BY = GetQueryStringValue(window.location, 'User');
+                var IsConsider = optionSelIndex
+                var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+                SaveWORangeFactors(FIX_FACTOR, ACT_SCH_KEY, KPI_CODE, ACT_TYP_ID, CREATED_BY, IsConsider, $("#hdnType").val(), function () {
+                    location.reload(true);
+                })
+            }
+            else {
+                document.getElementById("iLoading").style.display = 'none';
+                return false;
+            }
+            document.getElementById("iLoading").style.display = 'none';
+        })
+
+        ///////////////////////////////////////////////////////////////////////////////////
+        function ToggleMode(TYPE, MODE) {
+            document.getElementById('btnFixUpdateSelection').click();
+
+            for (i = 0; i < fixes.length; i++) {
+                $("#ddlFIX" + fixes[i]).empty();
+                $("#ddlFIX" + fixes[i]).multiselect('destroy').multiselect({
+                    includeSelectAllOption: true,
+                    allSelectedText: 'All Selected',
+                    selectAllNumber: false,
+                    numberDisplayed: 1,
+                    onInitialized: function (obj, e) {
+                        $(obj).attr("MultiSelect", $(obj).attr("multiple") ? "Y" : "N")
+                        $(e.find('button')).attr("target", $(obj).attr("id"))
+                    }
+                })
+            }
+
+            ResetConvData();
+
+            GetFixFactorsData(KPI_CODE, ACT_TYP_ID, 'E', ACT_SCH_KEY, TYPE, function (data) {
+                if (data["status"] == 0) {
+                    FIX_FACTOR_DROPDOWN_DATA = data["Data"];
+                    if (data["Data"]["VAL_DATA"]) {
+                        FIX_FACTOR_UPDATE_DROPDOWN_DATA = data["Data"]["VAL_DATA"];
+                    }
+                    for (i = 0; i < fixes.length; i++) {
+                        if (data["Data"][fixes[i]]) {
+                            $('#ddlFIX' + fixes[i]).attr("multiple", "multiple").data("val-code", fixes[i]);
+                            BindDropdown(data["Data"][fixes[i]], 'ddlFIX' + fixes[i], "ParamValue", "ParamDesc", false);
+
+                            if (TYPE == 'U') {
+                                if (i != fixes.length - 1) {
+                                    $("#ddlFIX" + fixes[i]).off("change");
+                                    $("#ddlFIX" + fixes[i]).on('change', function () {
+                                        var VAL_CODE = $(this).data("val-code");
+                                        var current_dropdonw_value = $(this).val();
+
+                                        var index = fixes.indexOf(VAL_CODE);
+                                        var filtered_data = FIX_FACTOR_UPDATE_DROPDOWN_DATA;
+
+                                        if (current_dropdonw_value.length > 0) {
+                                            for (var i = 0; i <= index; i++) {
+                                                var v = fixes[i];
+                                                var val = $("#ddlFIX" + v).val().map(function (x) {
+                                                    return x.toString().toLowerCase()
+                                                });
+                                                filtered_data = filtered_data.filter(function (x, j) {
+                                                    return val.indexOf(x[v].toString().toLowerCase()) != -1
+                                                })
+                                            }
+                                        }
+                                        else if (index != 0) {
+                                            for (var i = 0; i <= index - 1; i++) {
+                                                var v = fixes[i];
+                                                var val = $("#ddlFIX" + v).val().map(function (x) {
+                                                    return x.toString().toLowerCase()
+                                                });
+                                                filtered_data = filtered_data.filter(function (x, j) {
+                                                    return val.indexOf(x[v].toString().toLowerCase()) != -1
+                                                })
+                                            }
+                                        }
+
+                                        for (var i = index + 1; i < fixes.length; i++) {
+                                            // Get Distinct Values;
+                                            var arr = filtered_data.map(function (x) {
+                                                return x[fixes[i]].toString().toLowerCase();
+                                            }).filter(function (v, b, a) {  return a.indexOf(v) === b } );
+
+                                            //remove all options
+                                            var options = $("#ddlFIX" + fixes[i])[0].options;
+                                            $(options).remove();
+
+                                            var dropdown_filtered_data = FIX_FACTOR_DROPDOWN_DATA[fixes[i]].filter(function (x, i, a) {
+                                                return arr.indexOf(x["ParamValue"].toString().toLowerCase()) != -1;
+                                            })
+
+                                            BindDropdown(dropdown_filtered_data, 'ddlFIX' + fixes[i], "ParamValue", "ParamDesc", false);
+
+                                            $("#ddlFIX" + fixes[i]).multiselect('destroy').multiselect({
+                                                includeSelectAllOption: true,
+                                                allSelectedText: 'All Selected',
+                                                selectAllNumber: false,
+                                                numberDisplayed: 1,
+                                                onInitialized: function (obj, e) {
+                                                    $(obj).attr("MultiSelect", $(obj).attr("multiple") ? "Y" : "N")
+                                                    $(e.find('button')).attr("target", $(obj).attr("id"))
+                                                }
+                                            }).multiselect('rebuild')
+                                        }
+                                    })
+                                }
+                            }
+                            else {
+                                $("#ddlFIX" + fixes[i]).off("change");
+                            }
+
+                            $("#ddlFIX" + fixes[i]).multiselect('destroy').multiselect({
+                                includeSelectAllOption: true,
+                                allSelectedText: 'All Selected',
+                                selectAllNumber: false,
+                                numberDisplayed: 1,
+                                onInitialized: function (obj, e) {
+                                    $(obj).attr("MultiSelect", $(obj).attr("multiple") ? "Y" : "N")
+                                    $(e.find('button')).attr("target", $(obj).attr("id"))
+                                }
+                            }).multiselect('rebuild')
+                        }
+                    }
+                }
+                else {
+                }
+            })
+            $("#hdnType").val(TYPE);
+            if (MODE == "R") {
+                if (TYPE == "I") {
+                    document.getElementById("btnNewRange").style.display = 'none'
+                    document.getElementById("btnUpdateRange").style.display = 'block'
+                }
+                else {
+                    document.getElementById("btnNewRange").style.display = 'block'
+                    document.getElementById("btnUpdateRange").style.display = 'none'
+                }
+                document.getElementById("divMPL").style.display = 'none'
+            }
+            else {
+                if (TYPE == "I") {
+                    document.getElementById("btnNewFIX").style.display = 'none'
+                    document.getElementById("btnUpdateFIX").style.display = 'block'
+                }
+                else {
+                    document.getElementById("btnNewFIX").style.display = 'block'
+                    document.getElementById("btnUpdateFIX").style.display = 'none'
+                }
+            }
+        }
+
+        function FixFactorDDLChange() {
+            debugger
+            var VAL_CODE = $(this).data("val-code");
+            var VAL_Value = $(this).val();
+
+            var index = fixes.indexOf(VAL_CODE);
+            var filtered_data = FIX_FACTOR_UPDATE_DROPDOWN_DATA;
+            for (var i = 0; i <= index; i++) {
+                filtered_data = filtered_data.filter(function (x, i) {
+                    return VAL_Value.indexOf(x[fixes[i]]) != -1
+                })
+            }
+
+            for (var i = index + 1; i < fixes.length; i++) {
+                var arr = filtered_data.map(function (x) {
+                    return x[fixes[i]]
+                }).filter((v, b, a) => a.indexOf(v) === b);
+                var options = $("#ddlFIX" + fixes[i])[0].options;
+                $(options).hide();
+
+                for (var j = 0; j < options.length; j++) {
+                    if (arr.indexOf(options[j].value) != -1) {
+                        $(options[j]).show();
+                    }
+                }
+            }
+        }
+
+        function GetDataFromChild(data, val_code){
+            debugger;
+            $("#hdnConv" + val_code).val(data);
+            var parsed = JSON.parse(data);
+            var text  = '';
+            RANGES_DROPDOWN_DATA[val_code] = parsed
+            if(parsed.length <= 1){
+                text = parsed.length.toString() + ' Value Selected'
+            }
+            else{
+                text = parsed.length.toString() + ' Values Selected'
+            }
+
+            $("#spanConv" + val_code).html(text);
+
+            var toolTip = parsed.map(function (x) {
+                return x["ParamDesc"]
+            }).join('\n');
+
+            $("#spanConv" + val_code).attr('title' , toolTip);
+            var index = ranges.indexOf(val_code);
+
+            for(i = index + 1; i<ranges.length; i++ ){
+                $("#hdnConv" + ranges[i]).val('');
+                $("#spanConv" + ranges[i]).html('');
+            }
+            $("#exampleModalLabelClose").click();
+        }
+
+        function ClosePopup(){
+            $("#IFrmConvGrid").attr('src', '');
+        }
+
+        function ResetConvData(){
+            for (var i = 0; i < ranges.length; i++) {
+                $("#hdnConv" + ranges[i]).val('');
+                $("#spanConv" + ranges[i]).html('');
+            }
+
+            RANGES_DROPDOWN_DATA = {}
+            $("#hdnSelectedFixFactor").val('');
+            $("#hdnSelectedRange").val('');
+        }
+
+    </script>
+</body>
+</html>

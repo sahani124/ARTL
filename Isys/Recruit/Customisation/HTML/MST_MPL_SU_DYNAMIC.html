@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>MPL SU</title>
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../../../../../KMI%20Styles/assets/css/footable.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../KMI Styles/assets/css/KMI.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../KMI Styles/assets/css/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../KMI Styles/assets/jqueryCalendar/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../../../../assets/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />-->
+    <link href="../../../../../KMI%20Styles/Bootstrap/datepicker/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../assets/css/customization.css" rel="stylesheet" />
+</head>
+<body>
+    <center>
+        <div id="iLoading" class="Content" style="position:absolute;top:50%;left:50%;margin:-50px 0px 0px -50px;z-index:9999;">
+            <img src="../../../../../assets/img/loading-spinner-blue.gif" alt="LOADING" /> Loading...
+        </div>
+        <div class="container" id="divBody">
+            <div id="divcmphdrcollapse" class="panel">
+                <div id="Div6" class="panel-heading" onclick="ShowReqDtl1('divcmphdr','myImg');return false;">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <label id="lblhdr" class="panel-header">Add Scheme Details</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <span id="myImg" class="glyphicon glyphicon-menu-hamburger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="divcmphdr" class="panel-body">
+                    <div id="defaultdiv" class="row">
+                        <div class="col-sm-3">
+                            <label id="lblrtgschKey" class="control-label">Category Scheme Key</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" id="txtSchKey" disabled="disabled" class="form-control" maxlength="20" />
+                        </div>
+                        <div style="display:none;">
+                            <div class="col-sm-3">
+                                <label id="lblweightage" class="control-label; required">Is Consider</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="select2-container form-control" id="ddlMPL"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divOriginalFix" class="panel">
+                        <div id="divOriginalFixHead" class="panel-heading" onclick="ShowReqDtl1('divOriginalFixBody','imgOriginalFix');return false;">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <label id="Label2" class="panel-header">Original Fix factor </label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <span id="imgOriginalFix" class="glyphicon glyphicon-menu-hamburger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divOriginalFixBody" class="panel-body">
+
+                        </div>
+                        <div style="display:inline-flex;">
+                            <button type="button" class="btn btn-sample" id="btnFixConfirmSelection" style="display:none">
+                                <i class="glyphicon glyphicon-ok"></i> Confirm Selection
+
+                            </button>
+                            <button type="button" class="btn btn-sample" id="btnFixUpdateSelection" style="display:none">
+                                <i class="glyphicon glyphicon-refresh"></i> Update Selection
+                            </button>
+                            <button type="button" class="btn btn-sample" id="btnCancel">
+                                <i class="glyphicon glyphicon-remove"></i> Cancel
+                            </button>
+                            <input type="hidden" id="hdnFixFactorSelection" />
+                        </div>
+                        <div id="divDerivedRangeFactors">
+                            <div id="divRangeFactor" class="panel">
+                                <div id="divrangeHeading" class="panel-heading" onclick="ShowReqDtl1('divRangeBody','rangefactorImg');return false;">
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <label id="lblRangeFactor" class="panel-header">Range factors</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <span id="rangefactorImg" class="glyphicon glyphicon-menu-hamburger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divRangeBody" class="panel-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+    <script src="../../../../../assets/scripts/jquery.min.js"></script>
+    <script src="../../../../../assets/scripts/bootstrap.min.js"></script>
+    <script src="../../../../../assets/scripts/bootstrap-multiselect.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
+    <!--<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>-->
+    <script type="text/javascript" src="../../../../../KMI Styles/assets/jqueryCalendar/jquery-ui.js"></script>
+    <script src="../../../../../assets/scripts/moment.js"></script>
+    <script src="../../../../../KMI%20Styles/assets/plugins/bootstrap/js/footable.js" type="text/javascript"></script>
+    <script src="../../../../../assets/scripts/commonValidate.js"></script>
+    <script src="../../../../../assets/scripts/Customization/customization-dynamic-common.js"></script>
+    <script src="../../../../../assets/scripts/Customization/customization-dynamic-datalayer.js"></script>
+    <script>
+        var fix_factors = "";
+        var range_factors = "";
+        var val_fix_factors = "";
+        var val_range_factors = "";
+        var selectFixFactors = "";
+        var ranges = [];
+        var fixes = [];
+        var val_ranges = [];
+        var val_fixes = [];
+        var ACT_SCH_KEY = "";
+        var ACT_TYP_ID = "";
+        var ACT_NO = "";
+        var KPI_CODE = "";
+        var TotalValFactors = [];
+        var PIP_SEP_FIX_FACTOR = {};
+        var VAL_DTLS;
+        document.getElementById('btnFixConfirmSelection').style.display = "block";
+        document.getElementById('divDerivedRangeFactors').style.display = "none";
+        document.getElementById("divBody").style.display = 'none';
+
+
+        $(document).ready(function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            ACT_TYP_ID = GetQueryStringValue(window.location, 'ACT_TYPE');
+            ACT_NO = GetQueryStringValue(window.location, 'ActNO');
+            KPI_CODE = GetQueryStringValue(window.location, 'kpicode');
+
+            GetHtmlTemplates(KPI_CODE, ACT_NO, ACT_TYP_ID, ACT_SCH_KEY, function (data) {
+                document.getElementById("divOriginalFixBody").innerHTML = data[0]["FIX_FCTR_DESIGN"];
+                document.getElementById("divRangeBody").innerHTML = data[0]["RNG_FCTR_DESIGN"];
+            });
+
+            $('.date, .datetime').datepicker({
+                'changeMonth': true,
+                'changeYear': true,
+                dateFormat: 'dd/mm/yy'
+            })
+
+
+            $('.decimal').on('keypress', function (e) {
+                return CheckDecimalValue(e, this);
+            })
+
+            //$(".datetime").datepicker({
+            //    changeMonth: true,
+            //    changeYear: true,
+            //    dateFormat: 'dd/mm/yy'
+            //});
+
+            GetFactorsBySchemeKey(ACT_SCH_KEY, KPI_CODE, ACT_TYP_ID, function (data) {
+                fix_factors = data["Table"][0]["FIX_FCTR"];
+                range_factors = data["Table"][0]["RNG_FCTR"];
+                val_fix_factors = data["Table"][0]["VAL_FIX_FCTR"];
+                val_range_factors = data["Table"][0]["VAL_RNG_FCTR"];
+                VAL_DTLS = data["Table1"];
+            })
+
+            fixes = fix_factors.split('|').filter(x => x != "");
+            ranges = range_factors.split('|').filter(x => x != "");
+            val_fixes = val_fix_factors.split('|').filter(x => x != "");
+            val_ranges = val_range_factors.split('|').filter(x => x != "");
+
+            for (i = 0; i < val_fixes.length; i++) {
+                $("#div" + val_fixes[i]).hide()
+            }
+               
+            for (i = 0; i < fixes.length; i++) {
+                $("#div" + fixes[i]).show()
+            }
+
+            for (i = 0; i < val_ranges.length; i++) {
+                $("#div" + val_ranges[i]).hide()
+            }
+
+            for (i = 0; i < ranges.length; i++) {
+                $("#div" + ranges[i]).show()
+                $("#txt" + ranges[i] + "From").attr("autocomplete", "off")
+                $("#txt" + ranges[i] + "To").attr("autocomplete", "off")
+            }
+
+            //Sort Html
+            debugger;
+            var divOriginalFixContainer = $("#divOriginalFixContainer").clone();
+            $("#divOriginalFixContainer").empty();
+            for (i = 0; i < fixes.length; i++) {
+                $("#divOriginalFixContainer").append($(divOriginalFixContainer).find('[id="div' + fixes[i] + '"]'));
+                $(divOriginalFixContainer).find('[id="div' + fixes[i] + '"]').remove();
+            }
+
+            for (i = 0; i < divOriginalFixContainer.children().length; i++) {
+                $("#divOriginalFixContainer").append(divOriginalFixContainer[i]);
+            }
+
+            GetFixFactorsData(KPI_CODE, ACT_TYP_ID, 'S', ACT_SCH_KEY, 'I',  function (data) {
+                if (data["status"] == 0) {
+                    for (i = 0; i < fixes.length; i++) {
+                        if (data["Data"][fixes[i]]) {
+                            $('#ddlFIX' + fixes[i]).attr("multiple", "multiple");
+                            BindDropdown(data["Data"][fixes[i]], 'ddlFIX' + fixes[i], "ParamValue", "ParamDesc", false);
+                            $("#ddlFIX" + fixes[i]).multiselect('destroy').multiselect({
+                                includeSelectAllOption: true,
+                                allSelectedText: 'All Selected',
+                                selectAllNumber: true,
+                                numberDisplayed: 1,
+                                onInitialized: function (obj, e) {
+                                    $(obj).attr("MultiSelect", $(obj).attr("multiple") ? "Y" : "N")
+                                    $(e.find('button')).attr("target", $(obj).attr("id"))
+                                }
+                            }).multiselect('rebuild')
+                        }
+                    }
+                }
+                else {
+                }
+            })
+
+            for (var i = 0; i < ranges.length; i++) {
+                $('#ddl' + ranges[i] + 'Parent').multiselect("enable");
+            }
+
+            document.getElementById('txtSchKey').value = ACT_SCH_KEY;
+            $("#iLoading").hide();
+            document.getElementById("divBody").style.display = 'block';
+        })
+
+        document.getElementById('btnFixConfirmSelection').addEventListener("click", function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var ACT_TYP_ID = GetQueryStringValue(window.location, 'ACT_TYPE');
+            if (ValidateFixFactors(fixes, VAL_DTLS, ACT_TYP_ID)) {
+                var fix_factor_values = GetValuesFixFactors(fix_factors);
+                for (var i = 0; i < ranges.length; i++) {
+                    document.getElementById('hdn' + ranges[i]).value ='';
+                    document.getElementById('hdnSRT_ORD' + ranges[i]).value ='';
+                    document.getElementById('hdnMIN' + ranges[i]).value ='';
+                    document.getElementById('hdnMAX' + ranges[i]).value ='';
+                    document.getElementById('hdnFirst' + ranges[i]).value ='';
+                    document.getElementById('hdnPosition' + ranges[i]).value ='';
+                    GetRangeFactorsBasedOnFixedFactors(ACT_SCH_KEY, fix_factor_values, ranges[i], function (data) {
+                        debugger;
+                        GetRangeFactorsDDLBasedOnFF(ACT_SCH_KEY, fix_factor_values, ranges[i], 'ddl' + ranges[i] + 'Parent', false, data)
+                        GetRangeFactorsBasedOnFF(ACT_SCH_KEY, fix_factor_values, ranges[i], 'div' + ranges[i] + 'Table', true, true, false, data);
+                    })
+                    document.getElementById('div' + ranges[i]).style.display = "block";
+                }
+
+                this.style.display = "none";
+                EnableFixFactors(true); 
+                document.getElementById('btnFixUpdateSelection').style.display = "block";
+                document.getElementById('hdnFixFactorSelection').value = "Y";
+                document.getElementById('divDerivedRangeFactors').style.display = "block";
+                document.getElementById("iLoading").style.display = 'none';
+            }
+            else {
+
+                document.getElementById("iLoading").style.display = 'none';
+                return false;
+            }
+        })
+
+        document.getElementById('btnFixUpdateSelection').addEventListener("click", function () {
+            this.style.display = "none";
+            document.getElementById('btnFixConfirmSelection').style.display = "block";
+            EnableFixFactors(false);
+            document.getElementById('hdnFixFactorSelection').value = "N";
+            document.getElementById('divDerivedRangeFactors').style.display = "none";
+        })
+
+
+        document.getElementById('btnCancel').addEventListener("click", function () {
+            debugger;
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var actno = GetQueryStringValue(window.location, 'ActNO');
+            var kpicode = GetQueryStringValue(window.location, 'kpicode');
+            var mapcode = GetQueryStringValue(window.location, 'mapcode');
+            var role = GetQueryStringValue(window.location, 'role');
+            var ACT_TYPE = GetQueryStringValue(window.location, 'ACT_TYPE');
+            window.location.href = "../MstActCatgSU.aspx?ActNO=" + actno + "&kpicode=" + kpicode + "&mapcode=" + mapcode + "&role=" + role + "&ACT_TYPE=" + ACT_TYPE;
+        })
+
+        function DisableMiddle(ddl, VAL_CODE) {
+            debugger;
+            var selectedText = ddl.options[ddl.selectedIndex].innerHTML;
+            var selectedValue = ddl.value;
+            if (selectedValue == "F" || selectedValue == "E") {
+                $('#ddl' + VAL_CODE + 'Parent').multiselect("disable");
+                $('#ddl' + VAL_CODE + 'Parent').multiselect('refresh')
+            }
+            else {
+                $('#ddl' + VAL_CODE + 'Parent').multiselect("enable");
+            }
+        }
+
+        //Button Event -- Add / Update / Clear / Cancel
+        function AddRangeFactor(obj, VAL_CODE, USERID) {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            var e = document.getElementById('ddl' + VAL_CODE + 'Position');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+            var ACT_TYP_ID = GetQueryStringValue(window.location, 'ACT_TYPE');
+            var val = VAL_DTLS.filter(x => x.VAL_CODE == VAL_CODE && x.IS_SCOPE == ACT_TYP_ID);
+            var DATATYPE = val[0]['DATATYPE']
+            var VAL_DESC = val[0]['VAL_DESC']
+            if (optionSelIndex != "-1") {
+                if (document.getElementById('txt' + VAL_CODE + 'From').value == "" || document.getElementById('txt' + VAL_CODE + 'To').value == "") {
+                    alert("Please enter from and to data of " + VAL_DESC + "!");
+                    return;
+                }
+                if (optionSelIndex == "M") {
+                    if ($('#ddl' + VAL_CODE + 'Parent').val().length > 0) {
+                        if (!validateMiddleRange("ddl" + VAL_CODE + "Parent", DATATYPE, document.getElementById('txt' + VAL_CODE + 'From').value, document.getElementById('txt' + VAL_CODE + 'To').value, VAL_DESC)) {
+                            return;
+                        }
+                    }
+                    else {
+                        alert("Please select Range of " + VAL_DESC + "!");
+                        return;
+                    }
+                }
+                if (optionSelIndex == "F") {
+                    if (!validateFirstRange("ddl" + VAL_CODE + "Parent", DATATYPE,
+                        document.getElementById('txt' + VAL_CODE + 'From').value,
+                        document.getElementById('txt' + VAL_CODE + 'To').value,
+                        document.getElementById('hdnFirst' + VAL_CODE).value, VAL_DESC)) {
+                        return;
+                    }
+                }
+            }
+            else {
+                alert("Please select Position of " + VAL_DESC + "!");
+                return;
+            }
+
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var KPI_CODE = GetQueryStringValue(window.location, 'kpicode');
+            var FROM_DATA = document.getElementById('txt' + VAL_CODE + 'From').value;
+            var TO_DATA = document.getElementById('txt' + VAL_CODE + 'To').value;
+            var CREATED_BY = GetQueryStringValue(window.location, 'User');
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var selVal = getSelectedValue('ddl' + VAL_CODE + 'Parent');
+            SaveRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, KPI_CODE, ACT_TYP_ID, selVal, optionSelIndex)
+            ClearData(VAL_CODE);
+            document.getElementById("btnFixConfirmSelection").click();
+            document.getElementById("iLoading").style.display = 'none';
+        }
+
+        function UpdateRangeFactor(obj, VAL_CODE, USERID) {
+            debugger;
+            var e = document.getElementById('ddl' + VAL_CODE + 'Position');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+            var ACT_TYP_ID = GetQueryStringValue(window.location, 'ACT_TYPE');
+            var val = VAL_DTLS.filter(x => x.VAL_CODE == VAL_CODE && x.IS_SCOPE == ACT_TYP_ID);
+            var DATATYPE = val[0]['DATATYPE']
+            var VAL_DESC = val[0]['VAL_DESC']
+            var fromVal = document.getElementById('txt' + VAL_CODE + 'From').value;
+            var toVal = document.getElementById('txt' + VAL_CODE + 'To').value;
+            var MIN = document.getElementById('hdnMIN' + VAL_CODE + '').value;
+            var MAX = document.getElementById('hdnMAX' + VAL_CODE + '').value;
+            var POS = document.getElementById('hdnPosition' + VAL_CODE + '').value;
+
+            if (!validateEdit(fromVal, toVal, MIN, MAX, POS, DATATYPE)) {
+                return;
+            }
+
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var ACT_TYP_ID = GetQueryStringValue(window.location, 'ACT_TYPE');
+            var KPI_CODE = GetQueryStringValue(window.location, 'kpicode');
+            var RNG_FACT_ID = document.getElementById('hdn' + VAL_CODE + '').value;
+            var FROM_DATA = document.getElementById('txt' + VAL_CODE + 'From').value;
+            var TO_DATA = document.getElementById('txt' + VAL_CODE + 'To').value;
+            var UPDATED_BY = GetQueryStringValue(window.location, 'User');
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var SRT_ORDR = document.getElementById('hdnSRT_ORD' + VAL_CODE + '').value;
+
+            UpdateRangeFactors(RNG_FACT_ID, ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, UPDATED_BY, KPI_CODE, ACT_TYP_ID, SRT_ORDR, POS);
+            ClearData(VAL_CODE);
+            CancelEdit(VAL_CODE);
+            document.getElementById("btnFixConfirmSelection").click();
+        };
+
+        function ClearRangeFactor(obj, VAL_CODE, USERID) {
+            ClearData(VAL_CODE)
+        };
+
+        function CancelRangeFactor(obj, VAL_CODE, USERID) {
+            CancelEdit(VAL_CODE)
+        };
+
+
+    </script>
+</body>
+</html>

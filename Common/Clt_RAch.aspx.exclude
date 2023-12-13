@@ -1,0 +1,2344 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="clt.aspx.cs" Inherits="Application_Common_clt22Apr" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register Assembly="System.Web.Extensions" Namespace="System.Web.UI" TagPrefix="asp" %>
+<%@ Register Src="CltDetailAddr.ascx" TagName="AddAddr" TagPrefix="uc1" %>
+<%@ Register Src="~/App_UserControl/Common/txtDate.ascx" TagName="txtDate" TagPrefix="uc2" %>
+<%@ Register Src="~/App_UserControl/Common/ddlSelectedLookup.ascx" TagName="ddlSelectedLookup"TagPrefix="uc3" %>
+<%@ Register Src="~/App_UserControl/Common/ddlLookup2.ascx" TagName="ddlLookup"TagPrefix="uc4" %>
+<%@ Register Src="~/App_UserControl/Common/popupOccupation.ascx" TagName="popupOccupation"TagPrefix="uc5" %>
+<%@ Register Src="popupAML.ascx" TagName="popupAML" TagPrefix="uc6" %>
+<%@ Register Src="ClientAML.ascx" TagName="ClientAML" TagPrefix="uc8" %>
+<%@ Register Src="~/App_UserControl/Common/ctlDate.ascx" TagName="ctlDate" TagPrefix="uc7" %>
+<%@ Register Src="ClientAddress.ascx" TagName="ClientAddress" TagPrefix="uc9" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Untitled Page</title>
+    <link href="~/Styles/subModal.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/main.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="~/Scripts/common.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/subModal.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/ValidationDefeater.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/formatting.js"></script>
+    <script language="javascript" type="text/javascript">
+
+var path = "<%=Request.ApplicationPath.ToString()%>";
+
+function funHidePermAddOnPageLoad()
+{
+    document.getElementById("<%=trPermAdd1.ClientID %>").style.display = "none";
+    document.getElementById("<%=trPermAdd2.ClientID %>").style.display = "none";
+    document.getElementById("<%=trPermAdd3.ClientID %>").style.display = "none";
+    
+    enableValidators("<%=rfvAdd1.ClientID%>");
+    enableValidators("<%=rfvState.ClientID%>");
+    enableValidators("<%=rfvPostCode.ClientID%>");
+    enableValidators("<%=rfvCountryCode.ClientID%>");
+}
+
+   function funDisableDOB()
+    {
+   // if("<%= Request.QueryString["GCN"] %>" != null)
+   //   {
+    //    document.getElementById("<%= txtDOB.ClientID %>"+ "_txtDate").readOnly = true;
+    //    document.getElementById("ctl00_ContentPlaceHolder1_txtDOB_btnCalendar").style.display = "none";        
+    //  }
+    }
+  function funDisableRecruitInfoDate()
+    {       
+        if("<%= Request.QueryString["Type"] %>" == "N")
+        {          
+             document.getElementById("<%= txtDOB.ClientID %>"+ "_txtDate").readOnly = true;
+             document.getElementById("ctl00_ContentPlaceHolder1_txtDOB_btnCalendar").style.display = "none";
+             //document.getElementById("<%=cboMaritalStatus.ClientID%>").enabled = false;
+            // document.getElementById("ctl00_ContentPlaceHolder1_cboMaritalStatus_ddliSysLookupParam").enabled = false;
+            // disableValidators("<%=cboMaritalStatus.ClientID%>");
+        }
+    }    
+    
+function funTogglePermAdd()
+{
+    if(document.getElementById("<%=ChkPA.ClientID %>").checked)
+    {
+        disableValidators("<%=rfvAdd1.ClientID%>");
+        disableValidators("<%=rfvAdd2.ClientID%>");
+        disableValidators("<%=rfvAdd3.ClientID%>");
+        disableValidators("<%=rfvState.ClientID%>");
+        disableValidators("<%=rfvPostCode.ClientID%>");
+        disableValidators("<%=rfvCountryCode.ClientID%>");
+        
+        document.getElementById("<%=trPermAdd1.ClientID %>").style.display = "none";
+        document.getElementById("<%=trPermAdd2.ClientID %>").style.display = "none";
+        document.getElementById("<%=trPermAdd3.ClientID %>").style.display = "none";
+        
+        document.getElementById("<%=txtAdd1.ClientID %>").value = "";
+        document.getElementById("<%=txtAdd2.ClientID %>").value = "";
+        document.getElementById("<%=txtAdd3.ClientID %>").value = "";
+        document.getElementById("<%=txtPostcode.ClientID %>").value = "";
+        document.getElementById("<%=txtCountryCode.ClientID %>").value = "";
+        document.getElementById("<%=txtCountryDesc.ClientID %>").value = "";
+        document.getElementById("<%=txtStateCode.ClientID %>").value = "";
+        document.getElementById("<%=txtStateDesc.ClientID %>").value = "";
+    }
+    else
+    {
+        if(document.getElementById("<%=txtAdd1.ClientID%>").value == "")
+        {
+            enableValidators("<%=rfvAdd1.ClientID%>");
+        }
+        if(document.getElementById("<%=txtAdd2.ClientID%>").value == "")
+        {
+            enableValidators("<%=rfvAdd2.ClientID%>");
+        }
+        if(document.getElementById("<%=txtAdd3.ClientID%>").value == "")
+        {
+            enableValidators("<%=rfvAdd3.ClientID%>");
+        }
+        if(document.getElementById("<%=txtStateCode.ClientID%>").value == "")
+        {
+            enableValidators("<%=rfvState.ClientID%>");
+        }
+        if(document.getElementById("<%=txtPostcode.ClientID%>").value == "")
+        {
+            enableValidators("<%=rfvPostCode.ClientID%>");
+        }
+        if(document.getElementById("<%=txtCountryCode.ClientID%>").value == "")
+        {
+            enableValidators("<%=rfvCountryCode.ClientID%>");
+        }
+        document.getElementById("<%=trPermAdd1.ClientID %>").style.display = "block";
+        document.getElementById("<%=trPermAdd2.ClientID %>").style.display = "block";
+        document.getElementById("<%=trPermAdd3.ClientID %>").style.display = "block";
+    }
+    return false;
+}
+function SetValue()
+     {             
+            document.getElementById("<%=txtCurrentID.ClientID%>").value = "";
+           
+            document.getElementById("<%=txtCurrentID.ClientID%>").disabled=true;
+            //Added by bhojraj on 24042012 for CDA PAN UPDATION
+            document.getElementById("<%=btnVerifyPAN.ClientID%>").disabled=true;
+            document.getElementById("<%=hdnPan.ClientID%>").value="0";
+            //end by bhojraj
+            if(document.getElementById("<%=ddlChannels.ClientID%>").value == "CD")
+           {
+             
+             //added by ankita on 13.02.2012 for CDA Pan Updation
+             //added by bhojraj on 24042012
+             document.getElementById("<%=btnVerifyPAN.ClientID%>").disabled=false;
+             //end by bhojraj
+             if (ddlChannels.SelectedValue == "CD")
+                 {
+                    lblFname.Text = "Father Name/Representative Name";
+                 }
+            else
+                 {
+                    lblFname.Text = "Father Name";
+                 }
+           }
+      }
+
+function doFormat(args)
+{
+    var sString = document.getElementById(args).value;
+    //Trim spaces
+    sString = doTrim(sString);
+    //Collapse spaces
+    sString = doCollapse(sString);
+    //Ensure comma immediately follows a non-space and is followed by a space
+    sString = doFormatComma(sString);
+    //Convert to proper case
+    sString = toProperCase(sString);
+    
+    document.getElementById(args).value = sString;
+}
+
+function doValidateName(src, args)
+{
+    var result = true;
+    var sString = args.Value;
+
+    //Check for invalid characters
+    var iChars = "!@$^*_+={}[]|\:;?><1234567890";
+    
+    for (var i = 0; i < args.Value.length; i++) 
+    {
+  	    if (iChars.indexOf(args.Value.charAt(i)) != -1) 
+  	    {
+  	        result = false;
+  	    }
+    }
+    
+    if (args.Value.length == 1)
+    {
+        result = false;
+    }
+    
+    args.IsValid = result;
+}
+
+function doValidateAddress(src, args)
+{
+
+    var result = true;
+    var sString = args.Value;
+    
+    //Check for invalid characters
+    var iChars = "!@$^*_+={}[]|\:;?><";
+    
+    for (var i = 0; i < args.Value.length; i++) 
+    {
+  	    if (iChars.indexOf(args.Value.charAt(i)) != -1) 
+  	    {
+  	        result = false;
+  	    }
+    }
+
+    //Check if there's at least one block of 2 characters (valid)
+    var sArray = sString.split(" ");
+    var blnValid = false;
+    for (var i = 0; i < sArray.length; i++)
+    {
+        if (sArray[i].length > 1)
+        {
+            blnValid = true;
+        }            
+    }
+    if (!blnValid)
+    {
+        result = false;
+    }
+    
+    //Check if there's a hyphen or apostrophe adjacent to space (invalid)
+    if ((sString.match("' ") != null) ||
+        (sString.match(" '") != null) ||
+        (sString.match("- ") != null) ||
+        (sString.match(" -") != null))
+    {
+        result = false;
+    }
+    
+    //Check if there's three same characters in a row (invalid)
+    sArray = sString.toUpperCase().split("");
+    for (var i = 2; i < sArray.length; i++)
+    {
+        if ((sArray[i] == sArray[i - 1]) &&
+            (sArray[i] == sArray[i - 2]))
+        {
+        if (IsNumeric(sArray[i]) != true && IsAlphabet(sArray[i]) != true)
+            result = false;
+        }
+    }
+    
+    args.IsValid = result;
+}
+
+function doTrim(sString) 
+{
+    while (sString.substring(0,1) == " ")
+    {
+        sString = sString.substring(1, sString.length);
+    }
+    
+    while (sString.substring(sString.length - 1, sString.length) == " ")
+    {
+        sString = sString.substring(0,sString.length-1);
+    }
+    
+    return sString;
+}
+
+function doCollapse(sString) 
+{
+    while (sString.match("  ") != null)
+    {
+        sString = sString.replace("  ", " ");
+    }
+    
+    return sString;
+}
+
+function doFormatComma(sString)
+{
+    sString = sString.replace(",", ", ");
+    sString = sString.replace(" ,", ",");
+    sString = sString.replace(",  ", ", ");
+    
+    return sString;
+}
+
+function doValidate(src, args)
+{
+    var result = false;
+    var title = document.getElementById("<%=cboTitle.ClientID%>").value;
+    
+    var sTitle = document.getElementById("<%=hdnGenderTitle1.ClientID%>").value.split(",");
+    var sGender = document.getElementById("<%=hdnGenderTitle2.ClientID%>").value.split(",");
+    
+    for (var i = 0; i < sTitle.length; i++)
+    {
+        if ((sTitle[i] == title) && (sGender[i] == args.Value))
+        {
+            result = true;
+        }
+    }
+    
+    args.IsValid = result;
+}
+
+    function doCancel2(src, args)
+    {
+        var answer = confirm("Are you sure want to cancel?");
+        var vgcn = document.getElementById("<%=txtGCN.ClientID%>").value;
+        var vflag = document.getElementById("<%=txtFlagFind.ClientID%>").value;
+
+        if (answer!=0) 
+        {
+			//Commented & Added By Saurabh Nayar On 20071127
+//          location.replace("Clt.aspx?ENQ=1&GCN=" + vgcn + "&FLAGFIND=" + vflag);
+			location.replace("Clt.aspx?ENQ=1&GCN=" + "" + "&FLAGFIND=" + vflag);
+			//End Of Addition By Saurabh Nayar On 20071127
+        }    
+    }
+    
+    function doCancel(src, args)
+    {
+        var answer = confirm("Are you sure want to cancel?");
+        var vgcn = document.getElementById("<%=txtGCN.ClientID%>").value;
+        var vflag = document.getElementById("<%=txtFlagFind.ClientID%>");
+
+        if (answer!=0) 
+        {
+			//Commented & Added By Saurabh Nayar On 20071127
+//          location.replace("Clt.aspx?ENQ=0&GCN=" + vgcn + "&FLAGFIND=" + vflag);
+			location.replace("Clt.aspx?ENQ=0&GCN=" + "" + "&FLAGFIND=" + vflag);
+			//End Of Addition By Saurabh Nayar On 20071127
+        }    
+    }
+    
+    function showerrormsg(vmsg)
+    {
+        var vmsg = document.getElementById("<%=lblError2.ClientID%>").value.split(",")
+        alert(vmsg);
+    }
+    
+    function funToggleValidators()
+    {
+        var address = document.getElementById("<%=hdnCnctType.ClientID%>").value.split(",");
+        var GCN = document.getElementById("<%=txtGCN.ClientID%>").value.split(",");
+        var ddl = document.getElementById("<%=cboCnctType.ClientID%>");
+        
+        if (ddl.value == "P1")
+        {
+            var ddd = document.getElementById("<%=txtAddrP1.ClientID%>").value;
+            
+            document.getElementById("<%=lblEstP3.ClientID%>").innerText = "*";
+            document.getElementById("<%=lblEstP4.ClientID%>").innerText = "*";
+            document.getElementById("<%=lblEstP5.ClientID%>").innerText = "*";
+            document.getElementById("<%=lblEstP6.ClientID%>").innerText = "*";
+            
+            document.getElementById("<%=lblEstB1.ClientID%>").innerText = "";   
+            document.getElementById("<%=lblEstB3.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstB4.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstB5.ClientID%>").innerText = ""; 
+            document.getElementById("<%=lblEstB6.ClientID%>").innerText = ""; 
+            
+            
+            disableValidators("<%=RFVAddrB1.ClientID%>");
+            disableValidators("<%=RFVAddrB2.ClientID%>");
+            disableValidators("<%=RFVAddrB3.ClientID%>");
+            disableValidators("<%=rfvStateB.ClientID%>");
+            disableValidators("<%=RFVPinB.ClientID%>");
+            disableValidators("<%=rfvCountryB.ClientID%>");
+            
+            if(document.getElementById("<%=txtAddrP1.ClientID%>").value == "")
+            {
+                enableValidators("<%=RFVAddrP1.ClientID%>");
+            }
+            if(document.getElementById("<%=txtAddrP2.ClientID%>").value == "")
+            {
+                enableValidators("<%=RFVAddrP2.ClientID%>");
+            }
+            if(document.getElementById("<%=txtAddrP3.ClientID%>").value == "")
+            {
+                enableValidators("<%=RFVAddrP3.ClientID%>");
+            }
+            if(document.getElementById("<%=txtStateDescP.ClientID%>").value == "")
+            {
+                enableValidators("<%=rfvStateP.ClientID%>");
+            }
+            if(document.getElementById("<%=txtPinP.ClientID%>").value == "")
+            {
+                enableValidators("<%=RFVPinP.ClientID%>");
+            }
+            if(document.getElementById("<%=txtCountryDescP.ClientID%>").value == "")
+            {
+                enableValidators("<%=rfvCountryP.ClientID%>");
+            }
+            
+        }        
+        else if (ddl.value == "B1")           
+        {
+            document.getElementById("<%=lblEstP3.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP4.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP5.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP6.ClientID%>").innerText = "";
+            
+            document.getElementById("<%=lblEstB1.ClientID%>").innerText = "*";   
+            document.getElementById("<%=lblEstB3.ClientID%>").innerText = "*";
+            document.getElementById("<%=lblEstB4.ClientID%>").innerText = "*";
+            document.getElementById("<%=lblEstB5.ClientID%>").innerText = "*";  
+            document.getElementById("<%=lblEstB6.ClientID%>").innerText = "*";  
+            
+            if(document.getElementById("<%=txtAddrB1.ClientID%>").value == "")
+            {
+                enableValidators("<%=RFVAddrB1.ClientID%>");
+            }
+            if(document.getElementById("<%=txtAddrB2.ClientID%>").value == "")
+            {
+                enableValidators("<%=RFVAddrB2.ClientID%>");
+            }
+            if(document.getElementById("<%=txtAddrB3.ClientID%>").value == "")
+            {
+                enableValidators("<%=RFVAddrB3.ClientID%>");
+            }
+            if(document.getElementById("<%=txtStateDescB.ClientID%>").value == "")
+            {
+                enableValidators("<%=rfvStateB.ClientID%>");
+            }
+            if(document.getElementById("<%=txtPinB.ClientID%>").value == "")
+            {
+                enableValidators("<%=RFVPinB.ClientID%>");
+            }    
+            if(document.getElementById("<%=txtCountryDescB.ClientID%>").value == "")
+            {    
+                enableValidators("<%=rfvCountryB.ClientID%>");
+            }
+            
+            disableValidators("<%=RFVAddrP1.ClientID%>");
+            disableValidators("<%=RFVAddrP2.ClientID%>");
+            disableValidators("<%=RFVAddrP3.ClientID%>");
+            disableValidators("<%=rfvStateP.ClientID%>");
+            disableValidators("<%=RFVPinP.ClientID%>");
+            disableValidators("<%=rfvCountryP.ClientID%>");              
+
+        }
+        else
+        {
+            document.getElementById("<%=lblEstP3.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP4.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP5.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP6.ClientID%>").innerText = "";
+            
+            document.getElementById("<%=lblEstB1.ClientID%>").innerText = "";   
+            document.getElementById("<%=lblEstB3.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstB4.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstB5.ClientID%>").innerText = "";  
+            document.getElementById("<%=lblEstB6.ClientID%>").innerText = "";  
+            
+            disableValidators("<%=RFVAddrB1.ClientID%>");
+            disableValidators("<%=RFVAddrB2.ClientID%>");
+            disableValidators("<%=RFVAddrB3.ClientID%>");
+            disableValidators("<%=rfvStateB.ClientID%>");
+            disableValidators("<%=RFVPinB.ClientID%>");
+            disableValidators("<%=rfvCountryB.ClientID%>");
+            
+            disableValidators("<%=RFVAddrP1.ClientID%>");
+            disableValidators("<%=RFVAddrP2.ClientID%>");
+            disableValidators("<%=RFVAddrP3.ClientID%>");
+            disableValidators("<%=rfvStateP.ClientID%>");
+            disableValidators("<%=RFVPinP.ClientID%>");
+            disableValidators("<%=rfvCountryP.ClientID%>");  
+        }
+    }
+        
+    function CheckAddress(src, args)
+    {
+        var result = true;
+        var address = document.getElementById("<%=hdnCnctType.ClientID%>").value.split(",");
+        var GCN = document.getElementById("<%=txtGCN.ClientID%>").value.split(",");
+        var ddl = document.getElementById("<%=cboCnctType.ClientID%>");
+        
+        if (ddl.value == "P1")
+        {
+            var ddd = document.getElementById("<%=txtAddrP1.ClientID%>").value;
+            
+            document.getElementById("<%=lblEstP3.ClientID%>").innerText = "*";
+            document.getElementById("<%=lblEstP4.ClientID%>").innerText = "*";
+            document.getElementById("<%=lblEstP5.ClientID%>").innerText = "*";
+            document.getElementById("<%=lblEstP6.ClientID%>").innerText = "*";
+            
+            document.getElementById("<%=lblEstB1.ClientID%>").innerText = "";   
+            document.getElementById("<%=lblEstB3.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstB4.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstB5.ClientID%>").innerText = ""; 
+            document.getElementById("<%=lblEstB6.ClientID%>").innerText = ""; 
+            
+            disableValidators("<%=RFVAddrB1.ClientID%>");
+            disableValidators("<%=RFVAddrB2.ClientID%>");
+            disableValidators("<%=RFVAddrB3.ClientID%>");
+            disableValidators("<%=rfvStateB.ClientID%>");
+            disableValidators("<%=RFVPinB.ClientID%>");
+            disableValidators("<%=rfvCountryB.ClientID%>");
+            
+            enableValidators("<%=RFVAddrP1.ClientID%>");
+            enableValidators("<%=RFVAddrP2.ClientID%>");
+            enableValidators("<%=RFVAddrP3.ClientID%>");
+            enableValidators("<%=rfvStateP.ClientID%>");
+            enableValidators("<%=RFVPinP.ClientID%>");
+            enableValidators("<%=rfvCountryP.ClientID%>");
+            
+        }        
+        else if (ddl.value == "B1")           
+        {
+            document.getElementById("<%=lblEstP3.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP4.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP5.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP6.ClientID%>").innerText = "";
+            
+            document.getElementById("<%=lblEstB1.ClientID%>").innerText = "*";   
+            document.getElementById("<%=lblEstB3.ClientID%>").innerText = "*";
+            document.getElementById("<%=lblEstB4.ClientID%>").innerText = "*";
+            document.getElementById("<%=lblEstB5.ClientID%>").innerText = "*";  
+            document.getElementById("<%=lblEstB6.ClientID%>").innerText = "*";  
+            
+            enableValidators("<%=RFVAddrB1.ClientID%>");
+            enableValidators("<%=RFVAddrB2.ClientID%>");
+            enableValidators("<%=RFVAddrB3.ClientID%>");
+            enableValidators("<%=rfvStateB.ClientID%>");
+            enableValidators("<%=RFVPinB.ClientID%>");
+            enableValidators("<%=rfvCountryB.ClientID%>");
+            
+            disableValidators("<%=RFVAddrP1.ClientID%>");
+            disableValidators("<%=RFVAddrP2.ClientID%>");
+            disableValidators("<%=RFVAddrP3.ClientID%>");
+            disableValidators("<%=rfvStateP.ClientID%>");
+            disableValidators("<%=RFVPinP.ClientID%>");
+            disableValidators("<%=rfvCountryP.ClientID%>");              
+
+        }
+        else
+        {
+            document.getElementById("<%=lblEstP3.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP4.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP5.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstP6.ClientID%>").innerText = "";
+            
+            document.getElementById("<%=lblEstB1.ClientID%>").innerText = "";   
+            document.getElementById("<%=lblEstB3.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstB4.ClientID%>").innerText = "";
+            document.getElementById("<%=lblEstB5.ClientID%>").innerText = "";  
+            document.getElementById("<%=lblEstB6.ClientID%>").innerText = "";  
+            
+            disableValidators("<%=RFVAddrB1.ClientID%>");
+            disableValidators("<%=RFVAddrB2.ClientID%>");
+            disableValidators("<%=RFVAddrB3.ClientID%>");
+            disableValidators("<%=rfvStateB.ClientID%>");
+            disableValidators("<%=RFVPinB.ClientID%>");
+            disableValidators("<%=rfvCountryB.ClientID%>");
+            
+            disableValidators("<%=RFVAddrP1.ClientID%>");
+            disableValidators("<%=RFVAddrP2.ClientID%>");
+            disableValidators("<%=RFVAddrP3.ClientID%>");
+            disableValidators("<%=rfvStateP.ClientID%>");
+            disableValidators("<%=RFVPinP.ClientID%>");
+            disableValidators("<%=rfvCountryP.ClientID%>");  
+        }
+            
+        if (GCN != "")
+        {  
+            for (i = 0; i < address.length; i++)
+            {        
+                var val = ("B" + (i + 2));
+                var val2 = ("P" + (i + 2));
+                
+                if (val.length > 2)
+                {
+                    switch(val)
+                    {
+                        case("B10"):
+                            val = "B0";
+                    }
+                }
+                
+                if (val2.length > 2)
+                {
+                    switch(val2)
+                    {
+                        case("P10"):
+                            val2 = "P0";
+                    }
+                }  
+                if(document.getElementById(address[i] + "_hdnAdd1") != null)
+                {
+                    if ((document.getElementById(address[i] + "_hdnAdd1").value == "")
+                        && ((ddl.value == val) || (ddl.value == val2)))
+                    {                    
+                        result = false;
+                    }
+                }             
+            }          
+        }   
+        
+        args.IsValid = result;
+    }
+    
+    function SetFocus(controlID)
+    { 
+        document.getElementById("ctl00_ContentPlaceHolder1_cmdCancelM").enabled = true;  
+        document.getElementById("ctl00_ContentPlaceHolder1_cmdCancelM").visible = true;
+        document.getElementById("ctl00_ContentPlaceHolder1_cmdCancel").enabled = true;  
+        document.getElementById("ctl00_ContentPlaceHolder1_cmdCancel").visible = true;
+    
+//        document.getElementById("ctl00_ContentPlaceHolder1_cboCnctType").visible = true;
+//        document.getElementById("ctl00_ContentPlaceHolder1_cboGender").visible = true;
+//        document.getElementById("ctl00_ContentPlaceHolder1_cboMaritalStatus").enabled = false;
+//        document.getElementById("ctl00_ContentPlaceHolder1_cboOtherIDType").visible = true;
+//        document.getElementById("ctl00_ContentPlaceHolder1_cboResStat").visible = true;
+//        document.getElementById("ctl00_ContentPlaceHolder1_cboTitle").visible = true;
+//        document.getElementById("ctl00_ContentPlaceHolder1_cboQualCode").visible = true;
+              
+//        controlID = "ctl00_ContentPlaceHolder1_btnSave";       
+//        document.getElementById(controlID).enabled = true;  
+//        document.getElementById(controlID).visible = true;
+//        $get(controlID).focus();
+        displaySelectBoxes();
+        
+        /*document.onkeypress = EnablekH;*/
+        /*EnableRKey;*/
+    }
+
+    function displaySelectBoxes() {
+	    for(var i = 0; i < document.forms.length; i++) {
+		    for(var e = 0; e < document.forms[i].length; e++){
+			    if(document.forms[i].elements[e].tagName == "SELECT") {
+			    document.forms[i].elements[e].style.visibility="visible";
+			    }
+		    }
+	    }
+    }
+    
+    function CheckValidEmail(src, args) 
+    {
+            var result;
+            var Email2 = document.getElementById("ctl00_ContentPlaceHolder1_txtEmail").value.split(",");
+                          
+            var Email = Email2[0];              
+            result = ((Email.indexOf(".") > 2) && (Email.indexOf("@") > 0)); 
+            args.IsValid = result;
+    }
+
+    function CheckHomeTelFormat(src, args)
+    {
+         var result = true;
+         
+         if (args.Value.length > 0)   
+         {
+             if (!IsNumeric(args.Value))
+             {
+                result = false;
+             }
+             args.Value = args.Value.substr(0,1)
+             if (args.Value != "0")
+             {
+                 result = false;
+             }
+         }
+        
+         args.IsValid = result;
+    }
+    
+    function CheckWorkTelFormat(src, args)
+    {
+         var result = true;
+         var LocalTel = document.getElementById("<%=txtWorkTel.ClientID%>").value.split(",");
+         
+         strLocalTel = new String(LocalTel)
+       
+         if (strLocalTel.length > 0)   
+         {
+//                 if (strLocalTel.length != 12)
+//                 { 
+//                     result = false;
+//                 }
+             if (!IsNumeric(strLocalTel))
+             {
+                result = false;
+             }
+             strLocalTel = strLocalTel.substr(0,1)
+             if (strLocalTel != "0")
+             {
+                 result = false;
+             }
+         }
+        
+         args.IsValid = result;
+    }
+    
+    function CheckMobileTelFormat(src, args)
+    {
+         var result = true;
+         var strTel = document.getElementById("<%=txtMobileTel.ClientID%>").value;
+         
+         if (IsNumeric(strTel))
+         {
+            //Commented By Saurabh Nayar On 20071029
+            /*
+            if (strTel.substr(0,1) == "9")
+            {
+                if (strTel.length != 11)
+                { 
+                    result = false;
+                }       
+            }
+            else
+            {
+                if (strTel.length < 8)
+                { 
+                    result = false;
+                }
+            }
+            */
+            //End Of Comment By Saurabh Nayar On 20071029
+         }
+         else
+         {
+            result = false;
+         }
+           if(strTel=="09999999999" || strTel=="9999999999" || strTel=="99999999999")
+         {
+            result=false;
+         }
+         
+         args.IsValid = result;
+    }
+    function IsAlphabet(sText)
+    {
+        var ValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var IsAlphabet=true;
+        var Char;
+
+        for (i = 0; i < sText.length && IsAlphabet == true; i++) 
+        { 
+            Char = sText.charAt(i); 
+            if (ValidChars.indexOf(Char) == -1) 
+            {
+                IsAlphabet = false;
+            }
+        }
+
+        return IsAlphabet;  
+    }    
+    function IsNumeric(sText)
+    {
+        var ValidChars = "0123456789";
+        var IsNumber=true;
+        var Char;
+
+        for (i = 0; i < sText.length && IsNumber == true; i++) 
+        { 
+            Char = sText.charAt(i); 
+            if (ValidChars.indexOf(Char) == -1) 
+            {
+                IsNumber = false;
+            }
+        }
+
+        return IsNumber;  
+    }
+    
+    function CheckPANFormat(src, args)
+    {
+        var result = true;
+        var pan = document.getElementById("<%=txtCurrentID.ClientID%>").value.split(",");
+        var Char;
+    
+        var pan2 = pan[0]
+        if (pan2 != "")
+        { 
+            if (pan2.length == 10)
+            {
+                for (j = 0; j < pan2.length && result == true; j++) 
+                {                         
+                   Char = pan2.substring(j, j+1);
+                   
+                   if (j==0 || j==1 || j==2 || j==3 || j==4 || j==9)                       
+                   {     
+                        if (!isAlphabet(Char)) 
+                        {
+                            result = false;
+                        }           
+                   }
+                   if (j==5 || j==6 || j==7 || j==8)          
+                   {                            
+                        if (!IsNumeric(Char)) 
+                        {
+                            result = false;
+                        }                                           
+                    }
+                }     
+            } 
+            else
+            {
+                result = false;
+            }
+        }     
+        args.IsValid = result;        
+    }
+    
+    function isAlphabet(strText) 
+    {
+        var inputStr = strText
+        for (var intCounter = 0; intCounter < inputStr.length; intCounter++) 
+        {
+            var oneChar = inputStr.substring(intCounter, intCounter + 1)
+            
+            if (oneChar.toUpperCase() < "A" || oneChar.toUpperCase() > "Z") 
+            {
+                return false
+                /*If Input Parameter is not Alphabet return false to Parent function*/
+            }
+        }
+        return true
+     }
+    
+    function popNational(oCode, oDesc, sCode, sDesc)
+    {
+        showPopWin("PopNational.aspx?Code=" + doEncodeToPopup(sCode) +
+                    "&Desc=" + doEncodeToPopup(sDesc) +
+                    "&Field1=" + doEncodeToPopup(oCode) +
+                    "&Field2=" + doEncodeToPopup(oDesc)
+                    , 500, 350, null);
+    }      
+    
+    function popResCntry(oCode, oDesc, sCode, sDesc)
+    {
+        showPopWin("PopResCntry.aspx?Code=" + doEncodeToPopup(sCode) +
+                    "&Desc=" + doEncodeToPopup(sDesc) +
+                    "&Field1=" + doEncodeToPopup(oCode) +
+                    "&Field2=" + doEncodeToPopup(oDesc)
+                    , 500, 350, null);
+    }
+    
+    function popQual(oCode, oDesc, sCode, sDesc)
+    {
+        showPopWin("PopQual.aspx?Code=" + doEncodeToPopup(sCode) +
+                    "&Desc=" + doEncodeToPopup(sDesc) +
+                    "&Field1=" + doEncodeToPopup(oCode) +
+                    "&Field2=" + doEncodeToPopup(oDesc)
+                    , 500, 350, null);
+    }
+    
+    function popOccupation(oCode, oDesc, sCode, sDesc)
+    {
+        showPopWin("PopOccupation.aspx?Code=" + doEncodeToPopup(sCode) +
+                    "&Desc=" + doEncodeToPopup(sDesc) +
+                    "&Field1=" + doEncodeToPopup(oCode) +
+                    "&Field2=" + doEncodeToPopup(oDesc)
+                    , 500, 350, null);
+    }
+    
+    function popSearchClt(oGCN, oSurname, oGivenName, oGender, oDOB, oOthersID, oOtherIDType, sGCN, sSurname, sGivenName, sGender, sDOB, sOthersID, sOtherIDType)
+    {             
+       showPopWin("PopSearchClt.aspx?GCN=" + doEncodeToPopup(sGCN) +
+                    "&Surname=" + doEncodeToPopup(sSurname) +
+                    "&GivenName=" + doEncodeToPopup(sGivenName) +
+                    "&Gender=" + doEncodeToPopup(sGender) +
+                    "&DOB=" + doEncodeToPopup(sDOB) +
+                    "&OthersID=" + doEncodeToPopup(sOthersID) +
+                    "&OtherIDType=" + doEncodeToPopup(sOtherIDType) +
+                    "&Field1=" + doEncodeToPopup(oGCN) +
+                    "&Field2=" + doEncodeToPopup(oSurname) +
+                    "&Field3=" + doEncodeToPopup(oGivenName) +
+                    "&Field4=" + doEncodeToPopup(oGender) +
+                    "&Field5=" + doEncodeToPopup(oDOB) +
+                    "&Field6=" + doEncodeToPopup(oOthersID) +
+                    "&Field7=" + doEncodeToPopup(oOtherIDType)
+                    , 500, 350, null);  
+    }   
+    
+   
+    function Test(args)
+    {
+        document.getElementById("ctl00$ContentPlaceHolder1$btnPostBack").click(); 
+    }        
+    
+    function SurnametoProperCase(s)
+    {
+        document.getElementById("<%=txtSurname.ClientID%>").value = toProperCase(s);    
+    }
+    
+    function GivenNametoProperCase(s)
+    {
+        document.getElementById("<%=txtGivenName.ClientID%>").value = toProperCase(s);    
+    }
+    
+    function toProperCase(s)
+    {
+        return s.toLowerCase().replace(/^(.)|\s(.)/g, function($1) { return $1.toUpperCase(); })
+    }
+      
+    function WriteFlag()
+    {
+        document.getElementById("<%=txtFlagFind.ClientID%>").value = "1"; 
+    }
+    
+    function popStateP(oCode, oDesc, sCode, sDesc)
+    {
+        showPopWin("PopState.aspx?Code=" + sCode +
+                    "&Desc=" + sDesc +
+                    "&Field1=" + oCode +
+                    "&Field2=" + oDesc
+                    , 500, 350, null);
+    }
+    /* Added Venkat on 24/02/10 For District Purpose*/
+   function PersPopDistrict(strhdnDist,dDesc,strStateCode,strDist,strhdnPinFrom,strhdnPinTo)
+    {
+       var vDist = document.getElementById('<%=txtDistric.ClientID %>').value;
+        if(document.getElementById('<%=txtStateCode.ClientID %>').value=="")
+        {
+            alert("Please enter State Code");
+            document.getElementById('<%= txtStateCode.ClientID %>').focus();
+            return false;
+        }
+      /* if(vDist.length<2)
+        {
+            alert("Please Enter at least two Characters in District");
+            document.getElementById('<%= txtDistric.ClientID %>').focus();
+            return false;
+        }
+        else
+        { */
+           showPopWin("~/Application/Common/PopDistrict.aspx?strHDist=" + strhdnDist + "&DistDesc=" + dDesc + "&StateCode=" 
+            + strStateCode + "&txtDisc=" + strDist + "&shdnPinFrom=" + strhdnPinFrom + "&shdnPinTo=" + strhdnPinTo,500, 350, null);
+       /* }*/
+    }
+    function ResPopDistrict(strhdnDist,dDesc,strStateCode,strDist,strhdnPinFrom,strhdnPinTo)
+    {
+       var vDist = document.getElementById('<%=txtDistricP.ClientID %>').value;
+        if(document.getElementById('<%=txtStateCodeP.ClientID %>').value=="")
+        {
+            alert("Please enter State Code");
+            document.getElementById('<%= txtStateCodeP.ClientID %>').focus();
+            return false;
+        }
+      /* if(vDist.length<2)
+        {
+            alert("Please Enter at least two Characters in District");
+            document.getElementById('<%= txtDistric.ClientID %>').focus();
+            return false;
+        }
+        else
+        { */
+           showPopWin("~/Application/Common/PopDistrict.aspx?strHDist=" + strhdnDist + "&DistDesc=" + dDesc + "&StateCode=" 
+            + strStateCode + "&txtDisc=" + strDist + "&shdnPinFrom=" + strhdnPinFrom + "&shdnPinTo=" + strhdnPinTo,500, 350, null);
+       /* }*/
+    }
+    function PopDistrict(strhdnDist,dDesc,strStateCode,strDist,strhdnPinFrom,strhdnPinTo)
+    {
+       var vDist = document.getElementById('<%=txtDistrictB.ClientID %>').value;
+        if(document.getElementById('<%=txtStateCodeB.ClientID %>').value=="")
+        {
+            alert("Please enter State Code");
+            document.getElementById('<%= txtStateCodeB.ClientID %>').focus();
+            return false;
+        }
+      /* if(vDist.length<2)
+        {
+            alert("Please Enter at least two Characters in District");
+            document.getElementById('<%= txtDistric.ClientID %>').focus();
+            return false;
+        }
+        else
+        { */
+           showPopWin("~/Application/Common/PopDistrict.aspx?strHDist=" + strhdnDist + "&DistDesc=" + dDesc + "&StateCode=" 
+            + strStateCode + "&txtDisc=" + strDist + "&shdnPinFrom=" + strhdnPinFrom + "&shdnPinTo=" + strhdnPinTo,500, 350, null);
+       /* }*/
+    }
+    /* End of addition*/
+    function popCountryP(oCode, oDesc, sCode, sDesc)
+    {
+        showPopWin("PopCountry.aspx?Code=" + sCode +
+                    "&Desc=" + sDesc +
+                    "&Field1=" + oCode +
+                    "&Field2=" + oDesc
+                    , 500, 350, null);
+    }
+
+    function CheckStateListP(src, args)
+    {
+        var result = true;
+        var StateCode = document.getElementById("<%=txtStateCodeP.ClientID%>").value.split(",");
+        var StateDesc = document.getElementById("<%=txtStateDescP.ClientID%>").value.split(",");
+  
+        if ((StateCode != "") && (StateDesc == ""))
+        {            
+            result = false;           
+        }    
+        args.IsValid = result;
+    }
+    
+    function CheckCountryListP(src, args)
+    {
+        var result = true;
+        var CountryCode = document.getElementById("<%=txtCountryCodeP.ClientID%>").value.split(",");
+        var CountryDesc = document.getElementById("<%=txtCountryDescP.ClientID%>").value.split(",");
+        
+        if ((CountryCode != "") && (CountryDesc == ""))
+        {            
+            result = false;           
+        }    
+        args.IsValid = result;
+    }
+    
+    function CheckPINP(src, args)
+    {
+        var result = true;
+        var CountryCode = document.getElementById("<%=txtCountryCodeP.ClientID%>").value;
+        var Pin = document.getElementById("<%=txtPinP.ClientID%>").value;
+        
+        if (CountryCode.toUpperCase() == "IND")
+        {            
+            if (!IsNumeric(Pin) || (Pin.length != 6)) 
+            {                
+                result = false;
+            }
+        }              
+        else
+        {
+            if (Pin.length > 8)
+            {
+                result = false;
+            }
+        }
+        
+        args.IsValid = result;
+    }   
+    //Added By Saurabh Nayar On 20071102
+    function CheckStateList(src, args)
+    {
+        var result = true;
+        var StateCode = document.getElementById("<%=txtStateCode.ClientID%>").value.split(",");
+        var StateDesc = document.getElementById("<%=txtStateDesc.ClientID%>").value.split(",");
+  
+        if ((StateCode != "") && (StateDesc == ""))
+        {            
+            result = false;           
+        }    
+        args.IsValid = result;
+    }
+    
+    function CheckCountryList(src, args)
+    {
+        var result = true;
+        var CountryCode = document.getElementById("<%=txtCountryCode.ClientID%>").value.split(",");
+        var CountryDesc = document.getElementById("<%=txtCountryDesc.ClientID%>").value.split(",");
+        
+        if ((CountryCode != "") && (CountryDesc == ""))
+        {            
+            result = false;           
+        }    
+        args.IsValid = result;
+    }
+    
+    function CheckPIN(src, args)
+    {
+        var result = true;
+        var CountryCode = document.getElementById("<%=txtCountryCode.ClientID%>").value;
+        var Pin = document.getElementById("<%=txtPostcode.ClientID%>").value;
+        
+        if (CountryCode.toUpperCase() == "IND")
+        {            
+            if (!IsNumeric(Pin) || (Pin.length != 6)) 
+            {                
+                result = false;
+            }
+        }              
+        else
+        {
+            if (Pin.length > 8)
+            {
+                result = false;
+            }
+        }
+        
+        args.IsValid = result;
+    }   
+    //End Of Added By Saurabh Nayar On 20071102
+    
+    function popStateB(oCode, oDesc, sCode, sDesc)
+    {
+        showPopWin("PopState.aspx?Code=" + sCode +
+                    "&Desc=" + sDesc +
+                    "&Field1=" + oCode +
+                    "&Field2=" + oDesc
+                    , 500, 350, null);
+    }
+
+    function popCountryB(oCode, oDesc, sCode, sDesc)
+    {
+        showPopWin("PopCountry.aspx?Code=" + sCode +
+                    "&Desc=" + sDesc +
+                    "&Field1=" + oCode +
+                    "&Field2=" + oDesc
+                    , 500, 350, null);
+    }
+
+    function CheckStateListB(src, args)
+    {
+        var result = true;
+        var StateCode = document.getElementById("<%=txtStateCodeB.ClientID%>").value.split(",");
+        var StateDesc = document.getElementById("<%=txtStateDescB.ClientID%>").value.split(",");
+  
+        if ((StateCode != "") && (StateDesc == ""))
+        {            
+            result = false;           
+        }    
+        args.IsValid = result;
+    }
+    
+    function CheckCountryListB(src, args)
+    {
+        var result = true;
+        var CountryCode = document.getElementById("<%=txtCountryCodeB.ClientID%>").value.split(",");
+        var CountryDesc = document.getElementById("<%=txtCountryDescB.ClientID%>").value.split(",");
+        
+        if ((CountryCode != "") && (CountryDesc == ""))
+        {            
+            result = false;           
+        }    
+        args.IsValid = result;
+    }
+    
+    function CheckPINB(src, args)
+    {
+        var result = true;
+        var CountryCode = document.getElementById("<%=txtCountryCodeB.ClientID%>").value;
+        var Pin = document.getElementById("<%=txtPinB.ClientID%>").value;
+        
+        if (CountryCode.toUpperCase() == "IND")
+        {            
+            if (!IsNumeric(Pin) || (Pin.length != 6)) 
+            {                
+                result = false;
+            }
+        }              
+        else
+        {
+            if (Pin.length > 8)
+            {
+                result = false;
+            }
+        }
+        
+        args.IsValid = result;
+    }   
+    
+   
+                            
+        function funOpenPopWin(strPageName, strPayeeCode, strValue, strCode, strSource)
+		{
+		    if(strPageName == 'DuplicateCltRecords.aspx')
+		    {
+		        document.getElementById('<%= txtDupBtnFlag.ClientID%>').value = "1";
+		    }
+		    showPopWin(strPageName + "?Code=" + strPayeeCode + "&Field1=" + strValue + "&Field2=" + strCode + "&Source=" + strSource, 500, 350, null);
+		    return false;
+		}	
+		
+		 </script><%--script1 end--%>
+		 <script language="javascript" type="text/javascript">
+        var err = "<%=lblErrMsg.Text%>";
+
+        if (err != "")
+        {
+            alert(err);
+        }        
+        
+        
+   </script>
+   
+   
+ 
+   
+		 
+    
+    
+</head>
+
+<body>
+     
+    
+    <form id="form1" runat="server">
+        
+        <div id="div1">
+                        <asp:Panel ID="PanelMain" runat="server">
+                           <asp:ScriptManager runat="server" ID="SM">
+                                <scripts>
+                <asp:ScriptReference Path="Lookup.js" /> 
+            </scripts>
+                                <services>
+                <asp:ServiceReference  Path="Lookup.asmx" />
+            </services>	
+    </asp:ScriptManager>
+    </asp:Panel>
+    </div>
+        <div>
+        <table id="Table1" runat="server" class="container" width="100%">
+               
+               
+                <tr>
+                    <td style="width: 872px">
+                        <!-- Personal Client -->
+                        <table class="formtable">
+                            <tr align="center">
+                                <td class="test" colspan="4">
+                                    <table class="container" width="100%">
+                                        <tr>
+                                            <td style="width: 363px">
+                                             <%--   <asp:UpdatePanel ID="UpdPanelHeader" runat="server" RenderMode="Inline" UpdateMode="Conditional">
+                                                    <ContentTemplate> RAchana--%>
+                                                       <asp:Label ID="lblHeader" runat="server"></asp:Label>
+                                                <%--    </ContentTemplate>
+                                                </asp:UpdatePanel> RAchana--%>
+                                            </td>
+                                            <td align="right" style="width: 182px">
+                                                CLTPRS V1.3</td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" colspan="1">
+                                    <span></span>
+                                    <asp:Button ID="btnPostback" runat="server" Visible="true" Width="0" CausesValidation="false" /><asp:Label
+                                        ID="lblCusID" runat="server"></asp:Label>
+                                    <%--22 Apr rachana removed JS function OnClick="RetrievePopClt"--%>
+                                </td>
+                                <td class="formcontent">
+                                    <%--<asp:UpdatePanel ID="UpdPanelGCN" runat="server" RenderMode="Inline" UpdateMode="Conditional">
+                                        <ContentTemplate> RAchana--%>
+                                            <asp:TextBox ID="txtGCN" runat="server" CssClass="standardtextbox" Enabled="false"
+                                                MaxLength="12"></asp:TextBox>
+                                            <asp:TextBox Style="text-align: center" ID="txtCltStat" runat="server" Width="47px"
+                                                BorderStyle="None" BorderColor="Transparent">Active</asp:TextBox>
+                                     <%--   </ContentTemplate>
+                                    </asp:UpdatePanel> RAchana--%>
+                                </td>
+                                <td class="formcontent" colspan="1">
+                                    <span></span>
+                                    <asp:Label ID="lblCode" runat="server" Width="95%"></asp:Label>
+                                </td>
+                                <td class="formcontent">
+                                    <asp:UpdatePanel ID="UpdPanelCltCode" runat="server" RenderMode="Inline" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="txtCltCode" runat="server" CssClass="standardtextbox" MaxLength="12"></asp:TextBox>&nbsp;
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent">
+                                    <span style="color: red"></span>
+                                    <asp:Label ID="lblName" runat="server" Style="color: black"></asp:Label>&nbsp; <span
+                                        style="color: Red"></span>
+                                    <%--changed color attri--%>
+                                </td>
+                                <td class="formcontent">
+                                   <%-- <asp:UpdatePanel ID="UpdPanelGivenNm" runat="server" RenderMode="Inline" UpdateMode="Conditional">
+                                        <ContentTemplate> Rachana--%>
+                                            <asp:DropDownList ID="cboTitle" runat="server" CssClass="standardmenu">
+                                            </asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="rfvTitle" runat="server" SetFocusOnError="True" ErrorMessage="Mandatory!"
+                                                Display="Dynamic" ControlToValidate="cboTitle"></asp:RequiredFieldValidator>
+                                            <asp:TextBox ID="txtGivenName" runat="server" CssClass="standardtextbox" MaxLength="30"
+                                                Width="125px"></asp:TextBox>
+                                            <asp:RegularExpressionValidator ID="revGivenName" runat="server" Enabled="False"
+                                                SetFocusOnError="True" ErrorMessage="Invalid characters!" Display="Dynamic" ControlToValidate="txtGivenName"
+                                                ValidationExpression="[\w\s]*[^_1234567890]"></asp:RegularExpressionValidator>
+                                            <asp:CustomValidator ID="ctvGivenName" runat="server" SetFocusOnError="True" ErrorMessage="Invalid characters!"
+                                                Display="Dynamic" ControlToValidate="txtGivenName" ClientValidationFunction="doValidateName"></asp:CustomValidator>
+                                        <%--</ContentTemplate>
+                                    </asp:UpdatePanel> Rachana--%>
+                                    <asp:HiddenField ID="hdnGenderTitle1" runat="server" />
+                                    <asp:HiddenField ID="hdnGenderTitle2" runat="server" />
+                                </td>
+                                <td class="formcontent">
+                                    <span><font color="Red">
+                                        <asp:Label ID="lblSurName" runat="server" Style="color: black"></asp:Label>*</font></span></td>
+                                <td class="formcontent">
+                                    <asp:UpdatePanel ID="UpdPanelname" runat="server" RenderMode="Inline">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="txtname" runat="server" CssClass="standardtextbox" MaxLength="30"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RFVName" runat="server" Enabled="true" ErrorMessage="Mandatory!"
+                                                Display="Dynamic" ControlToValidate="txtname"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="revSurname" runat="server" Enabled="False" SetFocusOnError="True"
+                                                ErrorMessage="Invalid characters!" Display="Dynamic" ControlToValidate="txtname"
+                                                ValidationExpression="[\w\s]*"></asp:RegularExpressionValidator>
+                                            <asp:CustomValidator ID="ctvName" runat="server" SetFocusOnError="True" ErrorMessage="Invalid characters!"
+                                                Display="Dynamic" ControlToValidate="txtname" ClientValidationFunction="doValidateName"></asp:CustomValidator>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" width="230">
+                                    <asp:Label ID="lblChannel" runat="server"></asp:Label>
+                                    <span style="color: Red">*</span>
+                                </td>
+                                <td class="formcontent" width="230">
+                                    <asp:DropDownList ID="ddlChannels" runat="server" CssClass="standardmenu" AutoPostBack="true"
+                                        OnSelectedIndexChanged="ddlChannels_SelectedIndexChanged">
+                                        <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                        <asp:ListItem Value="CD">CDA Franchise</asp:ListItem>
+                                        <asp:ListItem Value="Others">Others</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="rfvddlchannels" runat="server" SetFocusOnError="true"
+                                        ErrorMessage="Mandatory!" Enabled="true" Display="Dynamic" ControlToValidate="ddlChannels"></asp:RequiredFieldValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent">
+                                    <asp:Label ID="lbldob" runat="server"></asp:Label><span style="color: #ff0000">*</span></td>
+                                <td class="formcontent">
+                                    <uc7:ctlDate ID="txtDOB" runat="server" CssClass="standardtextbox" RequiredField="true"
+                                        RequiredValidationMessage="Mandatory!" />
+                                </td>
+                                <td class="formcontent">
+                                    <asp:Label ID="lblFname" runat="server"></asp:Label>
+                                    <%--Commented by Anoop on 19-11-2007--InCommented On 15/06/09--%>
+                                    <span style="color: #ff0000">*</span>
+                                </td>
+                                <td class="formcontent">
+                                    <asp:UpdatePanel ID="UpdPanelSurname" runat="server" RenderMode="Inline">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="txtSurname" runat="server" CssClass="standardtextbox" MaxLength="60"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RFVnme" runat="server" Enabled="true" ErrorMessage="Mandatory!"
+                                                Display="Dynamic" ControlToValidate="txtSurname"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="revname" runat="server" Enabled="False" SetFocusOnError="True"
+                                                ErrorMessage="Invalid characters!" Display="Dynamic" ControlToValidate="txtSurname"
+                                                ValidationExpression="[\w\s]*"></asp:RegularExpressionValidator>
+                                            <asp:CustomValidator ID="ctvFatherName" runat="server" SetFocusOnError="True" ErrorMessage="Invalid characters!"
+                                                Display="Dynamic" ControlToValidate="txtSurname" ClientValidationFunction="doValidateName"></asp:CustomValidator>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                    <%--End of Comment--End of UnComment--%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent">
+                                    <asp:Label ID="lblPAN" runat="server"></asp:Label></td>
+                                <td class="formcontent">
+                                    <asp:UpdatePanel ID="UpdPanelCurrentID" runat="server" RenderMode="Inline" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="txtCurrentID" runat="server" CssClass="standardtextbox" onChange="javascript:this.value=this.value.toUpperCase();"
+                                                MaxLength="10"></asp:TextBox>
+                                            <input id="txtCurrentIDType" type="hidden" value="P" />
+                                            <asp:RequiredFieldValidator ID="rfvCurrentID" runat="server" Enabled="false" SetFocusOnError="True"
+                                                ErrorMessage="Mandatory!" Display="Dynamic" ControlToValidate="txtCurrentID"></asp:RequiredFieldValidator>
+                                            <asp:CustomValidator ID="ctvCurrentID" runat="server" SetFocusOnError="True" ErrorMessage="Invalid PAN format!"
+                                                Display="Dynamic" ControlToValidate="txtCurrentID" ClientValidationFunction="CheckPANFormat"></asp:CustomValidator>
+                                            <asp:Button ID="btnVerifyPAN" runat="server" Text="Verify" Enabled="false" CssClass="standardbutton"
+                                                OnClick="btnVerifyPAN_Click" ValidationGroup="RecruitInfo"></asp:Button>
+                                            <div id="divPAN" class="Content" style="display: none">
+                                                <img src="~/App_Themes/Isys/images/spinner.gif" />
+                                                Loading...
+                                            </div>
+                                            <br />
+                                            <asp:Label ID="lblPANMsg" runat="server" Style="color: #ff0000" Font-Bold="False"
+                                                Font-Size="X-Small"></asp:Label>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                                <td class="formcontent">
+                                    Client Create Rule
+                                </td>
+                                <td class="formcontent">
+                                    <asp:DropDownList ID="ddlCltCreateRule" runat="server" CssClass="standardmenu">
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent">
+                                    <asp:Label ID="lblGender" runat="server"></asp:Label><span style="color: #ff0000">*</span></td>
+                                <td class="formcontent">
+                                    <asp:UpdatePanel ID="UpdPanelGender" runat="server" RenderMode="Inline" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <asp:DropDownList ID="cboGender" class="standardmenu" runat="server" CssClass="standardmenu">
+                                            </asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="rfvGender" runat="server" SetFocusOnError="True"
+                                                ErrorMessage="Mandatory!" Display="Dynamic" ControlToValidate="cboGender"></asp:RequiredFieldValidator>
+                                            <asp:CustomValidator ID="ctvGender" runat="server" SetFocusOnError="True" ErrorMessage="Invalid &#13;&#10;/Title!"
+                                                ControlToValidate="cboGender" ClientValidationFunction="doValidate"></asp:CustomValidator>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                                <td class="formcontent">
+                                    <span><font color="Red">
+                                        <asp:Label ID="lblspIndicator" runat="server" Style="color: black"></asp:Label></font></span></td>
+                                <td class="formcontent">
+                                    <asp:DropDownList CssClass="standardmenu" ID="ddlSpecInd" runat="server" /><br />
+                                     <asp:AsyncPostBackTrigger ControlID="gvLookup1" EventName="SelectedIndexChanged"></asp:AsyncPostBackTrigger>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent">
+                                    <span><font color="Red">
+                                        <asp:Label ID="lblAltIDType" runat="server" Style="color: black"></asp:Label></font></span></td>
+                                <td class="formcontent">
+                                    <asp:UpdatePanel ID="UpdPanelOtherIDType" runat="server" RenderMode="Inline" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <uc3:ddlSelectedLookup ID="cboOtherIDType" runat="server" RequiredField="false" CssClass="standardmenu"
+                                                LookupCode="NBSIDKey" Exprs="paramValue not in (''P'')"></uc3:ddlSelectedLookup>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                                <td class="formcontent">
+                                    <asp:Label ID="lblMstatus" runat="server"></asp:Label><span style="color: #ff0000">*</span><%--<uc4:ddlLookup ID="cboOtherIDType" runat="server" CssClass="standardmenu" LookupCode="NBSIDKey" RequiredField="false" Width="150" />--%></td>
+                                <td class="formcontent">
+                                    <asp:UpdatePanel ID="UpdPanelMarital" runat="server" RenderMode="Inline" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <uc4:ddlLookup ID="cboMaritalStatus" runat="server" RequiredField="true" CssClass="standardmenu"
+                                                LookupCode="MarrySts" ValidationError="Mandatory!"></uc4:ddlLookup>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent">
+                                    <span>
+                                        <asp:Label ID="lblAltIDNo" runat="server"></asp:Label></span></td>
+                                <td class="formcontent">
+                                    <asp:UpdatePanel ID="UpdPanelOtherID" runat="server" RenderMode="Inline">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="txtOthersID" runat="server" CssClass="standardtextbox" MaxLength="10"></asp:TextBox>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                    <asp:Button ID="btnSearchClt" runat="server" CausesValidation="False" Visible="true"
+                                        CssClass="standardbutton" Text="FIND" OnClick="btnSearchClt_Click" /></td>
+                                <td class="formcontent">
+                                    <asp:Label ID="lblSOE" runat="server"></asp:Label><span style="color: #ff0000">*</span></td>
+                                <td class="formcontent">
+                                    <asp:DropDownList ID="ddlSOE" runat="server" CssClass="standardmenu">
+                                    </asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="rfvSOE" runat="server" SetFocusOnError="True" ErrorMessage="Mandatory!"
+                                        Display="Dynamic" ControlToValidate="ddlSOE"></asp:RequiredFieldValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent">
+                                    <span>
+                                        <asp:Label ID="lblNationality" runat="server"></asp:Label><span style="color: #ff0000">
+                                        </span><font color="Red">*</font></span></td>
+                                <td class="formcontent">
+                                    <asp:TextBox ID="txtNationalCode" runat="server" CssClass="standardtextbox" onChange="javascript:this.value=this.value.toUpperCase();"
+                                        Width="42px"></asp:TextBox>
+                                    <asp:TextBox CssClass="standardtextbox" Enabled="true" ID="txtNationalDesc" onChange="javascript:this.value=this.value.toUpperCase();"
+                                        runat="server" Width="86px"></asp:TextBox><asp:Button CausesValidation="False" CssClass="standardbutton"
+                                            ID="btnNational" runat="server" Text="..." OnClick="btnNational_Click" Width="32px" /><asp:RequiredFieldValidator
+                                                ControlToValidate="txtNationalDesc" Display="Dynamic" Enabled="true" ErrorMessage="Mandatory!"
+                                                ID="rfvNationalCode" runat="server" SetFocusOnError="True" /><br />
+                                </td>
+                                <td class="formcontent">
+                                    <asp:Label ID="lblCategory" runat="server"></asp:Label><span style="color: #ff0000">*</span></td>
+                                <td class="formcontent">
+                                    <asp:DropDownList ID="ddlCategory" runat="server" CssClass="standardmenu">
+                                    </asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="rfvCategory" runat="server" SetFocusOnError="True"
+                                        ErrorMessage="Mandatory!" Display="Dynamic" ControlToValidate="ddlCategory"></asp:RequiredFieldValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" nowrap="nowrap">
+                                    <span>
+                                        <asp:Label ID="lblHigestQul" runat="server">
+                                            <asp:Label ID="lblmandatory" runat="server" Style="color: #ff0000" Text="*"></asp:Label></asp:Label></span></td>
+                                <td class="formcontent">
+                                    <asp:UpdatePanel ID="UpdPanelQualCode" runat="server" RenderMode="Inline" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <uc4:ddlLookup ID="cboQualCode" runat="server" RequiredField="false" CssClass="standardmenu"
+                                                LookupCode="NBEduQua" ValidationError="Mandatory!"></uc4:ddlLookup>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                                <td class="formcontent">
+                                    <%--commented nowrap="">--%>
+                                    <span>
+                                        <asp:Label ID="lblCorrAdd" runat="server"></asp:Label></span></td>
+                                <td class="formcontent">
+                                    <asp:UpdatePanel ID="UpdPanelCtType" runat="server" RenderMode="Inline" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <asp:DropDownList ID="cboCnctType" runat="server" CssClass="standardmenu" AppendDataBoundItems="true"
+                                                DataValueField="ParamValue" DataTextField="ParamDesc" DataSourceID="dsCnctType">
+                                            </asp:DropDownList>
+                                            <input id="hdnCnctType" type="hidden" runat="server" />
+                                            <asp:SqlDataSource ID="dsCnctType" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConn %>">
+                                            </asp:SqlDataSource>
+                                            <asp:RequiredFieldValidator ID="rfvCnctType" runat="server" Enabled="false" SetFocusOnError="true"
+                                                ErrorMessage="Mandatory!" Display="None" ControlToValidate="cboCnctType"></asp:RequiredFieldValidator>
+                                            <asp:CustomValidator ID="ctvCnctType" runat="server" SetFocusOnError="True" ErrorMessage="Invalid address!"
+                                                Display="Dynamic" ControlToValidate="cboCnctType" ClientValidationFunction="CheckAddress"></asp:CustomValidator>
+                                            <ajaxToolkit:ValidatorCalloutExtender ID="vceCnctType" runat="server" TargetControlID="rfvCnctType">
+                                            </ajaxToolkit:ValidatorCalloutExtender>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" nowrap="nowrap">
+                                    <asp:Label ID="lblInceptiondate" runat="server"></asp:Label></td>
+                                <td class="formcontent">
+                                    <uc7:ctlDate ID="txtIndate" runat="server" CssClass="standardtextbox" RequiredField="false"
+                                        RequiredValidationMessage="Date is required" Visible="true" />
+                                </td>
+                                <td class="formcontent" nowrap="nowrap">
+                                </td>
+                                <td class="formcontent">
+                                </td>
+                            </tr>
+                        </table>
+                        <!--------------------------------------- Residential Address --------------------------------------------->
+                        <table class="container" width="100%" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td colspan="4" style="text-align: left;" class="test">
+                                    &nbsp;<asp:Label ID="lblAPHeadear" runat="server" Font-Size="10pt"></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="width: 440px" valign="top">
+                                    <table class="formtable">
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent" style="width: 145px">
+                                                <asp:Label ID="lblAddrP1" runat="server"></asp:Label>
+                                                <asp:Label ID="lblEstP6" runat="server" Text="*" ForeColor="red"></asp:Label>
+                                            </td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtAddrP1" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="30"></asp:TextBox>
+                                                <asp:CustomValidator ID="ctvAddrP1" runat="server" ClientValidationFunction="doValidateAddress"
+                                                    ControlToValidate="txtAddrP1" Display="Dynamic" ErrorMessage="Invalid Address!"></asp:CustomValidator><br />
+                                                <asp:RequiredFieldValidator ID="RFVAddrP1" runat="server" ControlToValidate="txtAddrP1"
+                                                    Enabled="true" Display="Dynamic" ErrorMessage="Mandatory!"></asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:Label ID="lblAddrP2" runat="server" Text=""></asp:Label></td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtAddrP2" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="30"></asp:TextBox>
+                                                <asp:CustomValidator ID="ctvAddrP2" runat="server" ClientValidationFunction="doValidateAddress"
+                                                    ControlToValidate="txtAddrP2" Display="Dynamic" ErrorMessage="Invalid Address!"></asp:CustomValidator>
+                                                <asp:RequiredFieldValidator ID="RFVAddrP2" runat="server" ControlToValidate="txtAddrP2"
+                                                    Enabled="true" Display="Dynamic" ErrorMessage="Mandatory!"></asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:Label ID="lblAddrP3" runat="server"></asp:Label></td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtAddrP3" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="30"></asp:TextBox>
+                                                <asp:CustomValidator ID="ctvAddrP3" runat="server" ClientValidationFunction="doValidateAddress"
+                                                    ControlToValidate="txtAddrP3" Display="Dynamic" ErrorMessage="Invalid Address!"></asp:CustomValidator>
+                                                <asp:RequiredFieldValidator ID="RFVAddrP3" runat="server" ControlToValidate="txtAddrP3"
+                                                    Enabled="true" Display="Dynamic" ErrorMessage="Mandatory!"></asp:RequiredFieldValidator>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:Label ID="lblAddrP4" runat="server" Visible="False"></asp:Label></td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtAddrP4" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="30" Visible="False"></asp:TextBox>
+                                                <asp:CustomValidator ID="ctvAddrP4" runat="server" ClientValidationFunction="doValidateAddress"
+                                                    ControlToValidate="txtAddrP4" Display="Dynamic" ErrorMessage="Invalid Address!"
+                                                    Visible="False"></asp:CustomValidator>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td colspan="2" valign="top" style="width: 425px">
+                                    <table cellspacing="1" class="formtable" width="100%">
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent" style="width: 175px">
+                                                <asp:Label ID="lblStateP" runat="server"></asp:Label>
+                                                <asp:Label ID="lblEstP3" runat="server" Text="*" ForeColor="red"></asp:Label>
+                                            </td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtStateCodeP" runat="server" Width="50px" onChange="javascript:this.value=this.value.toUpperCase();"
+                                                    CssClass="standardtextbox"></asp:TextBox>
+                                                <asp:TextBox ID="txtStateDescP" runat="server" CssClass="standardtextbox" Width="130px"></asp:TextBox>
+                                                <asp:Button ID="btnStateP" runat="server" CausesValidation="False" CssClass="standardbutton"
+                                                    Text="..." />
+                                                <asp:RequiredFieldValidator ID="rfvStateP" runat="server" ControlToValidate="txtStateDescP"
+                                                    Display="Dynamic" Enabled="true" ErrorMessage="Mandatory!" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="ctvStateP" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid State Code!" Display="Dynamic" ControlToValidate="txtStateCodeP"
+                                                    ClientValidationFunction="CheckStateListP"></asp:CustomValidator>
+                                                <asp:CustomValidator ID="ctvStateDescP" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid State Code!" Display="Dynamic" ControlToValidate="txtStateDescP"
+                                                    ClientValidationFunction="CheckStateListP"></asp:CustomValidator></td>
+                                        </tr>
+                                        <%--Added Venkat on 24-02-10 --%>
+                                        <tr>
+                                            <td class="formcontent" nowrap="nowrap" style="width: 20%;">
+                                                <asp:Label ID="Label2" runat="server"></asp:Label></td>
+                                            <td class="formcontent" style="width: 30%;">
+                                                <asp:TextBox ID="txtDistricP" ReadOnly="false" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="50"></asp:TextBox>
+                                                <%-- onkeypress="alert('Please Select District,Do not Type');return false;"  onChange="javascript:this.value=this.value.toUpperCase();"--%>
+                                                <asp:Button ID="btnDistP" runat="server" CausesValidation="False" CssClass="standardbutton"
+                                                    Text="..." />
+                                                <asp:HiddenField ID="hdnDistP" runat="server" />
+                                                <asp:HiddenField ID="hdnPinFromP" runat="server" />
+                                                <asp:HiddenField ID="hdnPinToP" runat="server" />
+                                            </td>
+                                        </tr>
+                                        <%--End of addiation --%>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent" width="150px">
+                                                <asp:Label ID="lblPinP" runat="server"></asp:Label>
+                                                <asp:Label ID="lblEstP4" runat="server" Text="*" ForeColor="red"></asp:Label></td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox Width="60px" ID="txtPinP" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="8"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RFVPinP" runat="server" ControlToValidate="txtPinP"
+                                                    Enabled="true" Display="Dynamic" ErrorMessage="Mandatory!"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="CVPinP" runat="server" Enabled="true" ErrorMessage="Invalid Pin!"
+                                                    Display="Dynamic" ControlToValidate="txtPinP" ClientValidationFunction="CheckPINP"></asp:CustomValidator>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent" width="150px">
+                                                <asp:Label ID="lblCountryP" runat="server"></asp:Label>
+                                                <asp:Label ID="lblEstP5" runat="server" Text="*" ForeColor="red"></asp:Label></td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtCountryCodeP" runat="server" CssClass="standardtextbox" Width="50px"
+                                                    onChange="javascript:this.value=this.value.toUpperCase();"></asp:TextBox>
+                                                <asp:TextBox ID="txtCountryDescP" runat="server" CssClass="standardtextbox" Width="130px"
+                                                    Enabled="false"></asp:TextBox>
+                                                <asp:Button ID="btnCountryP" runat="server" CausesValidation="False" CssClass="standardbutton"
+                                                    Text="..." />
+                                                <asp:RequiredFieldValidator ID="rfvCountryP" runat="server" ControlToValidate="txtCountryDescP"
+                                                    Display="Dynamic" Enabled="true" ErrorMessage="Mandatory!" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="ctvCountryCodeP" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid Country Code!" Display="Dynamic" ControlToValidate="txtCountryCodeP"
+                                                    ClientValidationFunction="CheckCountryListP"></asp:CustomValidator>
+                                                <asp:CustomValidator ID="ctvCountryDescP" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid Country Code!" Display="Dynamic" ControlToValidate="txtCountryDescP"
+                                                    ClientValidationFunction="CheckCountryListP"></asp:CustomValidator></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--------------------------------------- Residential Multiple Address --------------------------------------------->
+                        <table class="container" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="100%" align="left">
+                                    <asp:PlaceHolder ID="plcAddressP" runat="server"></asp:PlaceHolder>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--------------------------------------- Business Address --------------------------------------------->
+                        <table class="container" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td colspan="4" style="text-align: left;" class="test">
+                                    &nbsp;<asp:Label ID="lblABHeadear" runat="server" Font-Size="10pt"></asp:Label>
+                                    <asp:Label ID="lblEstB6" runat="server" Text="*" ForeColor="red"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <td colspan="2" style="width: 440px" valign="top">
+                                    <table class="formtable">
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent" style="width: 145px">
+                                                <asp:Label ID="lblAddrB1" runat="server"></asp:Label>
+                                                <asp:Label ID="lblEstB1" runat="server" Text="*" ForeColor="red"></asp:Label>
+                                            </td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtAddrB1" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="30"></asp:TextBox>
+                                                <asp:CustomValidator ID="CustomValidator4" runat="server" ClientValidationFunction="doValidateAddress"
+                                                    ControlToValidate="txtAddrB1" Display="Dynamic" ErrorMessage="Invalid Address!"></asp:CustomValidator><br />
+                                                <asp:RequiredFieldValidator ID="RFVAddrB1" runat="server" ControlToValidate="txtAddrB1"
+                                                    Enabled="true" Display="Dynamic" ErrorMessage="Mandatory!"></asp:RequiredFieldValidator>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:Label ID="lblAddrB2" runat="server" Text=""></asp:Label></td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtAddrB2" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="30"></asp:TextBox>
+                                                <asp:CustomValidator ID="CustomValidator5" runat="server" ClientValidationFunction="doValidateAddress"
+                                                    ControlToValidate="txtAddrB2" Display="Dynamic" ErrorMessage="Invalid Address!"></asp:CustomValidator>
+                                                <asp:RequiredFieldValidator ID="RFVAddrB2" runat="server" ControlToValidate="txtAddrB2"
+                                                    Enabled="true" Display="Dynamic" ErrorMessage="Mandatory!"></asp:RequiredFieldValidator>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:Label ID="lblAddrB3" runat="server"></asp:Label>
+                                            </td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtAddrB3" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="30"></asp:TextBox>
+                                                <asp:CustomValidator ID="CustomValidator6" runat="server" ClientValidationFunction="doValidateAddress"
+                                                    ControlToValidate="txtAddrB3" Display="Dynamic" ErrorMessage="Invalid Address!"></asp:CustomValidator>
+                                                <asp:RequiredFieldValidator ID="RFVAddrB3" runat="server" ControlToValidate="txtAddrB3"
+                                                    Enabled="true" Display="Dynamic" ErrorMessage="Mandatory!"></asp:RequiredFieldValidator>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:Label ID="lblAddrB4" runat="server" Visible="False"></asp:Label>
+                                            </td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtAddrB4" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="30" Visible="False"></asp:TextBox>
+                                                <asp:CustomValidator ID="CustomValidator7" runat="server" ClientValidationFunction="doValidateAddress"
+                                                    ControlToValidate="txtAddrB4" Display="Dynamic" ErrorMessage="Invalid Address!"
+                                                    Visible="False"></asp:CustomValidator></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td colspan="2" style="width: 425px" valign="top">
+                                    <table cellspacing="1" class="formtable" width="100%">
+                                        <%--<tr>
+                                                            <td nowrap="nowrap" class="formcontent" width="150px">
+                                                                <asp:Label ID="lblCityB" runat="server" Text="City"></asp:Label>
+                                                                <asp:Label ID="lblEstB2" runat="server" Text="*" ForeColor="red"></asp:Label>
+                                                            </td>
+                                                            <td nowrap="nowrap" class="formcontent">
+                                                                <asp:TextBox Width="230px" ID="txtCityB" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                                    MaxLength="100"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="RFVCityB" runat="server" ControlToValidate="txtCityB"
+                                                                    Enabled="true" Display="Dynamic" ErrorMessage="Mandatory!"></asp:RequiredFieldValidator>
+                                                                <asp:CustomValidator ID="ctvCityB" runat="server" ClientValidationFunction="doValidateName"
+                                                                    ControlToValidate="txtCityB" Display="Dynamic" ErrorMessage="Invalid characters!"
+                                                                    SetFocusOnError="True"></asp:CustomValidator></td>
+                                                        </tr>--%>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent" style="width: 175px">
+                                                <asp:Label ID="lblStateB" runat="server"></asp:Label>
+                                                <asp:Label ID="lblEstB3" runat="server" Text="*" ForeColor="red"></asp:Label>
+                                            </td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtStateCodeB" runat="server" CssClass="standardtextbox" Width="50px"
+                                                    onChange="javascript:this.value=this.value.toUpperCase();"></asp:TextBox>
+                                                <asp:TextBox ID="txtStateDescB" runat="server" CssClass="standardtextbox" Width="130px"
+                                                    Enabled="true"></asp:TextBox>
+                                                <asp:Button ID="btnStateB" runat="server" CausesValidation="False" CssClass="standardbutton"
+                                                    Text="..." Width="20px" />
+                                                <asp:RequiredFieldValidator ID="rfvStateB" runat="server" ControlToValidate="txtStateDescB"
+                                                    Display="Dynamic" Enabled="true" ErrorMessage="Mandatory!" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="ctvStateB" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid State Code!" Display="Dynamic" ControlToValidate="txtStateCodeB"
+                                                    ClientValidationFunction="CheckStateListB"></asp:CustomValidator>
+                                                <asp:CustomValidator ID="ctvStateDescB" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid State Code!" Display="Dynamic" ControlToValidate="txtStateDescB"
+                                                    ClientValidationFunction="CheckStateListB"></asp:CustomValidator></td>
+                                        </tr>
+                                        <%--Added Venkat on 24-02-10 --%>
+                                        <tr>
+                                            <td class="formcontent" nowrap="nowrap" style="width: 20%;">
+                                                <asp:Label ID="Label3" runat="server"></asp:Label></td>
+                                            <td class="formcontent" style="width: 30%;">
+                                                <asp:TextBox ID="txtDistrictB" ReadOnly="false" runat="server" Font-Bold="False"
+                                                    CssClass="standardtextbox" MaxLength="50"></asp:TextBox>
+                                                <%-- onkeypress="alert('Please Select District,Do not Type');return false;"  onChange="javascript:this.value=this.value.toUpperCase();"--%>
+                                                <asp:Button ID="btnDistrictB" runat="server" CausesValidation="False" CssClass="standardbutton"
+                                                    Text="..." />
+                                                <asp:HiddenField ID="hdnDistB" runat="server" />
+                                                <asp:HiddenField ID="hdnPinFromB" runat="server" />
+                                                <asp:HiddenField ID="hdnPinToB" runat="server" />
+                                            </td>
+                                        </tr>
+                                        <%--End of addiation --%>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent" width="150px">
+                                                <asp:Label ID="lblPinB" runat="server"></asp:Label>
+                                                <asp:Label ID="lblEstB4" runat="server" Text="*" ForeColor="red"></asp:Label></td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox Width="60px" ID="txtPinB" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="8"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RFVPinB" runat="server" ControlToValidate="txtPinB"
+                                                    Enabled="true" Display="Dynamic" ErrorMessage="Mandatory!"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="CVPinB" runat="server" Enabled="true" ErrorMessage="Invalid Pin!"
+                                                    Display="Dynamic" ControlToValidate="txtPinB" ClientValidationFunction="CheckPINB"></asp:CustomValidator>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent" width="150px">
+                                                <asp:Label ID="lblCountryB" runat="server"></asp:Label>
+                                                <asp:Label ID="lblEstB5" runat="server" Text="*" ForeColor="red"></asp:Label></td>
+                                            <td nowrap="nowrap" class="formcontent">
+                                                <asp:TextBox ID="txtCountryCodeB" runat="server" CssClass="standardtextbox" Width="50px"
+                                                    onChange="javascript:this.value=this.value.toUpperCase();"></asp:TextBox>
+                                                <asp:TextBox ID="txtCountryDescB" runat="server" CssClass="standardtextbox" Width="130px"
+                                                    Enabled="false"></asp:TextBox>
+                                                <asp:Button ID="btnCountryB" runat="server" CausesValidation="False" CssClass="standardbutton"
+                                                    Text="..." Width="20px" />
+                                                <asp:RequiredFieldValidator ID="rfvCountryB" runat="server" ControlToValidate="txtCountryDescB"
+                                                    Display="Dynamic" Enabled="true" ErrorMessage="Mandatory!" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="ctvCountryCodeB" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid Country Code!" Display="Dynamic" ControlToValidate="txtCountryCodeB"
+                                                    ClientValidationFunction="CheckCountryListB"></asp:CustomValidator>
+                                                <asp:CustomValidator ID="ctvCountryDescB" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid Country Code!" Display="Dynamic" ControlToValidate="txtCountryDescB"
+                                                    ClientValidationFunction="CheckCountryListB"></asp:CustomValidator></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--------------------------------------- Businees Multiple Address --------------------------------------------->
+                        <table style="font-size: 8pt;" border="0" cellpadding="3" cellspacing="1" width="790"
+                            align="center">
+                            <tr>
+                                <td width="100%" align="left">
+                                    <asp:PlaceHolder ID="plcAddressB" runat="server"></asp:PlaceHolder>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--------------------------------------- Client Contact --------------------------------------------->
+                        <table class="formtable">
+                            <tr>
+                                <td class="test" colspan="4">
+                                    <asp:Label ID="lblPA" runat="server"></asp:Label><span style="color: #ff0000">*</span>&nbsp;
+                                    <asp:CheckBox ID="ChkPA" runat="server" />
+                                    <%-- <asp:Button ID="btnPAdd" runat="server" CssClass="standardbutton" Text="Show Permanent Address" CausesValidation="false"/>--%>
+                                </td>
+                            </tr>
+                            <tr id="trPermAdd1" runat="server">
+                                <td colspan="2" valign="top" style="width: 40%">
+                                    <table class="formtable" width="100%">
+                                        <tr style="width: 100px">
+                                            <td class="formcontent" id="lblTitle" style="width: 140px">
+                                                Address<span style="color: #ff0000">*</span></td>
+                                            <td class="formcontent" nowrap="nowrap">
+                                                <asp:TextBox CssClass="standardtextbox" ID="txtAdd1" runat="server" Width="160px"
+                                                    MaxLength="30"></asp:TextBox>
+                                                <asp:CustomValidator ID="ctvAdd1" runat="server" ClientValidationFunction="doValidateAddress"
+                                                    ControlToValidate="txtAdd1" Display="Dynamic" ErrorMessage="Invalid Address!"></asp:CustomValidator><br />
+                                                <asp:RequiredFieldValidator ID="rfvAdd1" runat="server" ErrorMessage="Mandatory!"
+                                                    SetFocusOnError="true" ControlToValidate="txtAdd1" Display="Dynamic"></asp:RequiredFieldValidator>
+                                            </td>
+                                        </tr>
+                                        <tr id="trPermAdd2" runat="server">
+                                            <td class="formcontent">
+                                            </td>
+                                            <td class="formcontent">
+                                                <asp:TextBox CssClass="standardtextbox" ID="txtAdd2" runat="server" Width="160px"
+                                                    MaxLength="30"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvAdd2" runat="server" ErrorMessage="Mandatory!"
+                                                    SetFocusOnError="true" ControlToValidate="txtAdd2" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="ctvAdd2" runat="server" ClientValidationFunction="doValidateAddress"
+                                                    ControlToValidate="txtAdd2" Display="Dynamic" ErrorMessage="Invalid Address!"></asp:CustomValidator>
+                                            </td>
+                                        </tr>
+                                        <tr id="trPermAdd3" runat="server">
+                                            <td class="formcontent">
+                                            </td>
+                                            <td class="formcontent">
+                                                <asp:TextBox CssClass="standardtextbox" ID="txtAdd3" runat="server" Width="160px"
+                                                    MaxLength="30"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvAdd3" runat="server" ErrorMessage="Mandatory!"
+                                                    SetFocusOnError="true" ControlToValidate="txtAdd3" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="ctvAdd3" runat="server" ClientValidationFunction="doValidateAddress"
+                                                    ControlToValidate="txtAdd3" Display="Dynamic" ErrorMessage="Invalid Address!"></asp:CustomValidator>
+                                            </td>
+                                        </tr>
+                                        <%--
+													<tr id="trPermAdd4" runat="server">
+														<td class="formcontent"></td>
+														<td class="formcontent">
+															<asp:TextBox CssClass="standardtextbox" ID="txtAdd4" runat="server" Width="160px" MaxLength="30" TabIndex="4"></asp:TextBox>
+														</td>
+				                                        
+													</tr>
+													--%>
+                                    </table>
+                                </td>
+                                <td colspan="2" valign="top" style="width: 40%">
+                                    <table class="formtable" width="100%">
+                                        <tr style="width: 100%">
+                                            <td nowrap="nowrap" class="formcontent">
+                                                State<span style="color: #ff0000">*</span></td>
+                                            <td class="formcontent">
+                                                <asp:TextBox ID="txtStateCode" runat="server" Width="50px" onChange="javascript:this.value=this.value.toUpperCase();"
+                                                    CssClass="standardtextbox"></asp:TextBox>
+                                                <asp:TextBox ID="txtStateDesc" runat="server" CssClass="standardtextbox" Width="100px"
+                                                    Enabled="true"></asp:TextBox>
+                                                <asp:Button CssClass="standardbutton" ID="btnState" runat="server" Text="..." CausesValidation="False"
+                                                    Width="20px" />
+                                                <asp:RequiredFieldValidator ID="rfvState" runat="server" ErrorMessage="Mandatory!"
+                                                    SetFocusOnError="true" ControlToValidate="txtStateCode" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="ctvStateCode" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid State Code!" Display="Dynamic" ControlToValidate="txtStateCode"
+                                                    ClientValidationFunction="CheckStateList"></asp:CustomValidator>
+                                                <asp:CustomValidator ID="ctvStateDesc" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid State Code!" Display="Dynamic" ControlToValidate="txtStateDesc"
+                                                    ClientValidationFunction="CheckStateList"></asp:CustomValidator>
+                                            </td>
+                                            <%--
+														<td class="formcontent">City</td>
+														<td class="formcontent">
+															<asp:TextBox CssClass="standardtextbox" ID="txtCity" runat="server" Width="185px" TabIndex="5"></asp:TextBox>
+														</td>--%>
+                                        </tr>
+                                        <%--Added Venkat on 24-02-10 --%>
+                                        <tr>
+                                            <td class="formcontent" nowrap="nowrap" style="width: 20%;">
+                                                <asp:Label ID="Label4" runat="server"></asp:Label></td>
+                                            <td class="formcontent" style="width: 30%;">
+                                                <asp:TextBox ID="txtDistric" ReadOnly="false" runat="server" Font-Bold="False" CssClass="standardtextbox"
+                                                    MaxLength="50"></asp:TextBox>
+                                                <%-- onkeypress="alert('Please Select District,Do not Type');return false;"  onChange="javascript:this.value=this.value.toUpperCase();"--%>
+                                                <asp:Button ID="btnDistric" runat="server" CausesValidation="False" CssClass="standardbutton"
+                                                    Text="..." />
+                                                <asp:HiddenField ID="hdnDist" runat="server" />
+                                                <asp:HiddenField ID="hdnPinFrom" runat="server" />
+                                                <asp:HiddenField ID="hdnPinTo" runat="server" />
+                                            </td>
+                                        </tr>
+                                        <%--End of addiation --%>
+                                        <tr>
+                                            <td class="formcontent" style="width: 150px" nowrap="nowrap">
+                                                PIN Code<span style="color: #ff0000">*</span></td>
+                                            <td class="formcontent" nowrap="nowrap">
+                                                <asp:TextBox CssClass="standardtextbox" ID="txtPostcode" runat="server" Width="60px"
+                                                    MaxLength="8"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvPostCode" runat="server" ErrorMessage="Mandatory!"
+                                                    SetFocusOnError="true" ControlToValidate="txtPostcode" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="ctvPostcode" runat="server" Enabled="true" ErrorMessage="Invalid Pin!"
+                                                    Display="Dynamic" ControlToValidate="txtPostcode" ClientValidationFunction="CheckPIN"></asp:CustomValidator>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap="nowrap" class="formcontent" width="150px">
+                                                Country<span style="color: #ff0000">*</span></td>
+                                            <td class="formcontent" nowrap="nowrap">
+                                                <asp:TextBox ID="txtCountryCode" runat="server" CssClass="standardtextbox" MaxLength="4"
+                                                    Width="50px" onChange="javascript:this.value=this.value.toUpperCase();"></asp:TextBox>
+                                                <asp:TextBox ID="txtCountryDesc" runat="server" CssClass="standardtextbox" Width="100px"
+                                                    Enabled="false"></asp:TextBox>
+                                                <asp:Button CssClass="standardbutton" ID="btnCountry" runat="server" Text="..." CausesValidation="False"
+                                                    Width="20px" />
+                                                <asp:RequiredFieldValidator ID="rfvCountryCode" runat="server" ErrorMessage="Mandatory!"
+                                                    SetFocusOnError="true" ControlToValidate="txtCountryCode" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ID="ctvCountryCode" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid Country Code!" Display="Dynamic" ControlToValidate="txtCountryCode"
+                                                    ClientValidationFunction="CheckCountryList"></asp:CustomValidator>
+                                                <asp:CustomValidator ID="ctvCountryDesc" runat="server" SetFocusOnError="True" Enabled="false"
+                                                    ErrorMessage="Invalid Country Code!" Display="Dynamic" ControlToValidate="txtCountryDesc"
+                                                    ClientValidationFunction="CheckCountryList"></asp:CustomValidator>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="test" width="100%" colspan="4">
+                                    <table class="container">
+                                        <tr>
+                                            <td width="20%">
+                                                Contact Preferred</td>
+                                            <td width="30%">
+                                                <uc4:ddlLookup ID="ddlDstbnMethod" runat="server" CssClass="standardmenu" LookupCode="DstbnMtd"
+                                                    RequiredField="false" />
+                                            </td>
+                                            <td width="20%">
+                                                Privacy</td>
+                                            <td width="30%">
+                                                <uc4:ddlLookup ID="ddlPrivacy" runat="server" CssClass="standardmenu" LookupCode="PrvcStat"
+                                                    RequiredField="false" ddliSysLParamEnabled="false" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" width="20%">
+                                    <asp:Label ID="lblHomeTel" runat="server"></asp:Label><span style="color: #ff0000">*</span>
+                                </td>
+                                <td class="formcontent" style="width: 20%">
+                                    <asp:TextBox ID="txtHomeTel" runat="server" Width="112px" MaxLength="12" CssClass="standardtextbox"></asp:TextBox>&nbsp;
+                                    <asp:CustomValidator ID="ctvHomeTel" runat="server" SetFocusOnError="True" ErrorMessage="Invalid Tel No!"
+                                        Display="Dynamic" ControlToValidate="txtHomeTel" ClientValidationFunction="CheckHomeTelFormat"></asp:CustomValidator>
+                                    <%--<asp:RequiredFieldValidator ID="rfvHomeTel" runat="server" ControlToValidate="txtHomeTel"
+                                                        Display="Dynamic" Enabled="true" ErrorMessage="Mandatory!" SetFocusOnError="True"></asp:RequiredFieldValidator></td>--%>
+                                </td>
+                                <td class="formcontent" width="20%">
+                                    <span>
+                                        <asp:Label ID="lblOfficeTel" runat="server" Width="76px"></asp:Label></span>
+                                </td>
+                                <td class="formcontent" width="20%">
+                                    <asp:TextBox ID="txtWorkTel" runat="server" Width="82px" MaxLength="12" CssClass="standardtextbox"></asp:TextBox>
+                                    <asp:CustomValidator ID="ctvWorkTel" runat="server" SetFocusOnError="True" ErrorMessage="Invalid Tel No!"
+                                        Display="Dynamic" ControlToValidate="txtWorkTel" ClientValidationFunction="CheckWorkTelFormat"></asp:CustomValidator></td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" width="20%">
+                                    <asp:Label ID="lblDIdNo" runat="server" Width="78px"></asp:Label></td>
+                                <td class="formcontent" style="width: 27%">
+                                    <asp:TextBox ID="txtDidtel" runat="server" Width="113px" CssClass="standardtextbox"></asp:TextBox>&nbsp;
+                                    <asp:CustomValidator ID="CustomValidator8" runat="server" ClientValidationFunction="CheckHomeTelFormat"
+                                        ControlToValidate="txtDidtel" Display="Dynamic" ErrorMessage="Invalid Tel No!"
+                                        SetFocusOnError="True"></asp:CustomValidator>
+                                </td>
+                                <td class="formcontent" width="20%">
+                                    <asp:Label ID="lblMobileNo" runat="server"></asp:Label><span style="color: #ff0000">*</span></td>
+                                <td class="formcontent" width="30%">
+                                    <asp:TextBox ID="txtMobileTel" runat="server" Width="84px" MaxLength="15" CssClass="standardtextbox"></asp:TextBox>
+                                    <asp:CustomValidator ID="ctvMobileTel" runat="server" SetFocusOnError="True" ErrorMessage="Invalid Tel No!"
+                                        Display="Dynamic" ControlToValidate="txtMobileTel" ClientValidationFunction="CheckMobileTelFormat"></asp:CustomValidator>
+                                    <asp:RequiredFieldValidator ID="rfvMobileTel" runat="server" ControlToValidate="txtMobileTel"
+                                        Display="Dynamic" Enabled="true" ErrorMessage="Mandatory!" SetFocusOnError="True"></asp:RequiredFieldValidator></td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" width="20%">
+                                    <span>
+                                        <asp:Label ID="lblEmail" runat="server" Width="44px"></asp:Label>
+                                    </span>
+                                </td>
+                                <td class="formcontent" style="width: 20%;">
+                                    <asp:TextBox ID="txtEmail" runat="server" CssClass="standardtextbox" Width="114px"></asp:TextBox>&nbsp;
+                                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail"
+                                        Display="Dynamic" ErrorMessage="Invalid Email!" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                                        Width="208px"></asp:RegularExpressionValidator></td>
+                                <td class="formcontent" width="20%">
+                                    <span>
+                                        <asp:Label ID="lblDirectmail" runat="server" Width="84px"></asp:Label>
+                                    </span>
+                                </td>
+                                <td class="formcontent" width="20%">
+                                    <asp:CheckBox ID="ChkDrml" runat="server" />
+                                    &nbsp; &nbsp; &nbsp; &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" width="20%">
+                                    <asp:Label ID="lblPager" runat="server" Width="72px"></asp:Label></td>
+                                <td class="formcontent" style="width: 27%">
+                                    <asp:TextBox ID="txtPager" runat="server" CssClass="standardtextbox" Width="116px"></asp:TextBox></td>
+                                <td class="formcontent" width="20%">
+                                    &nbsp;<asp:Label ID="lblFax" runat="server" Width="74px"></asp:Label></td>
+                                <td class="formcontent" width="20%">
+                                    <asp:TextBox ID="txtFax" runat="server" CssClass="standardtextbox" Width="84px"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td class="test" colspan="4">
+                                    <span>Personal Details</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" width="20%">
+                                    <asp:Label ID="lblHeight" runat="server"></asp:Label>
+                                </td>
+                                <td class="formcontent" style="width: 27%;">
+                                    <asp:TextBox ID="txtHeight1" runat="server" CausesValidation="true" CssClass="standardtextbox"
+                                        MaxLength="10" Width="100"></asp:TextBox>
+                                    <asp:TextBox ID="txtHeight" runat="server" CausesValidation="true" CssClass="standardtextbox"
+                                        MaxLength="10" Width="100" Visible="true"></asp:TextBox><asp:CompareValidator ID="cvHeight"
+                                            runat="server" ControlToValidate="txtHeight1" Display="Dynamic" ErrorMessage="Invalid height!"
+                                            Operator="DataTypeCheck" Type="Currency"></asp:CompareValidator>
+                                </td>
+                                <td class="formcontent" width="20%">
+                                    <asp:Label ID="lblWeight" runat="server"></asp:Label>
+                                </td>
+                                <td class="formcontent" width="20%">
+                                    <asp:TextBox ID="txtWeight" runat="server" CausesValidation="true" CssClass="standardtextbox"
+                                        MaxLength="10" Width="88px"></asp:TextBox><asp:CompareValidator ID="cvWeight" runat="server"
+                                            ControlToValidate="txtWeight" Display="Dynamic" ErrorMessage="Invalid weight!"
+                                            Operator="DataTypeCheck" Type="Currency"></asp:CompareValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" width="20%">
+                                    <span>
+                                        <asp:Label ID="lblOccup" runat="server" Width="78px"></asp:Label><font color="Red">*</font></span></td>
+                                <td class="formcontent" style="width: 27%">
+                                    <asp:TextBox ID="txtOccupationCode" runat="server" CssClass="standardtextbox" Width="50px"
+                                        onChange="javascript:this.value=this.value.toUpperCase();"></asp:TextBox>
+                                    <asp:TextBox ID="txtOccupationDesc" runat="server" CssClass="standardtextbox" Width="88px"
+                                        Enabled="false" onChange="javascript:this.value=this.value.toUpperCase();"></asp:TextBox>
+                                    <asp:Button ID="btnOccupation" runat="server" CausesValidation="False" CssClass="standardbutton"
+                                        Text="..." Width="20px" OnClick="btnOccupation_Click" />
+                                    <asp:RequiredFieldValidator ID="rfvOccupation" runat="server" ControlToValidate="txtOccupationDesc"
+                                        Display="Dynamic" Enabled="true" ErrorMessage="Mandatory!" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                </td>
+                                <td class="formcontent" width="20%">
+                                    <span>
+                                        <asp:Label ID="lblAnnualIncome" runat="server" Width="104px"></asp:Label></span></td>
+                                <td class="formcontent" width="30%">
+                                    <asp:TextBox ID="txtALIncome" runat="server" Width="90px" MaxLength="20" CssClass="standardtextbox"></asp:TextBox>
+                                    <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtALIncome"
+                                        CultureInvariantValues="True" Display="Dynamic" ErrorMessage="Invalid Annual Income"
+                                        MaximumValue="99999999" MinimumValue="0" Type="Currency"></asp:RangeValidator></td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" width="20%">
+                                    <asp:Label ID="lblPreferedClient" runat="server" Width="108px"></asp:Label></td>
+                                <td class="formcontent" colspan="3" width="80%">
+                                    <asp:CheckBox ID="chkVip" runat="server" CssClass="standardcheckbox" /></td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" width="20%">
+                                    <asp:Label ID="lblStaff" runat="server" Width="42px"></asp:Label></td>
+                                <td class="formcontent" colspan="3" width="80%">
+                                    <asp:CheckBox ID="chkStaff" runat="server" CssClass="standardcheckbox" /></td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" width="20%">
+                                    <asp:Label ID="lblServiceTax" runat="server" Width="146px"></asp:Label></td>
+                                <td class="formcontent" colspan="3" width="80%">
+                                    <asp:CheckBox ID="chkSalesTax" runat="server" CssClass="standardcheckbox" Width="300" /></td>
+                            </tr>
+                            <tr>
+                                <td class="formcontent" width="20%">
+                                    <span>
+                                        <asp:Label ID="lblRemark" runat="server" Width="80px"></asp:Label>
+                                    </span>
+                                </td>
+                                <td width="80%" colspan="3" class="formcontent">
+                                    <asp:TextBox ID="Menu1" runat="server" Width="658px" Font-Overline="false" MaxLength="100"
+                                        CssClass="standardtextbox" Height="60px" TextMode="MultiLine"></asp:TextBox></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <%-- <asp:GridView runat="server" ID="gvDupClient" AutoGenerateColumns="false">
+                                            <Columns>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate>
+                                                        <asp:CheckBox runat="server" ID="chkSelectClinet" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>--%>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <asp:RequiredFieldValidator ID="rfvDupFlg" runat="server" SetFocusOnError="True"
+                            ErrorMessage="Please press 'Exact Match' button to check the match client before proceed."
+                            Enabled="true" Display="Dynamic" ControlToValidate="txtDupBtnFlag"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvAMLFlag" runat="server" SetFocusOnError="True"
+                            ErrorMessage="Please press 'AML' button before proceed." Enabled="true" Display="Dynamic"
+                            ControlToValidate="txtAMLFlag"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <asp:Label ID="lblErrMsg" runat="server" ForeColor="Red" Visible="false"></asp:Label>&nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 100%">
+                        <table id="Table2" runat="server" class="container">
+                            <tr>
+                                <td align="left" style="width: 100%;">
+                                    <asp:Button ID="btnSave" runat="server" Text="Update" Width="80px" OnClick="btnSave_Click"
+                                        CausesValidation="true" CssClass="standardbutton" />
+                                    <asp:Button ID="btnDupCltRecords" runat="server" Text="Exact Match" Enabled="true"
+                                        CausesValidation="false" CssClass="standardbutton" />
+                                    <asp:Button ID="btnCancel" runat="server" CausesValidation="false" Width="80px" Text="Cancel"
+                                        CssClass="standardbutton" OnClientClick="doCancel2();return false" OnClick="btnCancel_Click" />&nbsp;
+                                </td>
+                                <td align="right" width="100%">
+                                    <uc8:ClientAML ID="btnAML" runat="server" CssClass="standardbutton" OnLoad="btnAML_Load" />
+                                    &nbsp;<%--<uc8:ClientAML ID="btnAML" runat="server" CssClass="standardbutton"  Text="AML" Width="80px" />--%></td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <br />
+                                    <br />
+                                    <asp:Label ID="Label1" Text="Note :- Please proceed to agent creation after client creation is complete."
+                                        Font-Size="Small" runat="server" ForeColor="red"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:UpdatePanel ID="UpdPanelBtn" runat="server" RenderMode="Inline" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="txtFlagFind" runat="server" Width="0px" Text="" BorderStyle="None"
+                                                BorderColor="transparent"></asp:TextBox>
+                                            <asp:TextBox ID="lblErrMsg2" runat="server" Width="0px" Text="" BorderStyle="None"
+                                                BorderColor="transparent" Wrap="true"></asp:TextBox>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <%--end of first table tag--%>
+            <!---------------------------------------Error/Confirmation MsgBox--------------------------------------------->
+            <asp:Button ID="hdnbtn" Style="visibility: hidden" runat="server" Text="Button" OnClick="hdnbtn_OnClick" />
+            <asp:Button ID="hdnbtn2" Style="visibility: hidden" runat="server" Text="Button"
+                OnClick="hdnbtn_OnClick" />
+            <asp:Button ID="hdnComfirmbtn" Style="visibility: hidden" runat="server" Text="Button"
+                OnClick="hdnComfirmbtn_OnClick" />
+            <asp:Button ID="hdnComfirmbtnM" Style="visibility: hidden" runat="server" Text="Button"
+                OnClick="hdnComfirmbtn_OnClick" OnLoad="MPE_OnClick" />
+            <asp:Panel ID="PanelError" runat="server" BackColor="#E0E0E0" HorizontalAlign="Center"
+                Style="display: none" Width="400px">
+                <br />
+                <asp:UpdatePanel runat="server" ID="upderror" RenderMode="Inline" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <asp:Label ID="lblError1" runat="server" Text="Message." Width="380px" Font-Bold="true"
+                            Font-Size="8pt"></asp:Label><br />
+                        <asp:TextBox ID="lblError2" runat="server" Text="Label" Width="380px" Enabled="false"
+                            TextMode="MultiLine" Height="100px" BorderStyle="None" Wrap="true"></asp:TextBox><br />
+                        <asp:Label ID="lblError3" runat="server" Width="380px"></asp:Label>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="cmdYes" EventName="Click"></asp:AsyncPostBackTrigger>
+                        <asp:AsyncPostBackTrigger ControlID="cmdNo" EventName="Click"></asp:AsyncPostBackTrigger>
+                        <asp:AsyncPostBackTrigger ControlID="cmdYesM" EventName="Click"></asp:AsyncPostBackTrigger>
+                        <asp:AsyncPostBackTrigger ControlID="cmdErrorCancel" EventName="Click"></asp:AsyncPostBackTrigger>
+                    </Triggers>
+                </asp:UpdatePanel>
+                <asp:Button ID="cmdErrorCancel" runat="server" Width="59px" Text="OK" CssClass="standardbutton"
+                    CausesValidation="false" OnClick="cmdOk_ClsMsg" /><br />
+                <br />
+            </asp:Panel>
+            <!---------------------------------------Error Msg 2--------------------------------------------->
+            <asp:Panel ID="PanelError2" runat="server" BackColor="#E0E0E0" HorizontalAlign="Center"
+                Style="display: none" Width="400px">
+                <br />
+                <asp:UpdatePanel runat="server" ID="upderror2" RenderMode="Inline" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <asp:Label ID="lblError21" runat="server" Text="Message." Width="380px" Font-Bold="true"
+                            Font-Size="8pt"></asp:Label><br />
+                        <asp:TextBox ID="lblError22" runat="server" Text="Label" Width="380px" Enabled="false"
+                            TextMode="MultiLine" Height="100px" BorderStyle="None" Wrap="true"></asp:TextBox><br />
+                        <asp:Label ID="lblError23" runat="server" Width="380px"></asp:Label>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="cmdErrorCancel2" EventName="Click"></asp:AsyncPostBackTrigger>
+                        <asp:AsyncPostBackTrigger ControlID="cmdErrorCancel" EventName="Click"></asp:AsyncPostBackTrigger>
+                    </Triggers>
+                </asp:UpdatePanel>
+                <asp:Button ID="cmdErrorCancel2" runat="server" Width="59px" Text="OK" CssClass="standardbutton"
+                    CausesValidation="false" OnClick="cmdOk_ClsMsg" /><br />
+                <br />
+            </asp:Panel>
+            <!---------------------------------------Confirm Msg--------------------------------------------->
+            <asp:Panel ID="PanelComfirm" DefaultButton="cmdYes" runat="server" BackColor="#E0E0E0"
+                OnLoad="MPE_Onload" HorizontalAlign="Center" Style="display: none" Width="400px">
+                <table style="border-right: black 1px solid; border-top: black 1px solid; border-left: black 1px solid;
+                    border-bottom: black 1px solid" width="400">
+                    <tr>
+                        <td align="left" valign="top" class="test">
+                            <asp:Label ID="lblComfirmHeader" runat="server" Font-Size="8pt"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formcontent2">
+                            <br />
+                            <asp:UpdatePanel runat="server" ID="updcomfirm" RenderMode="Inline" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <asp:Label ID="lblComfirm1" runat="server" Width="380px" Font-Size="8pt"></asp:Label><br />
+                                    <asp:Label ID="lblComfirm2" runat="server" Width="380px" Font-Size="8pt"></asp:Label><br />
+                                    <asp:Label ID="lblComfirm3" runat="server" Width="380px" Font-Size="8pt"></asp:Label><br />
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="cmdYes" EventName="Click"></asp:AsyncPostBackTrigger>
+                                    <asp:AsyncPostBackTrigger ControlID="cmdNo" EventName="Click"></asp:AsyncPostBackTrigger>
+                                    <asp:AsyncPostBackTrigger ControlID="cmdCancel" EventName="Click"></asp:AsyncPostBackTrigger>
+                                </Triggers>
+                            </asp:UpdatePanel>
+                            <br />
+                            <asp:Button ID="cmdYes" runat="server" Width="59px" Text="Yes" CssClass="standardbutton"
+                                CausesValidation="false" OnClick="cmdYes_Click" />
+                            <asp:Button ID="cmdNo" runat="server" Width="59px" Text="No" CssClass="standardbutton"
+                                CausesValidation="false" OnClick="cmdNo_Click" />
+                            <asp:Button ID="cmdCancel" runat="server" Width="59px" Text="Cancel" CausesValidation="false"
+                                CssClass="standardbutton" OnClick="cmdCancel_Click" />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>
+        </div>
+        <div id="div2">
+            <!---------------------------------------Confirm Msg--------------------------------------------->
+            <asp:Panel ID="PanelComfirmM" DefaultButton="cmdYesM" runat="server" BackColor="#E0E0E0"
+                OnLoad="MPE_Onload" HorizontalAlign="Center" Style="display: none" Width="400px">
+                <table style="border-right: black 1px solid; border-top: black 1px solid; border-left: black 1px solid;
+                    border-bottom: black 1px solid" width="400">
+                    <tr>
+                        <td align="left" valign="top" class="test">
+                            <asp:Label ID="Label5" runat="server" Font-Size="8pt"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td class="formcontent2">
+                            <br />
+                            <asp:UpdatePanel runat="server" ID="updcomfirmM" RenderMode="Inline" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <asp:Label ID="lblComfirmM1" runat="server" Width="380px" Font-Size="8pt"></asp:Label><br />
+                                    <asp:Label ID="lblComfirmM2" runat="server" Width="380px" Font-Size="8pt"></asp:Label><br />
+                                    <asp:Label ID="lblComfirmM3" runat="server" Width="380px" Font-Size="8pt"></asp:Label><br />
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="cmdYesM" EventName="Click"></asp:AsyncPostBackTrigger>
+                                    <asp:AsyncPostBackTrigger ControlID="cmdCancelM" EventName="Click"></asp:AsyncPostBackTrigger>
+                                </Triggers>
+                            </asp:UpdatePanel>
+                            <br />
+                            <asp:Button ID="cmdYesM" runat="server" Width="59px" Text="Yes" CssClass="standardbutton"
+                                CausesValidation="false" OnClick="cmdYes_Click" />
+                            <asp:Button ID="cmdCancelM" runat="server" Width="59px" Text="Cancel" CausesValidation="false"
+                                CssClass="standardbutton" OnClick="cmdCancel_Click" />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>
+            <asp:Panel ID="PanelModalPopup" runat="server" BackColor="#E0E0E0">
+                <ajaxToolkit:ModalPopupExtender ID="MPEError" TargetControlID="hdnbtn" runat="server"
+                    BackgroundCssClass="modalBackground" PopupControlID="PanelError">
+                </ajaxToolkit:ModalPopupExtender>
+                <ajaxToolkit:ModalPopupExtender ID="MPEError2" TargetControlID="hdnbtn2" runat="server"
+                    BackgroundCssClass="modalBackground" PopupControlID="PanelError2" CancelControlID="cmdErrorCancel2">
+                </ajaxToolkit:ModalPopupExtender>
+                <%--<ajaxToolkit:ModalPopupExtender ID="MPEComfirm" TargetControlID="hdnComfirmbtn" runat="server" BackgroundCssClass="modalBackground" PopupControlID="PanelComfirm" OkControlID="cmdYes" CancelControlID="cmdNo"></ajaxToolkit:ModalPopupExtender>--%>
+                <ajaxToolkit:ModalPopupExtender ID="MPEComfirm" TargetControlID="hdnComfirmbtn" runat="server"
+                    BackgroundCssClass="modalBackground" PopupControlID="PanelComfirm" CancelControlID="cmdCancel"
+                    OnCancelScript="SetFocus('ctl00_ContentPlaceHolder1_cmdCancel');">
+                </ajaxToolkit:ModalPopupExtender>
+                <ajaxToolkit:ModalPopupExtender ID="MPEComfirmM" TargetControlID="hdnComfirmbtnM"
+                    runat="server" BackgroundCssClass="modalBackground" PopupControlID="PanelComfirmM"
+                    CancelControlID="cmdCancelM" OnCancelScript="SetFocus('ctl00_ContentPlaceHolder1_cmdCancelM');">
+                </ajaxToolkit:ModalPopupExtender>
+            </asp:Panel>
+        </div>
+        <asp:HiddenField runat="server" ID="hdnDupFlag" />
+        <asp:HiddenField runat="server" ID="hdnTempClientCode" />
+        <asp:HiddenField runat="server" ID="hdnClientCode" />
+        <%--added by bhojraj on 24042012 for cda pan updation--%>
+        <asp:HiddenField ID="hdnPan" runat="server" />
+        <asp:HiddenField ID="hdnAgnCode" runat="server" />
+        <%--end by bhojraj--%>
+        <asp:TextBox runat="server" ID="txtDupBtnFlag" Width="0px" Text="" BorderStyle="None"
+            BorderColor="transparent" Wrap="true" />
+        <asp:TextBox runat="server" ID="txtAMLFlag" Width="0px" Text="" BorderStyle="None"
+            BorderColor="transparent" Wrap="true" />
+    
+    </form>
+</body>
+</html>

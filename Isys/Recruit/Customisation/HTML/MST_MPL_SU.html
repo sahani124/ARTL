@@ -1,0 +1,1401 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>MPL SU</title>
+    <meta http-equiv="X-UA-Compatible" value="IE=Edge" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../../../../../assets/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../../../../KMI%20Styles/assets/css/footable.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../KMI Styles/assets/css/KMI.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../KMI Styles/assets/css/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../KMI Styles/assets/jqueryCalendar/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../../../../assets/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />-->
+    <link href="../../../../../KMI%20Styles/Bootstrap/datepicker/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../assets/css/customization.css" rel="stylesheet" />
+</head>
+<body>
+    <center>
+        <div id="iLoading" class="Content" style="position: absolute;top: 50%; left: 50%; margin: -50px 0px 0px -50px;z-index:9999;">
+            <img src="../../../../../assets/img/loading-spinner-blue.gif" alt="LOADING"/> Loading....
+        </div>
+        <div class="container">
+            <div id="divcmphdrcollapse" class="panel">
+                <div id="Div6" class="panel-heading" onclick="ShowReqDtl1('divcmphdr','myImg');return false;">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <label id="lblhdr" class="panel-header">Add Scheme Details</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <span id="myImg" class="glyphicon glyphicon-chevron-down"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="divcmphdr" class="panel-body">
+                    <div id="defaultdiv" class="row">
+                        <div class="col-sm-3">
+                            <label id="lblrtgschKey" class="control-label">Category Scheme Key</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" id="txtSchKey" disabled="disabled" class="form-control" maxlength="20" />
+                        </div>
+                        <div style="display:none;">
+                            <div class="col-sm-3">
+                                <label id="lblweightage" class="control-label; required">Is Consider</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="select2-container form-control" id="ddlMPL"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divOriginalFix" class="panel">
+                        <div id="divOriginalFixHead" class="panel-heading" onclick="ShowReqDtl1('divOriginalFixBody','imgOriginalFix');return false;">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <label id="Label2" class="panel-header">Original Fix factor </label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <span id="imgOriginalFix" class="glyphicon glyphicon-chevron-down"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divOriginalFixBody" class="panel-body">
+                            <div id="divOriginalFixContainer">
+                                <div id="divCASH" class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label id="lblCASH" class="control-label; required">CASHERING</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="select2-container form-control" multiple id="ddlCASH">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divCHUN" class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label id="lblCHUN" class="control-label; required">CHURNING</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="select2-container form-control" multiple id="ddlCHUN">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divCPC" class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label id="lblCPC" class="control-label; required">Combo Policy</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="select2-container form-control" multiple id="ddlCPC">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divECM" class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label id="lblECM" class="control-label; required">ECM Flag</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="select2-container form-control" multiple id="ddlECM">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divFTR" class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label id="lblFTR" class="control-label; required">FTR</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="select2-container form-control" multiple id="ddlFTR">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divPC" class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label id="lblPC" class="control-label; required">Product Code</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="select2-container form-control" multiple id="ddlPC">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divPRDT" class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label id="lblPRDT" class="control-label; required">Product Type</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="select2-container form-control" multiple id="ddlPRDT">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divSPLT" class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label id="lblSPLT" class="control-label; required">Splitting</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="select2-container form-control" multiple id="ddlSPLT">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divSPRN" class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label id="lblSPRN" class="control-label; required">Sprint</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="select2-container form-control" multiple id="ddlSPRN">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divVPSC" class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label id="lblVPSC" class="control-label; required">VPSC</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="select2-container form-control" multiple id="ddlVPSC">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="display:inline-flex !important;">
+                            <button type="button" class="btn btn-sample" id="btnFixConfirmSelection" style="display:none">
+                                <i class="glyphicon glyphicon-ok"></i> Confirm Selection
+
+                            </button>
+                            <button type="button" class="btn btn-sample" id="btnFixUpdateSelection" style="display:none">
+                                <i class="glyphicon glyphicon-refresh"></i> Update Selection
+                            </button>
+                            <button type="button" class="btn btn-sample" id="btnCancel">
+                                <i class="glyphicon glyphicon-remove"></i> Cancel
+                            </button>
+                            <input type="hidden" id="hdnFixFactorSelection" />
+                        </div>
+                        <div id="divDerivedRangeFactors">
+                            <div id="divRangeFactor" class="panel">
+                                <div id="divrangeHeading" class="panel-heading" onclick="ShowReqDtl1('divRangeBody','rangefactorImg');return false;">
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <label id="lblRangeFactor" class="panel-header">Range factors</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <span id="rangefactorImg" class="glyphicon glyphicon-chevron-down"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divRangeBody" class="panel-body">
+                                    <div id="divPWOT" class="panel">
+                                        <div id="divPWOTHead" class="panel-heading" onclick="ShowReqDtl1('divPWOTBody','imgPWOT');return false;">
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <label id="lblPWOT" class="panel-header">Premium Without Tax</label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <span id="imgPWOT" class="glyphicon glyphicon-chevron-down"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="divPWOTBody" class="panel-body">
+                                            <div id="divPWOTPosSelection" class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblPWOTPos" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select id="ddlPWOTPosition" class="form-control">
+                                                        <option value="-1">Select</option>
+                                                        <option value="F">First</option>
+                                                        <option value="M">Middle</option>
+                                                        <option value="E">End</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label id="lblPWOTParent" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select class="select2-container form-control" multiple id="ddlPWOTParent">
+                                                        <option value="-1">-- SELECT --</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblPWOTFrom" class="control-label; required">From Amount</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtPWOTFrom" class="form-control decimal" maxlength="20" />
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label id="lblPWOTTo" class="control-label; required">To Amount</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtPWOTTo" class="form-control decimal" maxlength="20" />
+                                                </div>
+                                            </div>
+                                            <div class="row" id="divPWOTAdd">
+                                                <button type="button" id="btnPWOTAdd" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-plus"></i> Add
+                                                </button>
+                                                <button type="button" id="btnPWOTClear" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-erase"></i> Clear
+                                                </button>
+                                            </div>
+                                            <div class="row" id="divPWOTUpdate" style="display:none">
+                                                <button type="button" id="btnPWOTUpdate" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-floppy-save"></i> Update
+                                                </button>
+                                                <button type="button" id="btnPWOTCancel" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-remove"></i> Cancel
+                                                </button>
+                                                <input type="hidden" id="hdnPWOT" value="" />
+                                                <input type="hidden" id="hdnSRT_ORDPWOT" value="" />
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="table-container" id="divPWOTTable">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divLD" class="panel">
+                                        <div id="divLDHead" class="panel-heading" onclick="ShowReqDtl1('divLDBody','imgLD');return false;">
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <label id="lblLD" class="panel-header">Login Date</label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <span id="imgLD" class="glyphicon glyphicon-chevron-down"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="divLDBody" class="panel-body">
+
+                                            <div id="divLDPosSelection" class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblLDPos" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select id="ddlLDPosition" class="form-control">
+                                                        <option value="-1" selected>Select</option>
+                                                        <option value="F">First</option>
+                                                        <option value="M">Middle</option>
+                                                        <option value="E">End</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3" style="display:block">
+                                                    <label id="lblLDParent" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3" style="display:block">
+                                                    <select id="ddlLDParent" multiple class="form-control select2-container">
+                                                        <option value="100">10 - 66</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblLDFrom" class="control-label; required">From Date</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtLDFrom" class="form-control datetime" readonly maxlength="20" />
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label id="lblLDTo" class="control-label; required ">To Date</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtLDTo" class="form-control datetime" readonly maxlength="20" />
+                                                </div>
+                                            </div>
+                                            <div class="row" id="divLDAdd">
+                                                <button type="button" id="btnLDAdd" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-plus"></i> Add
+                                                </button>
+                                                <button type="button" id="btnLDClear" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-erase"></i> Clear
+                                                </button>
+                                            </div>
+                                            <div class="row" id="divLDUpdate" style="display:none">
+                                                <button type="button" id="btnLDUpdate" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-floppy-save"></i> Update
+                                                </button>
+                                                <button type="button" id="btnLDCancel" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-remove"></i> Cancel
+                                                </button>
+                                                <input type="hidden" id="hdnLD" value="" />
+                                                <input type="hidden" id="hdnSRT_ORDLD" value="" />
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="table-container" id="divLDTable">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divWNBP" class="panel">
+                                        <div id="divWNBPHead" class="panel-heading" onclick="ShowReqDtl1('divWNBPBody','imgWNBP');return false;">
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <label id="lblWNBP" class="panel-header">WNBP</label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <span id="imgWNBP" class="glyphicon glyphicon-chevron-down"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="divWNBPBody" class="panel-body">
+                                            <div id="divWNBPPosSelection" class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblWNBPPos" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select id="ddlWNBPPosition" class="form-control">
+                                                        <option value="-1">Select</option>
+                                                        <option value="F">First</option>
+                                                        <option value="M">Middle</option>
+                                                        <option value="E">End</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label id="lblWNBPParent" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select class="select2-container form-control" multiple id="ddlWNBPParent">
+                                                        <option value="-1">-- SELECT --</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblWNBPFrom" class="control-label; required">From</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtWNBPFrom" class="form-control decimal" maxlength="20" />
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label id="lblWNBPTo" class="control-label; required">To</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtWNBPTo" class="form-control decimal" maxlength="20" />
+                                                </div>
+                                            </div>
+                                            <div class="row" id="divWNBPAdd">
+                                                <button type="button" id="btnWNBPAdd" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-plus"></i> Add
+                                                </button>
+                                                <button type="button" id="btnWNBPClear" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-erase"></i> Clear
+                                                </button>
+
+                                            </div>
+                                            <div class="row" id="divWNBPUpdate" style="display:none">
+                                                <button type="button" id="btnWNBPUpdate" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-floppy-save"></i> Update
+                                                </button>
+                                                <button type="button" id="btnWNBPCancel" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-remove"></i> Cancel
+                                                </button>
+                                                <input type="hidden" id="hdnWNBP" value="" />
+                                                <input type="hidden" id="hdnSRT_ORDWNBP" value="" />
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="table-container" id="divWNBPTable">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divANP" class="panel">
+                                        <div id="divANPHead" class="panel-heading" onclick="ShowReqDtl1('divANPBody','imgANP');return false;">
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <label id="lblANP" class="panel-header">Annualised Premium</label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <span id="imgANP" class="glyphicon glyphicon-chevron-down"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="divANPBody" class="panel-body">
+                                            <div id="divANPPosSelection" class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblANPPos" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select id="ddlANPPosition" class="form-control">
+                                                        <option value="-1">Select</option>
+                                                        <option value="F">First</option>
+                                                        <option value="M">Middle</option>
+                                                        <option value="E">End</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label id="lblANPParent" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select class="select2-container form-control" multiple id="ddlANPParent">
+                                                        <option value="-1">-- SELECT --</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblANPFrom" class="control-label; required">From</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtANPFrom" class="form-control decimal" maxlength="20" />
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label id="lblANPTo" class="control-label; required">To</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtANPTo" class="form-control decimal" maxlength="20" />
+                                                </div>
+                                            </div>
+                                            <div class="row" id="divANPAdd">
+                                                <button type="button" id="btnANPAdd" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-plus"></i> Add
+                                                </button>
+                                                <button type="button" id="btnANPClear" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-erase"></i> Clear
+                                                </button>
+
+                                            </div>
+                                            <div class="row" id="divANPUpdate" style="display:none">
+                                                <button type="button" id="btnANPUpdate" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-floppy-save"></i> Update
+                                                </button>
+                                                <button type="button" id="btnANPCancel" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-remove"></i> Cancel
+                                                </button>
+                                                <input type="hidden" id="hdnANP" value="" />
+                                                <input type="hidden" id="hdnSRT_ORDANP" value="" />
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="table-container" id="divANPTable">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divMPC" class="panel">
+                                        <div id="divMPCHead" class="panel-heading" onclick="ShowReqDtl1('divMPCBody','imgMPC');return false;">
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <label id="lblMPC" class="panel-header">Medical Cases</label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <span id="imgMPC" class="glyphicon glyphicon-chevron-down"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="divMPCBody" class="panel-body">
+                                            <div id="divMPCPosSelection" class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblMPCPos" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select id="ddlMPCPosition" class="form-control">
+                                                        <option value="-1">Select</option>
+                                                        <option value="F">First</option>
+                                                        <option value="M">Middle</option>
+                                                        <option value="E">End</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label id="lblMPCParent" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select class="select2-container form-control" multiple id="ddlMPCParent">
+                                                        <option value="-1">-- SELECT --</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblMPCFrom" class="control-label; required">From</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtMPCFrom" class="form-control decimal" maxlength="20" />
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label id="lblMPCTo" class="control-label; required">To</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtMPCTo" class="form-control decimal" maxlength="20" />
+                                                </div>
+                                            </div>
+                                            <div class="row" id="divMPCAdd">
+                                                <button type="button" id="btnMPCAdd" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-plus"></i> Add
+                                                </button>
+                                                <button type="button" id="btnMPCClear" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-erase"></i> Clear
+                                                </button>
+
+                                            </div>
+                                            <div class="row" id="divMPCUpdate" style="display:none">
+                                                <button type="button" id="btnMPCUpdate" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-floppy-save"></i> Update
+                                                </button>
+                                                <button type="button" id="btnMPCCancel" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-remove"></i> Cancel
+                                                </button>
+                                                <input type="hidden" id="hdnMPC" value="" />
+                                                <input type="hidden" id="hdnSRT_ORDMPC" value="" />
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="table-container" id="divMPCTable">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divCEP" class="panel">
+                                        <div id="divCEPHead" class="panel-heading" onclick="ShowReqDtl1('divCEPBody','imgCEP');return false;">
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <label id="lblCEP" class="panel-header">CALC. EP</label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <span id="imgCEP" class="glyphicon glyphicon-chevron-down"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="divCEPBody" class="panel-body">
+                                            <div id="divCEPPosSelection" class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblCEPPos" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select id="ddlCEPPosition" class="form-control">
+                                                        <option value="-1">Select</option>
+                                                        <option value="F">First</option>
+                                                        <option value="M">Middle</option>
+                                                        <option value="E">End</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label id="lblCEPParent" class="control-label; required">Select Position</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select class="select2-container form-control" multiple id="ddlCEPParent">
+                                                        <option value="-1">-- SELECT --</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label id="lblCEPFrom" class="control-label; required">From</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtCEPFrom" class="form-control decimal" maxlength="20" />
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label id="lblCEPTo" class="control-label; required">To</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="txtCEPTo" class="form-control decimal" maxlength="20" />
+                                                </div>
+                                            </div>
+                                            <div class="row" id="divCEPAdd">
+                                                <button type="button" id="btnCEPAdd" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-plus"></i> Add
+                                                </button>
+                                                <button type="button" id="btnCEPClear" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-erase"></i> Clear
+                                                </button>
+
+                                            </div>
+                                            <div class="row" id="divCEPUpdate" style="display:none">
+                                                <button type="button" id="btnCEPUpdate" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-floppy-save"></i> Update
+                                                </button>
+                                                <button type="button" id="btnCEPCancel" class="btn btn-sample">
+                                                    <i class="glyphicon glyphicon-remove"></i> Cancel
+                                                </button>
+                                                <input type="hidden" id="hdnCEP" value="" />
+                                                <input type="hidden" id="hdnSRT_ORDCEP" value="" />
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="table-container" id="divCEPTable">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="divFixfactor" style="display:none;" class="panel">
+                                <div id="divfixHeading" class="panel-heading" onclick="ShowReqDtl1('divfixBody','fixfactorImg');return false;">
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <label id="lblfixfactors" class="panel-header">Fix factors</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <span id="fixfactorImg" class="glyphicon glyphicon-chevron-down"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divfixBody" class="panel-body">
+
+                                    <div class="row">
+                                        <div id="divMPL" class="panel">
+                                            <div id="imgMPLHead" class="panel-heading" onclick="ShowReqDtl1('imgMPLBody','imgMPL');return false;">
+                                                <div class="row">
+                                                    <div class="col-sm-10">
+                                                        <label id="Label1" class="panel-header">Converted Original Range factor</label>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <span id="imgMPL" class="glyphicon glyphicon-chevron-down"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="imgMPLBody" class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label id="lblMPLPWT" class="control-label required">Premium With Tax</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select class="select2-container form-control" id="ddlFixPWT">
+                                                            <option value="-1">-- SELECT --</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <label id="lblMPLPWOT" class="control-label required">Premium Without Tax</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select class="select2-container form-control" id="ddlFixPWOT">
+                                                            <option value="-1">-- SELECT --</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label id="lblMPLLD" class="control-label required">Login Date</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select class="select2-container form-control" id="ddlFixLD">
+                                                            <option value="-1">-- SELECT --</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-sample" id="btnSaveMPL">
+                                            <i class="glyphicon glyphicon-save"></i> Save
+                                        </button>
+                                        <button type="button" class="btn btn-sample" id="btnCancel">
+                                            <i class="glyphicon glyphicon-remove"></i> Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    </center>
+    <script src="../../../../../assets/scripts/jquery.min.js"></script>
+    <script src="../../../../../assets/scripts/bootstrap.min.js"></script>
+    <script src="../../../../../assets/scripts/bootstrap-multiselect.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
+    <!--<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>-->
+    <script type="text/javascript" src="../../../../../KMI Styles/assets/jqueryCalendar/jquery-ui.js"></script>
+    <script src="../../../../../assets/scripts/moment.js"></script>
+    <script src="../../../../../KMI%20Styles/assets/plugins/bootstrap/js/footable.js" type="text/javascript"></script>
+    <script src="../../../../../assets/scripts/commonValidate.js"></script>
+    <script src="../../../../../assets/scripts/Customization/customization-common.js"></script>
+    <script src="../../../../../assets/scripts/Customization/customization-datalayer.js"></script>
+    <script>
+        var fix_factors = "";
+        var range_factors = "";
+        var selectFixFactors = "";
+        var ranges = "";
+        var fixes = "";
+        var ACT_SCH_KEY = "";
+        document.getElementById('btnFixConfirmSelection').style.display = "inline-block";
+        document.getElementById('divDerivedRangeFactors').style.display = "none";
+
+        document.getElementById('divANP').style.display = "none";
+        document.getElementById('divPWOT').style.display = "none";
+        document.getElementById('divLD').style.display = "none";
+        document.getElementById('divWNBP').style.display = "none";
+        document.getElementById('divMPC').style.display = "none";
+        document.getElementById('divCEP').style.display = "none";
+
+        document.getElementById('ddlCASH').disabled = true;
+        document.getElementById('ddlCHUN').disabled = true;
+        document.getElementById('ddlCPC').disabled = true;
+        document.getElementById('ddlECM').disabled = true;
+        document.getElementById('ddlFTR').disabled = true;
+        document.getElementById('ddlPC').disabled = true;
+        document.getElementById('ddlPRDT').disabled = true;
+        document.getElementById('ddlSPLT').disabled = true;
+        document.getElementById('ddlSPRN').disabled = true;
+        document.getElementById('ddlVPSC').disabled = true;
+
+        $(document).ready(function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+
+            GetFactorsBySchemeKey(ACT_SCH_KEY, function (data) {
+                fix_factors = data[0]["FIX_FCTR"];
+                range_factors = data[0]["RNG_FCTR"];
+            })
+            fixes = fix_factors.split('|');
+
+            for (var i = 0; i < fixes.length; i++) {
+                debugger;
+                document.getElementById('ddl' + fixes[i]).disabled = false;
+            }
+
+            //Bind Action scheme key
+            document.getElementById('txtSchKey').value = ACT_SCH_KEY;
+
+            // Bind All Fix Factors
+            GetFixFactorsFactors('ddlCASH', "CASH", false);
+            GetFixFactorsFactors('ddlCHUN', "CHUN", false);
+            GetFixFactorsFactors('ddlCPC', "CPC", false);
+            GetFixFactorsFactors('ddlECM', "ECM", false);
+            GetFixFactorsFactors('ddlFTR', "FTR", false);
+            GetFixFactorsFactors('ddlPC', "PC", false);
+            GetFixFactorsFactors('ddlPRDT', "PRDT", false);
+            GetFixFactorsFactors('ddlSPLT', "SPLT", false);
+            GetFixFactorsFactors('ddlSPRN', "SPRN", false);
+            GetFixFactorsFactors('ddlVPSC', "VPSC", false);
+            //document.getElementById("iLoading").style.display = 'none';
+            $("#iLoading").hide();
+        })
+
+        document.getElementById('btnSaveMPL').addEventListener("click", function () {
+            debugger;
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var fix_fact = GetValuesFixFactors(fix_factors);
+            var range_fact = GetValuesRangeFactors(range_factors);
+            var RATE = '';
+            var MPL_FLAG = document.getElementById('ddlMPL').value;
+            var CREATED_BY = 'Pratik';
+            SaveMPL(ACT_SCH_KEY, fix_fact, range_fact, RATE, MPL_FLAG, CREATED_BY)
+        });
+
+        document.getElementById('btnFixConfirmSelection').addEventListener("click", function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+
+            var accpeted = false;
+            var NewSelectFixFactors = JSON.stringify(GetValuesFixFactors(fix_factors));
+
+            //Bind Range Factors Dropdowns
+            GetRangeFactorsDDLBasedOnFF(ACT_SCH_KEY, GetValuesFixFactors(fix_factors), 'PWOT', 'ddlPWOTParent', false)
+            GetRangeFactorsDDLBasedOnFF(ACT_SCH_KEY, GetValuesFixFactors(fix_factors), 'LD', 'ddlLDParent', false)
+            GetRangeFactorsDDLBasedOnFF(ACT_SCH_KEY, GetValuesFixFactors(fix_factors), 'ANP', 'ddlANPParent', false)
+            GetRangeFactorsDDLBasedOnFF(ACT_SCH_KEY, GetValuesFixFactors(fix_factors), 'WNBP', 'ddlWNBPParent', false)
+            GetRangeFactorsDDLBasedOnFF(ACT_SCH_KEY, GetValuesFixFactors(fix_factors), 'MPC', 'ddlMPCParent', false)
+            GetRangeFactorsDDLBasedOnFF(ACT_SCH_KEY, GetValuesFixFactors(fix_factors), 'CEP', 'ddlCEPParent', false)
+
+            //Bind Range Factors Tables
+            ranges = range_factors.split('|');
+            BindRangeTables(ranges);
+            
+            this.style.display = "none";
+            document.getElementById('btnFixUpdateSelection').style.display = "inline-block";
+            //EnableFixFactors(true);
+            document.getElementById('hdnFixFactorSelection').value = "Y";
+            document.getElementById('divDerivedRangeFactors').style.display = "block";
+
+            document.getElementById("iLoading").style.display = 'none';
+        })
+
+        document.getElementById('btnFixUpdateSelection').addEventListener("click", function () {
+            this.style.display = "none";
+            document.getElementById('btnFixConfirmSelection').style.display = "inline-block";
+            EnableFixFactors(false);
+            document.getElementById('hdnFixFactorSelection').value = "N";
+            document.getElementById('divDerivedRangeFactors').style.display = "none";
+        })
+
+        //PWOT
+        document.getElementById('btnPWOTAdd').addEventListener("click", function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            var VAL_CODE = 'PWOT';
+            var e = document.getElementById('ddlPWOTPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (optionSelIndex != "-1") {
+                if (document.getElementById('txtPWOTFrom').value == "" || document.getElementById('txtPWOTTo').value == "") {
+                    alert("Please enter from and to data of PWOT!");
+                    return;
+                }
+                if (optionSelIndex == "M") {
+                    if ($('#ddlPWOTParent').val().length > 0) {
+                        if (!validateMiddleRange("ddlPWOTParent", "PWOT", document.getElementById('txtPWOTFrom').value, document.getElementById('txtPWOTTo').value)) {
+                            return;
+                        }
+                    }
+                }
+            }
+            else {
+                alert("Please select Position of PWOT!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var FROM_DATA = document.getElementById('txtPWOTFrom').value;
+            var TO_DATA = document.getElementById('txtPWOTTo').value;
+            var CREATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var selVal = getSelectedValue('ddlPWOTParent');
+            SaveRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            ClearData(VAL_CODE)
+            document.getElementById("btnFixConfirmSelection").click();
+
+            document.getElementById("iLoading").style.display = 'none';
+        });
+
+        document.getElementById('btnPWOTUpdate').addEventListener("click", function () {
+            debugger;
+            var VAL_CODE = 'PWOT';
+            var e = document.getElementById('ddlPWOTPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (document.getElementById('txtPWOTFrom').value == "" || document.getElementById('txtPWOTTo').value == "") {
+                alert("Please enter from and to data of PWOT!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var RNG_FACT_ID = document.getElementById('hdnPWOT').value;
+            var FROM_DATA = document.getElementById('txtPWOTFrom').value;
+            var TO_DATA = document.getElementById('txtPWOTTo').value;
+            var UPDATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var SRT_ORDR = document.getElementById('hdnSRT_ORDPWOT').value;
+            //UpdateRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            UpdateRangeFactors(RNG_FACT_ID, ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, UPDATED_BY, SRT_ORDR);
+            ClearData(VAL_CODE);
+            CancelEdit(VAL_CODE);
+            document.getElementById("btnFixConfirmSelection").click();
+        });
+
+        document.getElementById('btnPWOTClear').addEventListener("click", function () {
+            var VAL_CODE = 'PWOT';
+            ClearData(VAL_CODE)
+        });
+
+        document.getElementById('btnPWOTCancel').addEventListener("click", function () {
+            var VAL_CODE = 'PWOT';
+            CancelEdit(VAL_CODE)
+        });
+
+        //LD
+        document.getElementById('btnLDAdd').addEventListener("click", function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            var VAL_CODE = 'LD';
+            var e = document.getElementById('ddlLDPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (optionSelIndex != "-1") {
+                if (document.getElementById('txtLDFrom').value == "" || document.getElementById('txtLDTo').value == "") {
+                    alert("Please enter from and to data of LD!");
+                    return;
+                }
+                if (optionSelIndex == "M") {
+                    if ($('#ddlLDParent').val().length > 0) {
+                        if (!validateMiddleRange("ddlLDParent", "LD", document.getElementById('txtLDFrom').value, document.getElementById('txtLDTo').value)) {
+                            return;
+                        }
+                    }
+                }
+            }
+            else {
+                alert("Please select Position of LD!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var FROM_DATA = document.getElementById('txtLDFrom').value;
+            var TO_DATA = document.getElementById('txtLDTo').value;
+            var CREATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var selVal = getSelectedValue('ddlLDParent');
+            SaveRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            ClearData(VAL_CODE)
+            document.getElementById("btnFixConfirmSelection").click();
+
+            document.getElementById("iLoading").style.display = 'none';
+        });
+
+        document.getElementById('btnLDUpdate').addEventListener("click", function () {
+            var VAL_CODE = 'LD';
+            var e = document.getElementById('ddlLDPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (document.getElementById('txtLDFrom').value == "" || document.getElementById('txtLDTo').value == "") {
+                alert("Please enter from and to data of LD!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var RNG_FACT_ID = document.getElementById('hdnLD').value;
+            var FROM_DATA = document.getElementById('txtLDFrom').value;
+            var TO_DATA = document.getElementById('txtLDTo').value;
+            var UPDATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var SRT_ORDR = document.getElementById('hdnSRT_ORDLD').value;
+            //UpdateRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            UpdateRangeFactors(RNG_FACT_ID, ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, UPDATED_BY, SRT_ORDR);
+            ClearData(VAL_CODE);
+            CancelEdit(VAL_CODE);
+            document.getElementById("btnFixConfirmSelection").click();
+        });
+
+        document.getElementById('btnLDClear').addEventListener("click", function () {
+            var VAL_CODE = 'LD';
+            ClearData(VAL_CODE)
+        });
+
+        document.getElementById('btnLDCancel').addEventListener("click", function () {
+            var VAL_CODE = 'LD';
+            CancelEdit(VAL_CODE)
+        });
+
+
+        //ANP
+        document.getElementById('btnANPAdd').addEventListener("click", function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            var VAL_CODE = 'ANP';
+            var e = document.getElementById('ddlANPPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (optionSelIndex != "-1") {
+                if (document.getElementById('txtANPFrom').value == "" || document.getElementById('txtANPTo').value == "") {
+                    alert("Please enter from and to data of ANP!");
+                    return;
+                }
+                if (optionSelIndex == "M") {
+                    if ($('#ddlANPParent').val().length > 0) {
+                        if (!validateMiddleRange("ddlANPParent", "ANP", document.getElementById('txtANPFrom').value, document.getElementById('txtANPTo').value)) {
+                            return;
+                        }
+                    }
+                }
+            }
+            else {
+                alert("Please select Position of ANP!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var FROM_DATA = document.getElementById('txtANPFrom').value;
+            var TO_DATA = document.getElementById('txtANPTo').value;
+            var CREATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var selVal = getSelectedValue('ddlANPParent');
+            SaveRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            ClearData(VAL_CODE)
+            document.getElementById("btnFixConfirmSelection").click();
+            document.getElementById("iLoading").style.display = 'none';
+        });
+
+        document.getElementById('btnANPUpdate').addEventListener("click", function () {
+            debugger;
+            var VAL_CODE = 'ANP';
+            var e = document.getElementById('ddlANPPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (document.getElementById('txtANPFrom').value == "" || document.getElementById('txtANPTo').value == "") {
+                alert("Please enter from and to data of ANP!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var RNG_FACT_ID = document.getElementById('hdnANP').value;
+            var FROM_DATA = document.getElementById('txtANPFrom').value;
+            var TO_DATA = document.getElementById('txtANPTo').value;
+            var UPDATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var SRT_ORDR = document.getElementById('hdnSRT_ORDANP').value;
+            //UpdateRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            UpdateRangeFactors(RNG_FACT_ID, ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, UPDATED_BY, SRT_ORDR);
+            ClearData(VAL_CODE);
+            CancelEdit(VAL_CODE);
+            document.getElementById("btnFixConfirmSelection").click();
+        });
+
+        document.getElementById('btnANPClear').addEventListener("click", function () {
+            var VAL_CODE = 'ANP';
+            ClearData(VAL_CODE)
+        });
+
+        document.getElementById('btnANPCancel').addEventListener("click", function () {
+            var VAL_CODE = 'ANP';
+            CancelEdit(VAL_CODE)
+        });
+
+
+        //WNBP
+        document.getElementById('btnWNBPAdd').addEventListener("click", function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            var VAL_CODE = 'WNBP';
+            var e = document.getElementById('ddlWNBPPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (optionSelIndex != "-1") {
+                if (document.getElementById('txtWNBPFrom').value == "" || document.getElementById('txtWNBPTo').value == "") {
+                    alert("Please enter from and to data of WNBP!");
+                    return;
+                }
+                if (optionSelIndex == "M") {
+                    if ($('#ddlWNBPParent').val().length > 0) {
+                        if (!validateMiddleRange("ddlWNBPParent", "WNBP", document.getElementById('txtWNBPFrom').value, document.getElementById('txtWNBPTo').value)) {
+                            return;
+                        }
+                    }
+                }
+            }
+            else {
+                alert("Please select Position of WNBP!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var FROM_DATA = document.getElementById('txtWNBPFrom').value;
+            var TO_DATA = document.getElementById('txtWNBPTo').value;
+            var CREATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var selVal = getSelectedValue('ddlWNBPParent');
+            SaveRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            ClearData(VAL_CODE)
+            document.getElementById("btnFixConfirmSelection").click();
+            document.getElementById("iLoading").style.display = 'none';
+        });
+
+        document.getElementById('btnWNBPUpdate').addEventListener("click", function () {
+            debugger;
+            var VAL_CODE = 'WNBP';
+            var e = document.getElementById('ddlWNBPPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (document.getElementById('txtWNBPFrom').value == "" || document.getElementById('txtWNBPTo').value == "") {
+                alert("Please enter from and to data of WNBP!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var RNG_FACT_ID = document.getElementById('hdnWNBP').value;
+            var FROM_DATA = document.getElementById('txtWNBPFrom').value;
+            var TO_DATA = document.getElementById('txtWNBPTo').value;
+            var UPDATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var SRT_ORDR = document.getElementById('hdnSRT_ORDWNBP').value;
+            //UpdateRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            UpdateRangeFactors(RNG_FACT_ID, ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, UPDATED_BY, SRT_ORDR);
+            ClearData(VAL_CODE);
+            CancelEdit(VAL_CODE);
+            document.getElementById("btnFixConfirmSelection").click();
+        });
+
+        document.getElementById('btnWNBPClear').addEventListener("click", function () {
+            var VAL_CODE = 'WNBP';
+            ClearData(VAL_CODE)
+        });
+
+        document.getElementById('btnWNBPCancel').addEventListener("click", function () {
+            var VAL_CODE = 'WNBP';
+            CancelEdit(VAL_CODE)
+        });
+
+
+        //MPC
+        document.getElementById('btnMPCAdd').addEventListener("click", function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            var VAL_CODE = 'MPC';
+            var e = document.getElementById('ddlMPCPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (optionSelIndex != "-1") {
+                if (document.getElementById('txtMPCFrom').value == "" || document.getElementById('txtMPCTo').value == "") {
+                    alert("Please enter from and to data of MPC!");
+                    return;
+                }
+                if (optionSelIndex == "M") {
+                    if ($('#ddlMPCParent').val().length > 0) {
+                        if (!validateMiddleRange("ddlMPCParent", "MPC", document.getElementById('txtMPCFrom').value, document.getElementById('txtMPCTo').value)) {
+                            return;
+                        }
+                    }
+                }
+            }
+            else {
+                alert("Please select Position of MPC!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var FROM_DATA = document.getElementById('txtMPCFrom').value;
+            var TO_DATA = document.getElementById('txtMPCTo').value;
+            var CREATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var selVal = getSelectedValue('ddlMPCParent');
+            SaveRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            ClearData(VAL_CODE)
+            document.getElementById("btnFixConfirmSelection").click();
+            document.getElementById("iLoading").style.display = 'none';
+        });
+
+        document.getElementById('btnMPCUpdate').addEventListener("click", function () {
+            debugger;
+            var VAL_CODE = 'MPC';
+            var e = document.getElementById('ddlMPCPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (document.getElementById('txtMPCFrom').value == "" || document.getElementById('txtMPCTo').value == "") {
+                alert("Please enter from and to data of MPC!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var RNG_FACT_ID = document.getElementById('hdnMPC').value;
+            var FROM_DATA = document.getElementById('txtMPCFrom').value;
+            var TO_DATA = document.getElementById('txtMPCTo').value;
+            var UPDATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var SRT_ORDR = document.getElementById('hdnSRT_ORDMPC').value;
+            //UpdateRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            UpdateRangeFactors(RNG_FACT_ID, ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, UPDATED_BY, SRT_ORDR);
+            ClearData(VAL_CODE);
+            CancelEdit(VAL_CODE);
+            document.getElementById("btnFixConfirmSelection").click();
+        });
+
+        document.getElementById('btnMPCClear').addEventListener("click", function () {
+            var VAL_CODE = 'MPC';
+            ClearData(VAL_CODE)
+        });
+
+        document.getElementById('btnMPCCancel').addEventListener("click", function () {
+            var VAL_CODE = 'MPC';
+            CancelEdit(VAL_CODE)
+        });
+
+
+        //CEP
+        document.getElementById('btnCEPAdd').addEventListener("click", function () {
+            debugger;
+            document.getElementById("iLoading").style.display = 'block';
+            var VAL_CODE = 'CEP';
+            var e = document.getElementById('ddlCEPPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (optionSelIndex != "-1") {
+                if (document.getElementById('txtCEPFrom').value == "" || document.getElementById('txtCEPTo').value == "") {
+                    alert("Please enter from and to data of CEP!");
+                    return;
+                }
+                if (optionSelIndex == "M") {
+                    if ($('#ddlCEPParent').val().length > 0) {
+                        if (!validateMiddleRange("ddlCEPParent", "CEP", document.getElementById('txtCEPFrom').value, document.getElementById('txtCEPTo').value)) {
+                            return;
+                        }
+                    }
+                }
+            }
+            else {
+                alert("Please select Position of CEP!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var FROM_DATA = document.getElementById('txtCEPFrom').value;
+            var TO_DATA = document.getElementById('txtCEPTo').value;
+            var CREATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var selVal = getSelectedValue('ddlCEPParent');
+            SaveRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            ClearData(VAL_CODE)
+            document.getElementById("btnFixConfirmSelection").click();
+            document.getElementById("iLoading").style.display = 'none';
+        });
+
+        document.getElementById('btnCEPUpdate').addEventListener("click", function () {
+            debugger;
+            var VAL_CODE = 'CEP';
+            var e = document.getElementById('ddlCEPPosition');
+            var optionSelIndex = e.options[e.selectedIndex].value;
+
+            if (document.getElementById('txtCEPFrom').value == "" || document.getElementById('txtCEPTo').value == "") {
+                alert("Please enter from and to data of CEP!");
+                return;
+            }
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var RNG_FACT_ID = document.getElementById('hdnCEP').value;
+            var FROM_DATA = document.getElementById('txtCEPFrom').value;
+            var TO_DATA = document.getElementById('txtCEPTo').value;
+            var UPDATED_BY = 'system';
+            var FIX_FACTOR = GetValuesFixFactors(fix_factors);
+            var SRT_ORDR = document.getElementById('hdnSRT_ORDCEP').value;
+            //UpdateRangeFactors(ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, CREATED_BY, selVal, optionSelIndex)
+            UpdateRangeFactors(RNG_FACT_ID, ACT_SCH_KEY, FIX_FACTOR, VAL_CODE, FROM_DATA, TO_DATA, UPDATED_BY, SRT_ORDR);
+            ClearData(VAL_CODE);
+            CancelEdit(VAL_CODE);
+            document.getElementById("btnFixConfirmSelection").click();
+        });
+
+        document.getElementById('btnCEPClear').addEventListener("click", function () {
+            var VAL_CODE = 'CEP';
+            ClearData(VAL_CODE)
+        });
+
+        document.getElementById('btnCEPCancel').addEventListener("click", function () {
+            var VAL_CODE = 'CEP';
+            CancelEdit(VAL_CODE)
+        });
+
+
+
+
+
+
+        function BindRangeTables(ranges) {
+            debugger;
+            for (var i = 0; i < ranges.length; i++) {
+                debugger;
+                GetRangeFactorsBasedOnFF(ACT_SCH_KEY, GetValuesFixFactors(fix_factors), ranges[i], 'div' + ranges[i] + 'Table', true, true, false);
+                document.getElementById('div' + ranges[i]).style.display = "block";
+            }
+        }
+
+        function validateMiddleRange(Id, name, fromTxt, toTxt) {
+            debugger;
+            var selArr = getSelectedLen(Id)
+            if (selArr.length == 2) {
+                var sum = selArr.reduce(function (a, b) {
+                    return b - a;
+                }, 0);
+                if (sum == -1 || sum == 1) {
+                    if (fromTxt != "" && toTxt != "") {
+                        var min = getSelectedText(Id).split('-')[0];
+                        var max = getSelectedText(Id).split('-')[2];
+                        if (parseFloat(fromTxt.trim()) >= parseFloat(toTxt.trim())) {
+                            alert('From value cannot be greater than To value')
+                            return false;
+                        }
+                        if (parseFloat(fromTxt) <= parseFloat(min.trim())) {
+                            alert('From value cannot be less than equal to ' + min);
+                            return false;
+                        }
+                        if (parseFloat(toTxt) >= parseFloat(max.trim())) {
+                            alert('To value cannot be greater than equal to ' + max);
+                            return false;
+                        }
+                        return true;
+                    }
+                    else {
+                        alert("Please enter From and To data of " + name + "!")
+                        return false;
+                    }
+                }
+                else {
+                    alert("Only continuous ranges in " + name + " are allowed!")
+                    return false;
+                }
+            }
+            else {
+                alert("Only 2 ranges of " + name + " select position are acceptable!")
+                return false;
+            }
+
+
+        }
+
+        function validateFirstRange(Id, name, fromTxt, toTxt) {
+            debugger;
+            var selArr = getSelectedLen(Id)
+            if (selArr.length == 1) {
+                if (fromTxt != "" && toTxt != "") {
+                    var min = getSelectedText(Id).split('-')[0];
+                    var max = getSelectedText(Id).split('-')[1];
+                    if (parseFloat(fromTxt.trim()) >= parseFloat(toTxt.trim())) {
+                        alert('From value cannot be greater than To value')
+                        return false;
+                    }
+                    if (parseFloat(fromTxt) <= parseFloat(min.trim())) {
+                        alert('From value cannot be less than equal to ' + min);
+                        return false;
+                    }
+                    if (parseFloat(toTxt) >= parseFloat(max.trim())) {
+                        alert('From value cannot be greater than equal to ' + max);
+                        return false;
+                    }
+                    return true;
+                }
+                else {
+                    alert("Please enter From and To data of " + name + "!")
+                    return false;
+                }
+            }
+        }
+
+        document.getElementById('btnCancel').addEventListener("click", function () {
+            debugger;
+            var ACT_SCH_KEY = GetQueryStringValue(window.location, 'SchKey');
+            var actno = GetQueryStringValue(window.location, 'ActNO');
+            var kpicode = GetQueryStringValue(window.location, 'kpicode');
+            var mapcode = GetQueryStringValue(window.location, 'mapcode');
+            var role = GetQueryStringValue(window.location, 'role');
+            var ACT_TYPE = GetQueryStringValue(window.location, 'ACT_TYPE');
+            window.location.href = "../MstActCatgSU.aspx?ActNO=" + actno + "&kpicode=" + kpicode + "&mapcode=" + mapcode + "&role=" + role + "&ACT_TYPE=" + ACT_TYPE;
+            //string actno = Request.QueryString["ActNo"].ToString().Trim();
+            //string kpicode = Request.QueryString["KPIcode"].ToString().Trim();
+            //string mapcode = Request.QueryString["mapcode"].ToString().Trim();
+            //string role = Request.QueryString["role"].ToString().Trim();
+            //string ACT_TYPE = Request.QueryString["ACT_TYPE"].ToString().Trim();
+            //Response.Redirect("MstActCatgSU.aspx?ActNO=" + actno + "&kpicode=" + kpicode + "&mapcode=" + mapcode + "&role=" + role + "&ACT_TYPE=" + ACT_TYPE);
+        })
+
+        function Wait(delay) {
+            setTimeout("RemoveLoading()", delay);
+        }
+
+        function RemoveLoading() {
+            //hide loading status...
+            document.getElementById("iLoading").style.display = 'none';
+            //show content
+            document.getElementById("iContent").style.display = 'block';
+        }
+
+    </script>
+</body>
+</html>

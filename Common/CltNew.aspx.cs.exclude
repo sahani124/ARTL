@@ -1,0 +1,612 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Web.SessionState;
+using System.Text;
+using Insc.Common.Data;
+using System.ComponentModel;
+
+
+public partial class Application_Common_CltNew : BaseClass
+{
+    string sConnStr = System.Configuration.ConfigurationManager.ConnectionStrings["INSCCommonConnectionString"].ToString();
+
+    DataSet dsTabNames;
+    DataTable dtTabNames;
+    DataSet dsClt = new DataSet();
+    DataTable dtClt = new DataTable("Clt");
+    DataTable dtCltCnct = new DataTable("CltCnct");
+    DataTable dtCltPer = new DataTable("CltPer");
+    const string cSessionQryState = "ClientDetail";
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //Create Initial DataSet and DataTable and its schema
+        dsTabNames = new DataSet();
+        dtTabNames = new DataTable();
+        dsTabNames.Tables.Add(dtTabNames);
+        dsTabNames.Tables[0].Columns.Add("TabName");
+
+        //Insert Tab Name into DataTable
+        DataRow drTabName = dsTabNames.Tables[0].NewRow();
+        drTabName["TabName"] = "Result Listing";
+        dsTabNames.Tables[0].Rows.Add("Contact Details");
+        NewEntry();      
+
+        CltAddrR1.ChangeHeader("Residential Address ( 1 )");
+        CltAddrB1.ChangeHeader("Business Address ( 1 )");
+
+        lblHeader.Text = Convert.ToString("Personal Client - New");
+
+        if (!Page.IsPostBack)
+        {
+            if (Request["GCN"] != null)
+            {
+                if (Request["GCN"].ToString() != string.Empty)
+                {
+                    ViewEntry();
+                    string strGCN = string.Empty;
+                    strGCN = Request.QueryString["GCN"].ToString();
+                    string strCarrierCode = "2";
+
+                    RetrieveClt(strGCN, strCarrierCode);
+                    RetrieveCltCnct(strGCN, strCarrierCode);
+                    RetrieveCltPer(strGCN);
+
+                    lblHeader.Text = Convert.ToString("Personal Client - View");
+                }
+            }
+        }
+    }
+    private void NewEntry()
+    {
+        PopupCltAddrR2.Visible = false;
+        PopupCltAddrR3.Visible = false;
+        PopupCltAddrR4.Visible = false;
+        PopupCltAddrR5.Visible = false;
+        PopupCltAddrR6.Visible = false;
+        PopupCltAddrR7.Visible = false;
+        PopupCltAddrR8.Visible = false;
+        PopupCltAddrR9.Visible = false;
+        PopupCltAddrR10.Visible = false;
+
+        PopupCltAddrB2.Visible = false;
+        PopupCltAddrB3.Visible = false;
+        PopupCltAddrB4.Visible = false;
+        PopupCltAddrB5.Visible = false;
+        PopupCltAddrB6.Visible = false;
+        PopupCltAddrB7.Visible = false;
+        PopupCltAddrB8.Visible = false;
+        PopupCltAddrB9.Visible = false;
+        PopupCltAddrB10.Visible = false;
+    }
+    private void ViewEntry()
+    {
+        PopupCltAddrR2.Visible = true;
+        PopupCltAddrR3.Visible = true;
+        PopupCltAddrR4.Visible = true;
+        PopupCltAddrR5.Visible = true;
+        PopupCltAddrR6.Visible = true;
+        PopupCltAddrR7.Visible = true;
+        PopupCltAddrR8.Visible = true;
+        PopupCltAddrR9.Visible = true;
+        PopupCltAddrR10.Visible = true;
+
+        PopupCltAddrB2.Visible = true;
+        PopupCltAddrB3.Visible = true;
+        PopupCltAddrB4.Visible = true;
+        PopupCltAddrB5.Visible = true;
+        PopupCltAddrB6.Visible = true;
+        PopupCltAddrB7.Visible = true;
+        PopupCltAddrB8.Visible = true;
+        PopupCltAddrB9.Visible = true;
+        PopupCltAddrB10.Visible = true;
+    }
+    private void RetrieveClt(string strGCN, string strCarrierCode)
+    {
+        Insc.MQ.Common.Client.MQClientMgr oMQCltMgr = new Insc.MQ.Common.Client.MQClientMgr();
+        dtClt = oMQCltMgr.GetClt(strGCN, strCarrierCode);
+
+        if (dtClt.Rows.Count > 0)
+        {
+            HttpContext.Current.Session["GCN"] = dtClt.Rows[0]["GCN"].ToString();
+
+            this.txtGCN.Text = dtClt.Rows[0]["GCN"].ToString();
+            this.txtCltCode.Text = dtClt.Rows[0]["ClientCode"].ToString();
+            this.cboTitle.SelectedValue = dtClt.Rows[0]["Title"].ToString();
+            this.txtGivenName.Text = dtClt.Rows[0]["GivenName"].ToString();
+            this.txtSurname.Text = dtClt.Rows[0]["Surname"].ToString();
+            this.txtDOB.Text = DateTime.Parse(dtClt.Rows[0]["BirthRegDate"].ToString()).ToString("dd/MM/yyyy");
+            this.cboGender.SelectedValue = dtClt.Rows[0]["Gender"].ToString();
+            this.txtCurrentID.Text = dtClt.Rows[0]["CurrentID"].ToString();
+            this.txtOthersID.Text = dtClt.Rows[0]["AltId"].ToString();
+            this.cboOtherIDType.SelectedValue = dtClt.Rows[0]["AltIDType"].ToString();
+            this.cboMaritalStatus.SelectedValue = dtClt.Rows[0]["MaritalStat"].ToString();
+            this.txtAnniversaryDate.Text = DateTime.Parse(dtClt.Rows[0]["AnniversaryDate"].ToString()).ToString("dd/MM/yyyy");
+            this.cboNationality.CodeText = dtClt.Rows[0]["Nationality"].ToString();
+            this.cboResStat.SelectedValue = dtClt.Rows[0]["ResStat"].ToString();
+            this.cboResCntryCode.SelectedValue = dtClt.Rows[0]["ResCntryCode"].ToString();
+            this.cboQualCode.CodeText = dtClt.Rows[0]["QualCode"].ToString();
+            this.cboCnctType.SelectedValue = dtClt.Rows[0]["DefCnctType"].ToString();
+            this.txtHomeTel.Text = dtClt.Rows[0]["HomeTel"].ToString();
+            this.txtMobileTel.Text = dtClt.Rows[0]["MobileTel"].ToString();
+            this.txtWorkTel.Text = dtClt.Rows[0]["WorkTel"].ToString();
+            this.txtEmail.Text = dtClt.Rows[0]["Email"].ToString();
+            this.cboOccupation.CodeText = dtClt.Rows[0]["OcpnCode01"].ToString();
+            this.ddlPrivacy.SelectedValue = dtClt.Rows[0]["PrivacyStat"].ToString();
+            this.ddlDstbnMethod.SelectedValue = dtClt.Rows[0]["DstbnMethod"].ToString();
+            this.txtALIncome.Text = dtClt.Rows[0]["Income"].ToString();
+
+        }
+    }
+    private string GetAddHeader(string strCnctType)
+    {
+        string strType = strCnctType.Substring(0, 1);
+        string strNo = strCnctType.Substring(1, 1);
+        string strDesc = string.Empty;
+
+        switch (strType)
+        {
+            case "P":
+                strDesc = "Residential Address " + strNo;
+                break;
+            case "B":
+                strDesc = "Business Address " + strNo;
+                break;
+        }
+        return strDesc;
+    }
+    private void SetCltCnct(DataRow drCltCnct, Application_Common_CltDetailAddr cltDtlAddr)
+    {
+        cltDtlAddr.ChangeHeader(GetAddHeader(drCltCnct["CnctType"].ToString()));
+        cltDtlAddr.Addr1Text = drCltCnct["Adr1"].ToString();
+        cltDtlAddr.Addr2Text = drCltCnct["Adr2"].ToString();
+        cltDtlAddr.Addr3Text = drCltCnct["Adr3"].ToString();
+        cltDtlAddr.Addr4Text = drCltCnct["Adr4"].ToString();
+        cltDtlAddr.City = drCltCnct["City"].ToString();
+        cltDtlAddr.Pin = drCltCnct["PostCode"].ToString();
+        cltDtlAddr.StateCode = drCltCnct["StateCode"].ToString();
+        cltDtlAddr.Country = drCltCnct["CntryCode"].ToString();
+        cltDtlAddr.Visible = true;
+    }
+
+    private void SetCltCnct(DataRow drCltCnct, Application_Common_popupCltAddr popupCltAddr)
+    {
+        popupCltAddr.lblABHeadearText = GetAddHeader(drCltCnct["CnctType"].ToString());
+        popupCltAddr.Addr1Text = drCltCnct["Adr1"].ToString();
+        popupCltAddr.Addr2Text = drCltCnct["Adr2"].ToString();
+        popupCltAddr.Addr3Text = drCltCnct["Adr3"].ToString();
+        popupCltAddr.Addr4Text = drCltCnct["Adr4"].ToString();
+        popupCltAddr.City = drCltCnct["City"].ToString();
+        popupCltAddr.Pin = drCltCnct["PostCode"].ToString();
+        popupCltAddr.StateCode = drCltCnct["StateCode"].ToString();
+        popupCltAddr.Country = drCltCnct["CntryCode"].ToString();
+        popupCltAddr.Visible = true;
+    }
+    private void RetrieveCltCnct(string strGCN, string strCarrierCode)
+    {
+        Insc.MQ.Common.Client.MQClientMgr oMQCltMgr = new Insc.MQ.Common.Client.MQClientMgr();
+        dtCltCnct = oMQCltMgr.GetCltCnct(strGCN, strCarrierCode);
+
+        for (int i = 0; i < dtCltCnct.Rows.Count; i++)
+        {
+            string strCnctType = dtCltCnct.Rows[i]["CnctType"].ToString();
+            switch (strCnctType)
+            {
+                case "P1":
+                    SetCltCnct(dtCltCnct.Rows[i], CltAddrR1);
+                    break;
+                case "P2":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrR2);
+                    break;
+                case "P3":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrR3);
+                    break;
+                case "P4":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrR4);
+                    break;
+                case "P5":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrR5);
+                    break;
+                case "P6":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrR6);
+                    break;
+                case "P7":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrR7);
+                    break;
+                case "P8":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrR8);
+                    break;
+                case "P9":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrR9);
+                    break;
+                case "P10":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrR10);
+                    break;
+                case "B1":
+                    SetCltCnct(dtCltCnct.Rows[i], CltAddrB1);
+                    break;
+                case "B2":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrB2);
+                    break;
+                case "B3":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrB3);
+                    break;
+                case "B4":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrB4);
+                    break;
+                case "B5":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrB5);
+                    break;
+                case "B6":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrB6);
+                    break;
+                case "B7":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrB7);
+                    break;
+                case "B8":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrB8);
+                    break;
+                case "B9":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrB9);
+                    break;
+                case "B10":
+                    SetCltCnct(dtCltCnct.Rows[i], PopupCltAddrB10);
+                    break;
+            }
+        }
+    }
+    private void RetrieveCltPer(string strGCN)
+    {
+        Insc.MQ.Common.Client.MQClientMgr oMQCltMgr = new Insc.MQ.Common.Client.MQClientMgr();
+        dtCltPer = oMQCltMgr.GetCltPer(strGCN);
+
+        if (dtCltPer.Rows.Count > 0)
+        {
+            PopupAML1.dtCltPer1 = dtCltPer;
+        }
+    }
+    protected void RetrieveCltSrc(object sender, EventArgs e)
+    {
+        string strGCN = ((System.Web.UI.WebControls.Button)(sender)).Text;
+        //sender.ToString(); // this.PanelLookup1.TemplateControl("btnInsert").ToSting();
+        string strCarrierCode = "2";
+
+        RetrieveClt(strGCN, strCarrierCode);
+        RetrieveCltCnct(strGCN, strCarrierCode);
+        RetrieveCltPer(strGCN);
+
+        ModalPopupExtender1.Hide();
+    }
+    private DataSet RetrieveCltDtl(string strGCN)
+    {
+        /*  StoreProcedureName: prc_CSS_AgentEnquiry_AgtHistoryEnq
+         *  Columns:
+         *  @GCN varchar(12) 
+        */
+        StringBuilder strSQL = new StringBuilder();
+
+        Provider o = new Provider();
+        string strDBName = "INSCCommonConnectionString";
+        string strSQL2 = string.Empty;
+        DataSet ds = new DataSet();
+
+        strSQL.Append("EXEC prc_Clt_Search_CltDtl ");
+        strSQL.Append("'" + strGCN + "'");
+
+        strSQL2 = strSQL.ToString();
+
+        //return objEnq.WrapData(strSQL.ToString());
+        ds = o.ReadData(strDBName, strSQL2);
+        return ds;
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void Occupation_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        DataRow drClt = dtClt.NewRow();
+        DataRow drCltAddr = dtCltCnct.NewRow();
+        DataRow drCltPer = dtCltPer.NewRow();
+
+        string strUserGCN = "10000045";
+
+        //*** Table Clt ***
+        //drClt["DefCnctType"] = Convert.ToString("aaa");
+        dtClt.Columns.Add("GCN", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("Title", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("GivenName", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("Surname", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("BirthRegDate", System.Type.GetType("System.DateTime"));
+        dtClt.Columns.Add("Gender", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("CurrentID", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("CurrentIDType", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("AltID", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("AltIDType", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("MaritalStat", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("AnniversaryDate", System.Type.GetType("System.DateTime"));
+        dtClt.Columns.Add("Nationality", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("ResStat", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("ResCntryCode", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("QualCode", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("DefCnctType", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("HomeTel", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("MobileTel", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("WorkTel", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("Email", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("OcpnCode01", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("PrivacyStat", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("DstbnMethod", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("Income", System.Type.GetType("System.String"));
+        dtClt.Columns.Add("CreateBy", System.Type.GetType("System.String"));
+
+        drClt["GCN"] = this.txtGCN.Text;
+        drClt["Title"] = this.cboTitle.SelectedValue;
+        drClt["GivenName"] = this.txtGivenName.Text;
+        drClt["Surname"] = this.txtSurname.Text;
+        if (this.txtDOB.Text != String.Empty)
+            drClt["BirthRegDate"] = this.txtDOB.GetDateValue;
+        drClt["Gender"] = this.cboGender.SelectedValue;
+        drClt["CurrentID"] = this.txtCurrentID.Text;
+        drClt["CurrentIDType"] = "P";
+        drClt["AltID"] = this.txtOthersID.Text;
+        drClt["AltIDType"] = this.cboOtherIDType.SelectedValue;
+        drClt["MaritalStat"] = this.cboMaritalStatus.SelectedValue;
+        if (this.txtAnniversaryDate.Text != String.Empty)
+            drClt["AnniversaryDate"] = this.txtAnniversaryDate.GetDateValue;
+        drClt["Nationality"] = this.cboNationality.CodeText;
+        drClt["ResStat"] = this.cboResStat.SelectedValue;
+        drClt["ResCntryCode"] = this.cboResCntryCode.SelectedValue;
+        drClt["QualCode"] = this.cboQualCode.CodeText;
+        drClt["DefCnctType"] = this.cboCnctType.SelectedValue;
+        drClt["HomeTel"] = this.txtHomeTel.Text;
+        drClt["MobileTel"] = this.txtMobileTel.Text;
+        drClt["WorkTel"] = this.txtWorkTel.Text;
+        drClt["Email"] = this.txtEmail.Text;
+        drClt["OcpnCode01"] = this.cboOccupation.CodeText;
+        drClt["PrivacyStat"] = this.ddlPrivacy.SelectedValue;
+        drClt["DstbnMethod"] = this.ddlDstbnMethod.SelectedValue;
+        drClt["Income"] = this.txtALIncome.Text;
+        drClt["CreateBy"] = strUserGCN;
+        dtClt.Rows.Add(drClt);
+
+        dtCltCnct.Columns.Add("GCN", System.Type.GetType("System.String"));
+        dtCltCnct.Columns.Add("CnctType", System.Type.GetType("System.String"));
+        dtCltCnct.Columns.Add("Adr1", System.Type.GetType("System.String"));
+        dtCltCnct.Columns.Add("Adr2", System.Type.GetType("System.String"));
+        dtCltCnct.Columns.Add("Adr3", System.Type.GetType("System.String"));
+        dtCltCnct.Columns.Add("Adr4", System.Type.GetType("System.String"));
+        dtCltCnct.Columns.Add("City", System.Type.GetType("System.String"));
+        dtCltCnct.Columns.Add("Postcode", System.Type.GetType("System.String"));
+        dtCltCnct.Columns.Add("Statecode", System.Type.GetType("System.String"));
+        dtCltCnct.Columns.Add("Cntrycode", System.Type.GetType("System.String"));
+        dtCltCnct.Columns.Add("CreateBy", System.Type.GetType("System.String"));
+
+        if (HttpContext.Current.Session["dtCltCnct"] != null)
+            dtCltCnct = (DataTable)HttpContext.Current.Session["dtCltCnct"];
+
+        System.Data.DataRow[] dataRows = new System.Data.DataRow[dtCltCnct.Rows.Count];
+        dtCltCnct.Rows.CopyTo(dataRows, 0);
+        foreach (System.Data.DataRow dataRow in dataRows)
+            if (dataRow.ItemArray[1].Equals("R1") || dataRow.ItemArray[1].Equals("B1"))
+                dtCltCnct.Rows.Remove(dataRow);
+
+        drCltAddr = SaveCnct(drCltAddr, CltAddrR1);
+        dtCltCnct.Rows.Add(drCltAddr);
+
+        drCltAddr = SaveCnct(drCltAddr, CltAddrB1);
+        dtCltCnct.Rows.Add(drCltAddr);
+
+        HttpContext.Current.Session["dtCltCnct"] = dtCltCnct;
+
+        dsClt.Tables.Add(dtClt);
+        dsClt.Tables.Add(dtCltCnct.Copy());
+
+        if (HttpContext.Current.Session["dtCltPer"] != null)
+            dtCltPer = (DataTable)HttpContext.Current.Session["dtCltPer"];
+        dtCltPer.TableName = "CltPer";
+        if (dtCltPer.Rows.Count > 0)
+            dsClt.Tables.Add(dtCltPer.Copy());
+
+        Insc.MQ.Common.Client.MQClientMgr oMQCltMgr = new Insc.MQ.Common.Client.MQClientMgr();
+
+        string strCarrierCode = "2";        
+        string strCltType = "A";
+        string strSrc = "1";
+        string strErrMsg = string.Empty;
+        string strStatusMsg = string.Empty;
+
+        int intStatusCode = oMQCltMgr.SaveClient(0, dsClt, strCarrierCode, strCltType, strUserGCN, strSrc, ref strErrMsg);
+        if (intStatusCode == 1)
+            intStatusCode = oMQCltMgr.SaveClient(2, dsClt, strCarrierCode, strCltType, strUserGCN, strSrc, ref strErrMsg);
+
+        if (intStatusCode == 0)
+            strStatusMsg = "Success";
+        else
+            strStatusMsg = strErrMsg;
+
+    }
+    private DataRow SaveCnct(DataRow drCltCnct, Application_Common_CltDetailAddr cltDtlAddr)
+    {
+        string strUserGCN = "10000045";
+
+        DataRow drCltAddr = dtCltCnct.NewRow();
+        drCltAddr["GCN"] = this.txtGCN.Text;
+        drCltAddr["CnctType"] = cltDtlAddr.ID.Substring(cltDtlAddr.ID.Length - 2, 2);
+        drCltAddr["Adr1"] = cltDtlAddr.Addr1Text;
+        drCltAddr["Adr2"] = cltDtlAddr.Addr2Text;
+        drCltAddr["Adr3"] = cltDtlAddr.Addr3Text;
+        drCltAddr["Adr4"] = cltDtlAddr.Addr4Text;
+        drCltAddr["City"] = cltDtlAddr.City;
+        drCltAddr["Postcode"] = cltDtlAddr.Pin;
+        drCltAddr["Statecode"] = cltDtlAddr.StateCode;
+        drCltAddr["Cntrycode"] = cltDtlAddr.Country;
+        drCltAddr["CreateBy"] = strUserGCN;
+
+        return drCltAddr;
+    }
+
+    protected void PopupAML1_UnLoad(object sender, EventArgs e)
+    {
+        dtCltPer = this.PopupAML1.dtCltPer1;
+    }
+
+    protected void PopupCltAddrR2_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrR2.dtCltCnct1;
+    }
+    protected void PopupCltAddrR3_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrR3.dtCltCnct1;
+    }
+    protected void PopupCltAddrR4_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrR4.dtCltCnct1;
+    }
+    protected void PopupCltAddrR5_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrR5.dtCltCnct1;
+    }
+    protected void PopupCltAddrR6_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrR6.dtCltCnct1;
+    }
+    protected void PopupCltAddrR7_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrR7.dtCltCnct1;
+    }
+    protected void PopupCltAddrR8_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrR8.dtCltCnct1;
+    }
+    protected void PopupCltAddrR9_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrR9.dtCltCnct1;
+    }
+    protected void PopupCltAddrR10_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrR10.dtCltCnct1;
+    }
+
+    protected void PopupCltAddrB2_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrB2.dtCltCnct1;
+    }
+    protected void PopupCltAddrB3_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrB3.dtCltCnct1;
+    }
+    protected void PopupCltAddrB4_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrB4.dtCltCnct1;
+    }
+    protected void PopupCltAddrB5_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrB5.dtCltCnct1;
+    }
+    protected void PopupCltAddrB6_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrB6.dtCltCnct1;
+    }
+    protected void PopupCltAddrB7_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrB7.dtCltCnct1;
+    }
+    protected void PopupCltAddrB8_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrB8.dtCltCnct1;
+    }
+    protected void PopupCltAddrB9_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrB9.dtCltCnct1;
+    }
+    protected void PopupCltAddrB10_UnLoad(object sender, EventArgs e)
+    {
+        dtCltCnct = this.PopupCltAddrB10.dtCltCnct1;
+    }
+
+    protected void PopupCltEnq1_OnUnload(object sender, EventArgs e)
+    {
+
+    }
+    public void Test_test(string strA)
+    {
+
+    }
+    protected void gvLookup1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void gvLookup1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvLookup1.PageIndex = e.NewPageIndex;
+
+        string strGCN = this.txtsGCN.Text;
+        string strSurname = this.txtsSurname.Text;
+        string strGivenNm = this.txtsGivenName.Text;
+        string strDOB = this.txtsDOB.Text;
+        string strGender = this.cbosGender.SelectedValue; // this.cboGender.SelectedValue.ToString();
+        string strCurrentIDType = this.cbosIdType.SelectedValue; // this.cboCurrentIDType.SelectedValue.ToString();
+        string strCurrentIDNo = this.txtsIDNo.Text;
+        string strCltType = string.Empty;
+        string strTelNum = this.txtHomeTel.Text.Length != 0 ? this.txtHomeTel.Text : this.txtWorkTel.Text;
+        string strUserGCN = "10000045";
+
+        Insc.MQ.Common.Client.MQClientMgr oMQCltMgr = new Insc.MQ.Common.Client.MQClientMgr();
+
+        gvLookup1.DataSource = oMQCltMgr.SearchClient(strGCN, strCurrentIDNo, strCurrentIDType,
+                                string.Empty, string.Empty, strCltType,
+                               strGivenNm + " " + strSurname, strGivenNm, strSurname, strGender,
+                               strDOB, strTelNum, strUserGCN);
+        gvLookup1.DataBind();
+        gvLookup1.Visible = true;
+    }
+    protected void txtProofAgeDoc_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void cmbSearch1_Click(object sender, EventArgs e)
+    {
+        //dsCountry.SelectCommand = "prc_Get_LookupCode '"+lookupCode+"'," + HttpContext.Current.Session["UserLangNum"].ToString() +",1";
+        //dsCountry.FilterExpression = "ParamDesc like '"+txtSearchCountry.Text+"%'";
+        //gvCountry.DataBind();
+        //gvCountry.Visible = true;
+
+        string strGCN = this.txtsGCN.Text;
+        string strSurname = this.txtsSurname.Text;
+        string strGivenNm = this.txtsGivenName.Text;
+        string strDOB = this.txtsDOB.Text;
+        string strGender = this.cbosGender.SelectedValue; // this.cboGender.SelectedValue.ToString();
+        string strCurrentIDType = this.cbosIdType.SelectedValue; // this.cboCurrentIDType.SelectedValue.ToString();
+        string strCurrentIDNo = this.txtsIDNo.Text;
+        string strCltType = string.Empty;
+        string strTelNum = this.txtHomeTel.Text.Length != 0 ? this.txtHomeTel.Text : this.txtWorkTel.Text;
+        string strUserGCN = "10000045";
+
+        //gvCountry.PageSize = int.Parse(cboShowRecord.SelectedValue.ToString());
+
+        Insc.MQ.Common.Client.MQClientMgr oMQCltMgr = new Insc.MQ.Common.Client.MQClientMgr();
+
+        gvLookup1.DataSource = oMQCltMgr.SearchClient(strGCN, strCurrentIDNo, strCurrentIDType,
+                                string.Empty, string.Empty, strCltType,
+                               strGivenNm + " " + strSurname, strGivenNm, strSurname, strGender,
+                               strDOB, strTelNum, strUserGCN);
+        gvLookup1.DataBind();
+        gvLookup1.Visible = true;
+    }
+
+
+}

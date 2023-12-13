@@ -1,0 +1,206 @@
+<%@ Page Language="C#" MasterPageFile="~/iFrame.master" AutoEventWireup="true" CodeFile="CltEnquiry.aspx.cs"
+    Inherits="Application_Common_CltEnquiry" Title="Client Listing" Theme="Isys" %>
+
+<%@ Register Src="~/App_UserControl/Common/ctlDate.ascx" TagName="ctlDate" TagPrefix="uc3" %>
+
+<%@ Register Src="~/App_UserControl/Common/txtDate.ascx" TagName="txtDate" TagPrefix="uc2" %>
+
+<%@ Register Src="~/App_UserControl/Common/ddlLookup.ascx" TagName="ddlLookup"
+    TagPrefix="uc1" %>
+    
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<link href="~/Styles/subModal.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="~/Styles/main.css" />
+
+<script type="text/javascript" src="~/Scripts/common.js"></script>
+<script type="text/javascript" src="~/Scripts/subModal.js"></script>
+<script type="text/javascript" src="~/Scripts/ValidationDefeater.js"></script>
+<script language="javascript" type="text/javascript">
+var path = "<%=Request.ApplicationPath.ToString()%>";
+
+    function CheckPerTelFormat(src, args)
+    {
+         var result = true;
+         var LocalTel = document.getElementById("<%=txtTelNo.ClientID%>").value.split(",");
+         
+         strLocalTel = new String(LocalTel)
+       
+         if (strLocalTel.length > 0)   
+         {                 
+             if (!IsNumeric(strLocalTel))
+             {
+                result = false;
+             }                 
+         }
+        
+         args.IsValid = result;
+    }
+    
+    function CheckCorpTelFormat(src, args)
+    {
+         var result = true;
+         var LocalTel = document.getElementById("<%=txtCoTelNo.ClientID%>").value.split(",");
+         
+         strLocalTel = new String(LocalTel)
+       
+         if (strLocalTel.length > 0)   
+         {                 
+             if (!IsNumeric(strLocalTel))
+             {
+                result = false;
+             }                 
+         }
+        
+         args.IsValid = result;
+    }
+
+    function IsNumeric(sText)
+    {
+       var ValidChars = "0123456789";
+       var IsNumber=true;
+       var Char;
+
+     
+       for (i = 0; i < sText.length && IsNumber == true; i++) 
+          { 
+          Char = sText.charAt(i); 
+          if (ValidChars.indexOf(Char) == -1) 
+             {
+             IsNumber = false;
+             }
+          }
+       return IsNumber;
+       
+       }
+</script>    
+    
+    <div style="height: 31px;
+        padding-left: 5px;">
+        <asp:Label ID="lblTitle" runat="server" SkinID="Item1" Text="Client Enquiry" BorderStyle="None" Visible="False"></asp:Label>
+        <asp:ScriptManager id="ScriptManager1" runat="server"></asp:ScriptManager>
+	 <asp:UpdateProgress id="UpdateProgress1" runat="server" DynamicLayout="False">
+        <ProgressTemplate>
+<IMG class="UpdateProgress1_img" alt="" src="~/App_Themes/Isys/images/spinner.gif" /> Loading ... 
+</ProgressTemplate>
+    </asp:UpdateProgress>
+    </div>
+    <table cellpadding="2" cellspacing="0" width="98.8%">
+        <tr>
+            <td align="center">
+                <asp:UpdatePanel id="UpdatePanel1" runat="server">
+                    <contenttemplate>
+<table style="WIDTH: 650px" id="tbl" class="formtable" cellSpacing=1 cellPadding=4 runat="server">
+<tbody>
+
+<tr>
+<td class="test" colSpan="4">
+<table cellSpacing="0" cellPadding="0" width="100%">
+<tbody>
+<tr align=left>
+<td style="HEIGHT: 14px" align=left colSpan=2>Client Enquiry</td>
+<td style="HEIGHT: 14px" align=right colSpan="2">CLTENQ V1.3</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class="formcontent" align=left>
+<asp:Label id="lblCltType" runat="server" Text="Client Type" Font-Bold="False" Width="90px"></asp:Label></td><td class="formcontent" align=left colSpan=3><asp:DropDownList id="ddlCltType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCltType_SelectedIndexChanged" CssClass="standardmenu"></asp:DropDownList> </td></tr><tr><td class="formcontent" align=left><asp:Label id="lblGCN" runat="server" Text="Customer ID" Font-Bold="False" Width="110px"></asp:Label></td><td style="WIDTH: 208px" class="formcontent" align=left><asp:TextBox id="txtGCN" runat="server" Width="195px" CssClass="standardtextbox" MaxLength="20"></asp:TextBox></td><td class="formcontent" align=left><asp:Label id="lblDOB" runat="server" Text="Date of Birth" Font-Bold="False" Width="120px"></asp:Label></td><td class="formcontent" align=left><uc3:ctlDate id="dtpDOB" runat="server" CssClass="standardtextbox" RequiredField="false"></uc3:ctlDate> </td></tr><tr><td class="formcontent" align=left><asp:Label id="lblGivenNm" runat="server" Text="Given Name" Font-Bold="False" Width="90px"></asp:Label></td><td style="WIDTH: 208px" class="formcontent" align=left><asp:TextBox id="txtGivenNm" runat="server" Width="195px" CssClass="standardtextbox" MaxLength="60"></asp:TextBox> </td><td class="formcontent" align=left><asp:Label id="lblSurname" runat="server" Text="Surname" Font-Bold="False" Width="120px"></asp:Label> </td><td class="formcontent" align=left><asp:TextBox id="txtSurname" runat="server" Width="195px" CssClass="standardtextbox" MaxLength="60"></asp:TextBox></td></tr><tr><td class="formcontent" align=left><asp:Label id="lblIDType" runat="server" Text="ID Type" Font-Bold="False" Width="90px"></asp:Label></td><td style="WIDTH: 208px" class="formcontent" align=left><asp:DropDownList id="ddlIdType" runat="server" CssClass="standardmenu"></asp:DropDownList></td><td class="formcontent" align=left><asp:Label id="lblIDNo" runat="server" Text="ID No." Font-Bold="False" Width="120px"></asp:Label></td><td class="formcontent" align=left><asp:TextBox id="txtIDNo" runat="server" Width="195px" CssClass="standardtextbox" MaxLength="20"></asp:TextBox></td></tr><tr><td class="formcontent" align=left><asp:Label id="lblGender" runat="server" Text="Gender" Font-Bold="False" Width="90px"></asp:Label></td><td style="WIDTH: 208px" class="formcontent" align=left><asp:DropDownList id="ddlGender" runat="server" CssClass="standardmenu"></asp:DropDownList></td><td class="formcontent" align=left><asp:Label id="lblTelNo" runat="server" Text="Tel No." Font-Bold="False" Width="120px"></asp:Label></td><td class="formcontent" align=left><asp:TextBox id="txtTelNo" runat="server" Width="195px" CssClass="standardtextbox" MaxLength="16"></asp:TextBox> <asp:CustomValidator id="ctvTelNo" runat="server" ClientValidationFunction="CheckPerTelFormat" ControlToValidate="txtTelNo" Display="Dynamic" ErrorMessage="Invalid Tel No!" SetFocusOnError="True"></asp:CustomValidator> </td></tr><tr><td class="formcontent" align=left><asp:Label id="lblShowRecords" runat="server" Text="Show Records" Font-Bold="False" Width="90px"></asp:Label></td><td class="formcontent" align=left colSpan=3><asp:DropDownList id="ddlShowRec" runat="server" SkinID="DDL1">
+                                            <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="25">25</asp:ListItem>
+                                            <asp:ListItem Value="40">40</asp:ListItem>
+                                            </asp:DropDownList></td></tr><tr><td class="formcontent" align=left><asp:Label id="lblCoName" runat="server" Text="Company Name" Font-Bold="False" Width="100px"></asp:Label></td><td style="WIDTH: 208px" class="formcontent" align=left><asp:TextBox id="txtCoName" runat="server" Width="195px" CssClass="standardtextbox" MaxLength="60"></asp:TextBox></td><td class="formcontent"><asp:Label id="lblCoRegNo" runat="server" Text="Company Reg. No." Font-Bold="False" Width="120px"></asp:Label></td><td class="formcontent" colSpan=1><asp:TextBox id="txtCoRegNo" runat="server" Width="195px" CssClass="standardtextbox" MaxLength="24"></asp:TextBox></td></tr><tr><td class="formcontent" align=left><asp:Label id="lblCoTelNo" runat="server" Text="Tel No." Font-Bold="False" Width="100px"></asp:Label></td><td style="WIDTH: 208px" class="formcontent" align=left><asp:TextBox id="txtCoTelNo" runat="server" Width="195px" CssClass="standardtextbox" MaxLength="16"></asp:TextBox> <asp:CustomValidator id="ctvCoTelNo" runat="server" ClientValidationFunction="CheckCorpTelFormat" ControlToValidate="txtCoTelNo" Display="Dynamic" ErrorMessage="Invalid Tel No!" SetFocusOnError="True"></asp:CustomValidator></td><td class="formcontent"><asp:Label id="lblCoShowRec" runat="server" Text="Show Records" Font-Bold="False" Width="120px"></asp:Label></td><td class="formcontent" colSpan=1><asp:DropDownList id="ddlCoShowRec" runat="server" SkinID="DDL1">
+                                            <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="25">25</asp:ListItem>
+                                            <asp:ListItem Value="40">40</asp:ListItem>
+                                            </asp:DropDownList></td></tr><tr><td class="formcontent2" align=center colSpan=4><asp:Button id="BtnSearch" onclick="BtnSearch_Click" runat="server" Text="Search" Width="59px" CssClass="standardbutton"></asp:Button> <asp:Button id="btnClear" onclick="btnClear_Click" runat="server" Text="Clear" Width="59px" CssClass="standardbutton" CausesValidation="false"></asp:Button></td></tr></TBODY></TABLE>
+</contenttemplate>
+                                        <triggers>
+<asp:AsyncPostBackTrigger ControlID="ddlCltType" EventName="SelectedIndexChanged"></asp:AsyncPostBackTrigger>
+</triggers>
+                </asp:UpdatePanel>
+            </td>
+        </tr>
+            <tr>
+                <td align="center">
+                    <asp:UpdatePanel id="UpdatePanel3" runat="server">
+                        <contenttemplate> 
+                        <asp:Label ID="lblNoRecord" runat="server" ForeColor="red" ></asp:Label>
+                        </contenttemplate>
+                    </asp:UpdatePanel>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <asp:UpdatePanel id="UpdatePanel2" runat="server">
+                    <contenttemplate>                                      
+                    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="GridView1_PageIndexChanging" RowStyle-CssClass="formtable" 
+                        OnSorting="GridView1_Sorting" Width="785px" PagerStyle-Font-Underline="true" PagerStyle-ForeColor="blue" AutoGenerateColumns="False">
+                        <Columns>                          
+                            <asp:TemplateField SortExpression="GCN" HeaderText="Customer ID" >
+                                <ItemTemplate>                                    
+                                    <asp:LinkButton ID="lblEdit" runat="server" CssClass="L1" OnCommand="EditPage" CommandName='<%# Bind("CltType") %>' CommandArgument='<%# Bind("GCN") %>' Text='<%# Bind("GCN") %>' ></asp:LinkButton> 
+                                </ItemTemplate>
+                                <ItemStyle Width="100px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>                                    
+                            <asp:BoundField DataField="FullName" HeaderText="Name" SortExpression="FullName" >
+                                <ItemStyle HorizontalAlign="Left" Width="300px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="GenderDsc" HeaderText="Gender" ReadOnly="True" SortExpression="Gender" >
+                                <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataFormatString="{0:d}" HtmlEncode="False" DataField="DateKey" HeaderText="Date of Birth" SortExpression="DateKey" >
+                                <ItemStyle HorizontalAlign="Center" Width="80px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>                            
+                            <asp:BoundField DataField="IdTypeDsc" HeaderText="Id Type" ReadOnly="True" SortExpression="IdTypeDsc" >
+                                <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="Id" HeaderText="Id No." ReadOnly="True" SortExpression="Id" >
+                                <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="HomeTel" HeaderText="Home Tel" ReadOnly="True" SortExpression="HomeTel" >
+                                <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="WorkTel" HeaderText="Work Tel" ReadOnly="True" SortExpression="WorkTel" >
+                                <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="WorkTel" HeaderText="Home Tel" ReadOnly="True" SortExpression="HomeTel" >
+                                <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="HomeTel" HeaderText="Work Tel" ReadOnly="True" SortExpression="WorkTel" >
+                                <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="ExtSrcDsc" HeaderText="Back End" SortExpression="ExtSrcDsc" >
+                                <ItemStyle HorizontalAlign="Center" Width="60px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>                            
+                            <asp:BoundField DataField="ExtClientCode" HeaderText="Client Code" SortExpression="ExtClientCode" >
+                                <ItemStyle HorizontalAlign="Center" Width="60px" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>                            
+                        </Columns>
+                        <HeaderStyle CssClass="test" /> <%--changed by rachana on 09-07-2013 for applying css to GRID--%>
+                        <PagerStyle CssClass="pagelink" />
+                        <RowStyle CssClass="sublinkodd"></RowStyle>
+                        <AlternatingRowStyle CssClass="sublinkeven" ></AlternatingRowStyle>
+                    </asp:GridView></contenttemplate>
+                        <triggers>
+                        <asp:AsyncPostBackTrigger ControlID="BtnSearch" EventName="Click"></asp:AsyncPostBackTrigger>
+                        </triggers>
+                    </asp:UpdatePanel>&nbsp; &nbsp;&nbsp;<br />
+                </td>
+            </tr>
+        </table>
+     
+</asp:Content>
